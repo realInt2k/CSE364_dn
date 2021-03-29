@@ -14,6 +14,7 @@ public class fileReader {
             String line = scan.nextLine();
             if(i < 3) {
                 System.out.println(line);
+                i ++;
             }
         }
         return 1;

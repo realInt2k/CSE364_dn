@@ -6,10 +6,8 @@ import java.io.FileNotFoundException;
 
 public class app {
     public static void main (String[] args) throws FileNotFoundException {
-        System.out.println("test");
-        fileReader fr = new fileReader();
+        fileReader reader = new fileReader();
         userDir ud = new userDir();
-        ud.print();
-        //fr.openFile("../../../../data/movies.dat");
+        reader.openFile(ud.get()+"/data/users.dat");
     }
 }
