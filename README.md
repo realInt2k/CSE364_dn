@@ -31,3 +31,4 @@ CMD ["/bin/bash"]<br />
 - will add this implementation to run.sh later
 
 - create your branch when you wanna change stuffs so it doesn't mess the skeleton up :) (i.e: git checkout -b baotruong; when pusshing: git push --set-upstream origin baotruong)
+- updated skeleton, we have array objects: ratings, reviewers, movies declared and defined in Milestone1.java, which is called by App.java for conveniences.
