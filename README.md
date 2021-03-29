@@ -5,38 +5,27 @@ Software Engineering course
 Milestone 1 due: 11:59PM, Friday, April 2, 2021
 
 
-- Set up your Dockerfile (ver 1)
+# Set up your Dockerfile (ver 1)
 
-\# getting base image                                                        
-FROM ubuntu:20.04
+\# getting base image<br />
+FROM ubuntu:20.04<br />
+MAINTAINER int2k pal <int2k@unist.ac.kr><br />
+WORKDIR /root/project<br />
+COPY run.sh /root/project<br />
+RUN chmod +x run.sh<br />
+\# exe during building<br />
+RUN apt-get update<br />
+RUN apt-get install -y<br />
+RUN apt-get install -y software-properties-common<br />
+RUN apt-get install -y openssh-server<br />
+RUN apt-get install -y git gcc g++ python3 vim python3-pip<br />
+RUN pip3 install essential_generators<br />
+RUN apt-get install -y openjdk-11-jdk<br />
+RUN apt install -y  maven<br />
+\# exe after building<br />
+CMD ["/bin/bash"]<br />
 
-MAINTAINER int2k pal <int2k@unist.ac.kr>
-
-WORKDIR /root/project
-
-COPY run.sh /root/project
-
-RUN chmod +x run.sh
- 
-\# exe during building
-
-RUN apt-get update
-
-RUN apt-get install -y 
-
-RUN apt-get install -y software-properties-common
-
-RUN apt-get install -y openssh-server
-
-RUN apt-get install -y git gcc g++ python3 vim python3-pip
-
-RUN pip3 install essential_generators
-
-RUN apt-get install -y openjdk-11-jdk
-
-RUN apt install -y  maven
- 
-\# exe after building
-
-CMD ["/bin/bash"]
-
+# 30 Mar 2021: How to run skeleton code:
+- navigate to your cloned folder (i.e: ~/CSE364_dn)
+- type: mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar
+- will add this implementation to run.sh later
