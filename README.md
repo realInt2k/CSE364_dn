@@ -29,3 +29,5 @@ CMD ["/bin/bash"]<br />
 - navigate to your cloned folder (i.e: ~/CSE364_dn)
 - type: mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar
 - will add this implementation to run.sh later
+
+- create your branch when you wanna change stuffs so it doesn't mess the skeleton up :) (i.e: git checkout -b baotruong; when pusshing: git push --set-upstream origin baotruong)
