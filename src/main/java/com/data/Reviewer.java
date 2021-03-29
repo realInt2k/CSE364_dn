@@ -1,6 +1,6 @@
 package com.data;
 // aka: user: UserID::Gender::Age::Occupation::Zip-code
-public class reviewer {
+public class Reviewer {
     public char gender;
     public int age, ID, occupation, zipCode;
     public void input(String line) {

@@ -1,6 +1,6 @@
 package com.help;
 
-public class userDir {
+public class UserDir {
     public void print() {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
     }

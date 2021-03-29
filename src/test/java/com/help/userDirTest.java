@@ -7,7 +7,7 @@ public class userDirTest {
     @Test
     public void testCorrectDir ()
     {
-        userDir ud = new userDir();
+        UserDir ud = new UserDir();
         Assert.assertEquals(System.getProperty("user.dir"), ud.get());
     }
 }

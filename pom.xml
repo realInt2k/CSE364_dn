@@ -52,7 +52,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.unist.app</mainClass>
+                            <mainClass>com.unist.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
