@@ -1,4 +1,7 @@
-com\help\userDir.class
-com\unist\fileReader.class
-com\unist\app.class
-com\data\reviewer.class
+com\data\Reviewer.class
+com\unist\FileReader.class
+com\data\Movie.class
+com\data\Rating.class
+com\unist\Milestone1.class
+com\unist\App.class
+com\help\UserDir.class
