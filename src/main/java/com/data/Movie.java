@@ -15,6 +15,6 @@ public class Movie {
         String[] subLine = line.split("::");
         this.ID = Integer.parseInt(subLine[0]);
         this.title = subLine[1];
-        String[] movCat = subLine[2].split("|").clone();
+        this.cat = subLine[2].split("|").clone();
     }
 }
