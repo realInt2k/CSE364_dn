@@ -8,6 +8,7 @@ public class app {
     public static void main (String[] args) throws FileNotFoundException {
         fileReader reader = new fileReader();
         userDir ud = new userDir();
-        reader.openFile(ud.get()+"/data/users.dat");
+        String[] lines = reader.readFile(ud.get()+"/data/users.dat");
+        System.out.println("number of lines in users.dat is : " + lines.length);
     }
 }
