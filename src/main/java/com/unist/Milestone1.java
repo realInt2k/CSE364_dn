@@ -25,13 +25,13 @@ public class Milestone1 {
     public void solve(String[] arg) {
         int occupation = 0;
         String[] categories = null;
-	categories = arg[0].split("\\|").clone();
-	if(arg.length > 1 && parseOccupation.get(arg[0]) != null) {
-	    occupation = parseOccupation.get(arg[1]);                                                           }
-	
+        categories = arg[0].split("\\|").clone();
+        if (arg.length > 1 && parseOccupation.get(arg[1]) != null) {
+            occupation = parseOccupation.get(arg[1]);
+        }
+
         long score = 0;
         long nMatches = 0;
-        String[] categories = null;
         
         System.out.println("\nCalculating score for '" + arg[0] + "' according to these genres: ");
         for (int i = 0; i < categories.length; ++i) {

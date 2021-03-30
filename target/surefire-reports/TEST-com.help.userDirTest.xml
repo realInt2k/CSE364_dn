@@ -1,65 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.help.userDirTest" time="0.091" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.help.userDirTest" time="0.141" tests="1" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="sun.desktop" value="windows"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.specification.version" value="11"/>
+    <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="D:\documents\UNIST\software_engineering\CSE364_dn\target\test-classes;D:\documents\UNIST\software_engineering\CSE364_dn\target\classes;C:\Users\Dungd\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Dungd\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dungd\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;"/>
-    <property name="java.vm.vendor" value="AdoptOpenJDK"/>
+    <property name="java.class.path" value="C:\Users\bekat\Documents\SE\CSE364_dn\target\test-classes;C:\Users\bekat\Documents\SE\CSE364_dn\target\classes;C:\Users\bekat\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\bekat\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\bekat\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Asia/Seoul"/>
-    <property name="java.vm.specification.version" value="11"/>
     <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="15"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\Dungd\AppData\Local\Temp\surefire9664744964321799613\surefirebooter4483420705023581598.jar C:\Users\Dungd\AppData\Local\Temp\surefire9664744964321799613 2021-03-30T20-37-06_184-jvmRun1 surefire10091800385525304252tmp surefire_03403611484056384269tmp"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-15\bin"/>
+    <property name="sun.java.command" value="C:\Users\bekat\AppData\Local\Temp\surefire10699973411670220355\surefirebooter5717223802822393827.jar C:\Users\bekat\AppData\Local\Temp\surefire10699973411670220355 2021-03-30T18-52-43_666-jvmRun1 surefire11811863330405856983tmp surefire_010317685552184682485tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="D:\documents\UNIST\software_engineering\CSE364_dn\target\test-classes;D:\documents\UNIST\software_engineering\CSE364_dn\target\classes;C:\Users\Dungd\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Dungd\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dungd\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\bekat\Documents\SE\CSE364_dn\target\test-classes;C:\Users\bekat\Documents\SE\CSE364_dn\target\classes;C:\Users\bekat\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\bekat\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\bekat\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\Dungd"/>
+    <property name="user.home" value="C:\Users\bekat"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2020-07-14"/>
-    <property name="java.home" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot"/>
+    <property name="java.version.date" value="2020-09-15"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-15"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="D:\documents\UNIST\software_engineering\CSE364_dn"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="basedir" value="C:\Users\bekat\Documents\SE\CSE364_dn"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\Dungd\AppData\Local\Temp\surefire9664744964321799613\surefirebooter4483420705023581598.jar"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\bekat\AppData\Local\Temp\surefire10699973411670220355\surefirebooter5717223802822393827.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="11.0.8+10"/>
-    <property name="user.name" value="Dungd"/>
+    <property name="java.runtime.version" value="15+36-1562"/>
+    <property name="user.name" value="bekat"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
-    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="AdoptOpenJDK"/>
-    <property name="localRepository" value="C:\Users\Dungd\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/>
-    <property name="java.io.tmpdir" value="C:\Users\Dungd\AppData\Local\Temp\"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\bekat\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\bekat\AppData\Local\Temp\"/>
     <property name="idea.version" value="2020.3.2"/>
-    <property name="java.version" value="11.0.8"/>
-    <property name="user.dir" value="D:\documents\UNIST\software_engineering\CSE364_dn"/>
+    <property name="java.version" value="15"/>
+    <property name="user.dir" value="C:\Users\bekat\Documents\SE\CSE364_dn"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\AdoptOpenJDK\jdk-11.0.8.10-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\anaconda3;D:\anaconda3\Scripts;D:\anaconda3\Library\usr\bin;D:\anaconda3\Library\bin;C:\Program Files (x86)\dotnet\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\PuTTY\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Pandoc\;C:\Program Files\MiKTeX\miktex\bin\x64;C:\Users\Dungd\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\Scripts;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Dungd\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk-12.0.1\bin;C:\Users\Dungd\AppData\Local\atom\bin;C:\Users\Dungd\AppData\Local\Programs\Microsoft VS Code\bin;D:\anaconda3;D:\anaconda3\Scripts;D:\anaconda3\Library\usr\bin;D:\anaconda3\Library\bin;C:\Users\Dungd\.dotnet\tools;C:\Program Files (x86)\Dev-Cpp\MinGW64\bin;D:\zData\NASM;C:\Program Files (x86)\GnuWin32\bin;C:\Octave\Octave-5.2.0\mingw64\bin;C:\Program Files (x86)\scala\bin;C:\Users\Dungd\AppData\Roaming\Python\Python37\Scripts;C:\Users\Dungd\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\Scripts;D:\setUp\adb\platform-tools;;D:\zData\JetBrains\IntelliJ IDEA 2020.3.2\bin;;."/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.vendor" value="AdoptOpenJDK"/>
-    <property name="java.vm.version" value="11.0.8+10"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-15\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\scala\bin;C:\Program Files\Java\jdk-15\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\PuTTY\;C:\Users\bekat\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\bekat\AppData\Local\atom\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="15+36-1562"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="55.0"/>
+    <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="testCorrectDir" classname="com.help.userDirTest" time="0.011"/>
+  <testcase name="testCorrectDir" classname="com.help.userDirTest" time="0.008"/>
 </testsuite>
