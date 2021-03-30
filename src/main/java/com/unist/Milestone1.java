@@ -31,14 +31,8 @@ public class Milestone1 {
         String[] categories = null;
         if(arg.length < 2) {
             categories = new String[0];
-        } else
-        if(arg[1].indexOf('|') != -1) {
-            categories = arg[1].split("|").clone();
-            //for(int i = 0; i < categories.length; ++i)
-                //categories[i] = categories[i].toLowerCase();
         } else {
-            categories = new String[1];
-            categories[0] = arg[1]; //.toLowerCase();
+            categories = arg[1].split("\\|").clone();
         }
         System.out.println("\nCalculating score for '" + arg[0] + "' according to these genres: ");
         for (int i = 0; i < categories.length; ++i) {
