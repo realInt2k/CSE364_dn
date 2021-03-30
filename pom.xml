@@ -55,6 +55,7 @@
                             <mainClass>com.unist.App</mainClass>
                         </manifest>
                     </archive>
+                    <finalName>cse364-project-1.0-SNAPSHOT-jar-with-dependencies</finalName>
                 </configuration>
             </plugin>
             <!--USAGE: mvn clean test -->

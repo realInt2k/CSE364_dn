@@ -1,6 +1,6 @@
 package com.data;
 // aka: user: UserID::Gender::Age::Occupation::Zip-code
-public class Reviewer {
+public class Reviewer{
     public char gender;
     public int age, ID, occupation;
     public String zipCode; // *may* be separated by dash "-"
@@ -15,3 +15,5 @@ public class Reviewer {
         this.zipCode = subLine[4];
     }
 }
+
+
