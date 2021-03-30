@@ -4,11 +4,12 @@ import com.help.UserDir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
 
-    public static void main (String[] args) throws FileNotFoundException {
+    public static void main (String[] args) throws IOException {
         if(args.length <= 0) {
             System.out.println("project compiled successfully, please input 2 args (genres occupation) to run");
         } else {
