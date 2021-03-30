@@ -12,10 +12,8 @@ public class FileReader {
     public String[] readFile(String path) throws FileNotFoundException {
         File file = new File(path);
         Scanner scan = new Scanner(file);
-        List<String> tmp = new ArrayList<String>();
-        int i = 0;
-        while(scan.hasNext())
-        {
+        List<String> tmp = new ArrayList<>();
+        while (scan.hasNext()) {
             String line = scan.nextLine();
             tmp.add(line);
         }

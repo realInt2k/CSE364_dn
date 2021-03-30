@@ -33,7 +33,10 @@ public class Milestone1 {
         long score = 0;
         long nMatches = 0;
         
-        System.out.println("\nCalculating score for '" + arg[0] + "' according to these genres: ");
+        System.out.println("" +
+                "\nCalculating score for '" + (arg.length >=2 ? arg[1]: "no occupation") +
+                "' according to these genres: " +
+                "");
         for (int i = 0; i < categories.length; ++i) {
             System.out.print(categories[i] + " ");
         }
@@ -79,7 +82,6 @@ public class Milestone1 {
             reviewers[i].input(lines[i]);
             reviewerMap.put(reviewers[i].ID, reviewers[i]);
         }
-        Arrays.sort(reviewers, new ReviewerCmpID());
         // read movies.dat
         lines = reader.readFile(ud.get() + "/data/movies.dat").clone();
         movies = new Movie[lines.length];
