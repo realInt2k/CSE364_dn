@@ -29,6 +29,9 @@ public class Milestone1 {
         long score = 0;
         long nMatches = 0;
         String[] categories = null;
+        if(arg.length < 2) {
+            categories = new String[0];
+        } else
         if(arg[1].indexOf('|') != -1) {
             categories = arg[1].split("|").clone();
             //for(int i = 0; i < categories.length; ++i)
