@@ -24,16 +24,15 @@ public class Milestone1 {
 
     public void solve(String[] arg) {
         int occupation = 0;
-        if(parseOccupation.get(arg[0]) != null)
-            occupation = parseOccupation.get(arg[0]);
+        String[] categories = null;
+        categories = arg[0].split("\\|").clone();
+        if (arg.length > 1 && parseOccupation.get(arg[1]) != null) {
+            occupation = parseOccupation.get(arg[1]);
+        }
+
         long score = 0;
         long nMatches = 0;
-        String[] categories = null;
-        if(arg.length < 2) {
-            categories = new String[0];
-        } else {
-            categories = arg[1].split("\\|").clone();
-        }
+        
         System.out.println("\nCalculating score for '" + arg[0] + "' according to these genres: ");
         for (int i = 0; i < categories.length; ++i) {
             System.out.print(categories[i] + " ");
