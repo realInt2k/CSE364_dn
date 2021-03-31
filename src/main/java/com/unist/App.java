@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class App {
 
     public static void main (String[] args) throws IOException {
-        // args = new String[]{"Adventure", "abcd"};
+        // args = new String[]{"Adventure", "educator"};
         if(args.length <= 0) {
             System.out.println("project compiled successfully, please input 2 args (genres occupation) to run");
         } else {
