@@ -30,7 +30,7 @@ public class Milestone1 {
         categories = arg[0].split("\\|").clone();
 
         if (arg.length > 1) {
-            occupationStr = arg[1];
+            occupationStr = arg[1].toLowerCase();
             if(occupationStr != "other" && parseOccupation.containsKey(occupationStr)) {
                 occupation = parseOccupation.get(occupationStr);
             }
