@@ -25,6 +25,13 @@ RUN apt install -y  maven<br />
 \# exe after building<br />
 CMD ["/bin/bash"]<br />
 
+- how to run docker:
+- create a file name: "Dockerfile" on your folder, copy the contents. Create another file name: "run.sh" on the same folder, leave it be. Run "Docker build -t mile1:1.0 ." on your terminal, the 'mile1:1.0' can be changed depending your liking. How to run the image in container is explained in the slide.
+
+# 31 Mar 2021: we need your test cases
+- suggestion: implement your own score calculation & compare, test the validity of milestone1.initialize().
+- can sb validate the dockerfile?
+
 # 30 Mar 2021: How to run skeleton code:
 - navigate to your cloned folder (i.e: ~/CSE364_dn)
 - On Linux, type: mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar arg1arg2 ...
