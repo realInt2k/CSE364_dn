@@ -4,6 +4,7 @@ import com.data.*;
 import com.help.UserDir;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 class ReviewerCmpID implements Comparator<Reviewer> {
@@ -71,8 +72,8 @@ public class Milestone1 {
         } else
             this.finalResult = (1.0 * score)/ (1.0 * nMatches);
     }
-    public void initialize() throws FileNotFoundException {
-        FileReader reader = new FileReader();
+    public void initialize() throws IOException {
+        FileReaderBuffer reader = new FileReaderBuffer();
         UserDir ud = new UserDir();
         // read user.dat
         String[] lines = reader.readFile(ud.get() + "/data/users.dat").clone();
