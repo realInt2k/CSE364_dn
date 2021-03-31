@@ -24,13 +24,14 @@ public class Milestone1 {
     Map<Integer, Movie> movieMap = new HashMap<>();
 
     public void solve(String[] arg) {
+        String occupationStr = "no occupation";
         int occupation = 0;
         String[] categories = null;
         categories = arg[0].split("\\|").clone();
 
         if (arg.length > 1) {
-            String occupationStr = arg[1];
-            if(parseOccupation.containsKey(occupationStr)) {
+            occupationStr = arg[1];
+            if(occupationStr != "other" && parseOccupation.containsKey(occupationStr)) {
                 occupation = parseOccupation.get(occupationStr);
             }
             else {
@@ -45,14 +46,12 @@ public class Milestone1 {
         long score = 0;
         long nMatches = 0;
         
-        System.out.println("" +
-                "\nCalculating score for '" + (arg.length >=2 ? arg[1] : "no occupation") +
-                "' according to these genres: " +
-                "");
+        System.out.format("%nCalculating score for '%s' according to these genres: %n",
+                            occupationStr);
         for (int i = 0; i < categories.length; ++i) {
             System.out.print(categories[i] + " ");
         }
-        System.out.print("\n");
+        System.out.println("");
 
         for(int i = 0; i < ratings.length; ++i) {
             int userId = ratings[i].userId;
@@ -77,7 +76,7 @@ public class Milestone1 {
                 nMatches ++;
             }
         }
-        System.out.println("Found " + nMatches + " matches total");
+        System.out.format("Found %d matches total%n", nMatches);
         if(nMatches == 0) {
             this.finalResult = 0;
         } else
