@@ -27,15 +27,26 @@ public class Milestone1 {
         int occupation = 0;
         String[] categories = null;
         categories = arg[0].split("\\|").clone();
-        if (arg.length > 1 && parseOccupation.get(arg[1]) != null) {
-            occupation = parseOccupation.get(arg[1]);
-        }
+
+        if (arg.length > 1) {
+            String occupationStr = arg[1];
+            if(parseOccupation.containsKey(occupationStr)) {
+                occupation = parseOccupation.get(occupationStr);
+            }
+            else {
+                // Error
+                // Given occupation does not exist
+                System.out.format("no such occupation: %s%n", occupationStr);
+                this.finalResult = -1;
+                return;
+            }
+        }        
 
         long score = 0;
         long nMatches = 0;
         
         System.out.println("" +
-                "\nCalculating score for '" + (arg.length >=2 ? arg[1]: "no occupation") +
+                "\nCalculating score for '" + (arg.length >=2 ? arg[1] : "no occupation") +
                 "' according to these genres: " +
                 "");
         for (int i = 0; i < categories.length; ++i) {
