@@ -33,7 +33,7 @@ public class Milestone1 {
         long score = 0;
         long nMatches = 0;
         
-        System.out.println("\nCalculating score for '" + arg[0] + "' according to these genres: ");
+        System.out.println("\nCalculating score for '" + arg[1] + "' according to these genres: ");
         for (int i = 0; i < categories.length; ++i) {
             System.out.print(categories[i] + " ");
         }
