@@ -4,6 +4,22 @@ Software Engineering course
 
 Milestone 1 due: 11:59PM, Friday, April 2, 2021
 
+# Milestone 1 hightlight:
+
+**Argument handling explain:**
+- 0 argument => simply compile the project, nothing happens, a message will be prompt to let user know what to input.
+- 1 arguments => no occupation specified, select "other" as default.
+- 2 arguments => normal calculation cases.
+- ≥ 2 arguments => warning prompt.
+**Cases handling**
+- If occupation input is incorrect => warning prompt.
+- If any of the genres' input is incorect => find no matches.
+- If you're happy and you know it => clap your hand.
+**Works from team members** <--- edit please
+- Dung: make working environments, work on main implementations, a few fixes here and there in corner cases.
+- Luong: 
+- Bao:
+- Bekatan: 
 
 # Set up your Dockerfile (ver 1)
 
