@@ -41,7 +41,10 @@ public class Milestone1 {
                 this.finalResult = -1;
                 return;
             }
-        }        
+        }  else {
+            System.out.format("no occupation argument specified, 'other' will be selected as default");
+            occupationStr = "other";
+        }
 
         long score = 0;
         long nMatches = 0;
