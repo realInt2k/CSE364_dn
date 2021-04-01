@@ -12,7 +12,7 @@ public class App {
     public static void main (String[] args) throws IOException {
         // args = new String[]{"Adventure", "educator"};
         if(args.length <= 0) {
-            System.out.println("project compiled successfully, please input 2 args (genres occupation) to run");
+            System.out.println("Project compiled successfully, please input 2 args (genres occupation) to run");
         } else {
             Milestone1 solver = new Milestone1();
             solver.initialize();
@@ -20,7 +20,7 @@ public class App {
             double output = solver.output();
             if (output != -1) {
                 // No error
-                System.out.println("average score = " + solver.output());
+                System.out.println("Average score = " + solver.output());
             }
         }
     }
