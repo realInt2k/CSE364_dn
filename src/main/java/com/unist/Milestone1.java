@@ -55,7 +55,7 @@ public class Milestone1 {
 
         for(int i = 0; i < ratings.length; ++i) {
             int userId = ratings[i].userId;
-            if(reviewers[userId - 1].occupation != occupation) continue;
+            if(reviewerMap.get(userId).occupation != occupation) continue;
             int movieId = ratings[i].movieId;
             Movie movie = movieMap.get(movieId);
             int match = 0;
