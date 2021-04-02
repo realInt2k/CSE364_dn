@@ -13,9 +13,10 @@ Milestone 1 due: 11:59PM, Friday, April 2, 2021
 - ≥ 2 arguments => warning prompt, only use first 2.
 
 ## Cases handling
-- If occupation input is incorrect => warning prompt + hints.
-- If any of the genres' input is incorect => warning prompt + hints.
-- If you're happy and you know it => clap your hand.
+- If occupation input is incorrect => warning prompt + hints and terminate.
+- If any of the genres' input is incorect => warning prompt + hints and terminate.
+- If arguments are in wrong order then a prompt will let you known it's in wrong order and terminate.
+- If you're happy and you know it => clap your hand and terminate.
 
 ## Works from team members <--- edit please
 - Dung: make working environments, work on main implementations, a few fixes here and there in corner cases, improve visualization.
