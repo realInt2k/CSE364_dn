@@ -71,14 +71,14 @@ public class Milestone1 {
                 return;
             }
         }  else {
-            System.out.format("No occupation argument specified, 'other' will be selected as default");
+            System.out.format("No occupation argument specified, 'other' will be selected as default %n");
             occupationStr = "other";
         }
 
         long score = 0;
         long nMatches = 0;
         
-        System.out.format("%nCalculating score for '%s' according to these genres: %n",
+        System.out.format("Calculating score for '%s' according to these genres: %n",
                             occupationStr);
         for (int i = 0; i < categories.length; ++i) {
             System.out.print(categories[i] + " ");
