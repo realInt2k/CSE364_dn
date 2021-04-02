@@ -24,11 +24,32 @@ public class Milestone1 {
     Map<Integer, Reviewer> reviewerMap = new HashMap<>();
     Map<Integer, Movie> movieMap = new HashMap<>();
 
+    String [] removeDuplicateCat(String [] cat) {
+        List<String> tmp = new ArrayList<String>();
+        for(int i = 0; i < cat.length; ++i) {
+            tmp.add(cat[i]);
+        }
+        int i = 0;
+        while(i < tmp.size()) {
+            int j = i + 1;
+            while(j < tmp.size()) {
+                if(tmp.get(i).equalsIgnoreCase(tmp.get(j))) {
+                    tmp.remove(j);
+                } else j ++;
+            }
+            i ++;
+        }
+        String [] newCatList = new String[tmp.size()];
+        tmp.toArray(newCatList);
+        return newCatList;
+    }
+
     public void solve(String[] arg) {
         String occupationStr = "no occupation";
         int occupation = 0;
         String[] categories = null;
         categories = arg[0].split("\\|").clone();
+        categories = removeDuplicateCat(categories).clone();
         if (!genre_check(categories)){
             this.finalResult = -1;
             return;
@@ -137,7 +158,7 @@ public class Milestone1 {
                     j = genres.length + 2;
                 }
                 if (j == genres.length - 1){
-                    System.out.println("No such genre as " + categories[i]);
+                    System.out.format("No such genre as '%s'", categories[i]);
                     return false;
                 }
             }

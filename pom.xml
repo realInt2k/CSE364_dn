@@ -78,8 +78,9 @@
                 <extensions>false</extensions>
                 <inherited>true</inherited>
                 <configuration>
-                    <finalName>cse364-project-1.0-SNAPSHOT-jar</finalName>
+                    <finalName>cse364-project-1.0-SNAPSHOT</finalName>
                     <attach>false</attach>
+                    <classifier>jar</classifier>
                 </configuration>
                 <executions>
                     <execution>
