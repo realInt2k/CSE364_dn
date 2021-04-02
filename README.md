@@ -19,8 +19,8 @@ Milestone 1 due: 11:59PM, Friday, April 2, 2021
 
 ## Works from team members <--- edit please
 - Dung: make working environments, work on main implementations, a few fixes here and there in corner cases, improve visualization.
-- Luong: refactor source code, fix bugs & handle corner cases, create unit tests.
-- Bao:  review code, test the dockerfile and application
+- Luong: 
+- Bao:  review code, test the dockerfile, POM file and application.
 - Bekatan: 
 
 # Set up your Dockerfile (ver 1)
@@ -50,6 +50,12 @@ CMD ["/bin/bash"]
   - Create another file name: "run.sh" on the same folder, leave it be. 
   - Run "docker build -t mile1:1.0 ." on your terminal, the 'mile1:1.0' ís your image's name, which can be changed depending your liking. 
   - Run the image in container by executing: docker run -it mile1:1.0
+
+- How to run our program by Java command line:
+  - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
+  - Navigate to your cloned folder: cd ~/CSE364_dn
+  - On Terminal, type: mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar arg1 arg2
+    Here, we substitute arg1 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""), and arg2 by occupation. 
 
 # 31 Mar 2021: We need your test cases
 - Suggestion: implement your own score calculation & compare, test the validity of milestone1.initialize().
