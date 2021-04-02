@@ -20,7 +20,7 @@ Milestone 1 due: 11:59PM, Friday, April 2, 2021
 ## Works from team members <--- edit please
 - Dung: make working environments, work on main implementations, a few fixes here and there in corner cases.
 - Luong: 
-- Bao:  review code, testing dockerfile and application
+- Bao:  review code, test the dockerfile and application
 - Bekatan: 
 
 # Set up your Dockerfile (ver 1)
@@ -32,7 +32,7 @@ MAINTAINER int2k pal <int2k@unist.ac.kr>
 WORKDIR /root/project
 COPY run.sh /root/project
 RUN chmod +x run.sh
-# Exec during building
+# Execute during building
 RUN apt-get update
 RUN apt-get install -y
 RUN apt-get install -y software-properties-common
@@ -41,7 +41,7 @@ RUN apt-get install -y git gcc g++ python3 vim python3-pip
 RUN pip3 install essential_generators
 RUN apt-get install -y openjdk-11-jdk
 RUN apt install -y  maven
-# Exec after building
+# Execute after building
 CMD ["/bin/bash"]
 ```
 
