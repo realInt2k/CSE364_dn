@@ -17,18 +17,40 @@ public class Milestone1 {
     Reviewer[] reviewers;
     Movie[] movies;
     Rating[] ratings;
-    String[] genres; //a.k.a categoriess.
+    String[] genres; //a.k.a categories
+    String[] occupation;
 
     double finalResult;
     Map<String, Integer> parseOccupation = new HashMap<>();
     Map<Integer, Reviewer> reviewerMap = new HashMap<>();
     Map<Integer, Movie> movieMap = new HashMap<>();
 
+    String [] removeDuplicateCat(String [] cat) {
+        List<String> tmp = new ArrayList<String>();
+        for(int i = 0; i < cat.length; ++i) {
+            tmp.add(cat[i]);
+        }
+        int i = 0;
+        while(i < tmp.size()) {
+            int j = i + 1;
+            while(j < tmp.size()) {
+                if(tmp.get(i).equalsIgnoreCase(tmp.get(j))) {
+                    tmp.remove(j);
+                } else j ++;
+            }
+            i ++;
+        }
+        String [] newCatList = new String[tmp.size()];
+        tmp.toArray(newCatList);
+        return newCatList;
+    }
+
     public void solve(String[] arg) {
         String occupationStr = "no occupation";
         int occupation = 0;
         String[] categories = null;
         categories = arg[0].split("\\|").clone();
+        categories = removeDuplicateCat(categories).clone();
         if (!genre_check(categories)){
             this.finalResult = -1;
             return;
@@ -43,6 +65,8 @@ public class Milestone1 {
                 // Error
                 // Given occupation does not exist
                 System.out.format("No such occupation: %s%n", occupationStr);
+                System.out.format("Try one of these: %n");
+                print_occupation();
                 this.finalResult = -1;
                 return;
             }
@@ -118,8 +142,10 @@ public class Milestone1 {
         }
         // initialize occupation parser
         lines = reader.readFile(ud.get() + "/data/occupations.dat").clone();
+        occupation = new String[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             String[] subLine = lines[i].split(":").clone();
+            occupation[i] = subLine[1];
             parseOccupation.put(subLine[1], Integer.parseInt(subLine[0]));
         }
         // read all available genres
@@ -130,6 +156,18 @@ public class Milestone1 {
         }
     }
 
+    public void print_occupation() {
+        for(int i = 0; i < occupation.length; ++i) {
+            System.out.format("- %s\n", occupation[i]);
+        }
+    }
+
+    public void print_genres() {
+        for(int i = 0; i < genres.length; ++i) {
+            System.out.format("- %s\n", genres[i]);
+        }
+    }
+
     public boolean genre_check(String [] categories){
         for (int i = 0; i < categories.length; i++){
             for (int j = 0; j < genres.length; j++) {
@@ -137,7 +175,9 @@ public class Milestone1 {
                     j = genres.length + 2;
                 }
                 if (j == genres.length - 1){
-                    System.out.println("No such genre as " + categories[i]);
+                    System.out.format("No such genre as \"%s\"%n", categories[i]);
+                    System.out.format("Try one of these: %n");
+                    print_genres();
                     return false;
                 }
             }
