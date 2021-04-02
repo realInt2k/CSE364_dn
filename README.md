@@ -46,7 +46,10 @@ CMD ["/bin/bash"]
 ```
 
 - How to run docker:
-- Create a file name: "Dockerfile" on your folder, copy the contents. Create another file name: "run.sh" on the same folder, leave it be. Run "Docker build -t mile1:1.0 ." on your terminal, the 'mile1:1.0' can be changed depending your liking. How to run the image in container is explained in the slide.
+  - Create a file name: "Dockerfile" on your folder, copy the contents. 
+  - Create another file name: "run.sh" on the same folder, leave it be. 
+  - Run "docker build -t mile1:1.0 ." on your terminal, the 'mile1:1.0' ís your image's name, which can be changed depending your liking. 
+  - Run the image in container by executing: docker run -it mile1:1.0
 
 # 31 Mar 2021: We need your test cases
 - Suggestion: implement your own score calculation & compare, test the validity of milestone1.initialize().
