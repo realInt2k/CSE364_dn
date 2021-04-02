@@ -37,12 +37,12 @@ public class Milestone1 {
             else {
                 // Error
                 // Given occupation does not exist
-                System.out.format("no such occupation: %s%n", occupationStr);
+                System.out.format("No such occupation: %s%n", occupationStr);
                 this.finalResult = -1;
                 return;
             }
         }  else {
-            System.out.format("no occupation argument specified, 'other' will be selected as default");
+            System.out.format("No occupation argument specified, 'other' will be selected as default");
             occupationStr = "other";
         }
 
