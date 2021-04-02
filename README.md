@@ -20,7 +20,7 @@ Milestone 1 due: 11:59PM, Friday, April 2, 2021
 ## Works from team members <--- edit please
 - Dung: make working environments, work on main implementations, a few fixes here and there in corner cases.
 - Luong: 
-- Bao:
+- Bao:  review code, testing dockerfile and application
 - Bekatan: 
 
 # Set up your Dockerfile (ver 1)
