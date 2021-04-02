@@ -50,6 +50,10 @@ public class Milestone1 {
         int occupation = 0;
         String[] categories = null;
         categories = arg[0].split("\\|").clone();
+        // remove unnecessary white spaces
+        for (int i = 0; i < categories.length; i++) {
+            categories[i] = categories[i].replaceAll("\\s+", "");
+        }
         categories = removeDuplicateCat(categories).clone();
         if (!genre_check(categories)){
             this.finalResult = -1;
@@ -57,7 +61,7 @@ public class Milestone1 {
         }
 
         if (arg.length > 1) {
-            occupationStr = arg[1].toLowerCase();
+            occupationStr = arg[1].toLowerCase().replaceAll("\\s+", "");
             if(occupationStr != "other" && parseOccupation.containsKey(occupationStr)) {
                 occupation = parseOccupation.get(occupationStr);
             }
@@ -157,15 +161,21 @@ public class Milestone1 {
     }
 
     public void print_occupation() {
-        for(int i = 0; i < occupation.length; ++i) {
-            System.out.format("- %s\n", occupation[i]);
+        int i = 0;
+        for(; i < occupation.length; ++i) {
+            System.out.format("- %s ", occupation[i]);
+            if(i%4 == 0) System.out.println();
         }
+        if(i%4 != 0) System.out.println();
     }
 
     public void print_genres() {
-        for(int i = 0; i < genres.length; ++i) {
-            System.out.format("- %s\n", genres[i]);
+        int i = 0;
+        for(; i < genres.length; ++i) {
+            System.out.format("- %s ", genres[i]);
+            if(i%4 == 0) System.out.println();
         }
+        if(i%4 != 0) System.out.println();
     }
 
     public boolean genre_check(String [] categories){
@@ -175,7 +185,7 @@ public class Milestone1 {
                     j = genres.length + 2;
                 }
                 if (j == genres.length - 1){
-                    System.out.format("No such genre as \"%s\"%n", categories[i]);
+                    System.out.format("No such genre: \"%s\"%n", categories[i]);
                     System.out.format("Try one of these: %n");
                     print_genres();
                     return false;

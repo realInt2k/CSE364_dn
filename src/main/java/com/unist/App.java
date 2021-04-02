@@ -14,7 +14,12 @@ public class App {
         System.out.println();
         if(args.length <= 0) {
             System.out.println("Project compiled successfully, please input 2 args (genres occupation) to run");
-        } else {
+        }
+        else if (args.length >= 2){
+            if(args.length > 2) {
+                System.out.println("More than 2 arguments inputted, program will only" +
+                        "consider the first two");
+            }
             Milestone1 solver = new Milestone1();
             solver.initialize();
             solver.solve(args);
