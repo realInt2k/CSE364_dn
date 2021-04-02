@@ -53,8 +53,8 @@ CMD ["/bin/bash"]
 
 - How to run our program by Java command line:
   - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
-  - Navigate to your cloned folder: cd ~/CSE364_dn
-  - On Terminal, type: mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar arg1 arg2
+  - Navigate to your cloned folder: `cd ~/CSE364_dn`
+  - On Terminal, type: `mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar arg1 arg2`
     Here, we substitute arg1 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""), and arg2 by occupation. 
 
 # 31 Mar 2021: We need your test cases
@@ -63,7 +63,7 @@ CMD ["/bin/bash"]
 
 # 30 Mar 2021: How to run skeleton code:
 - Navigate to your cloned folder (i.e: ~/CSE364_dn)
-- On Linux, type: mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar arg1arg2 ...
+- On Linux, type: `mvn install && java -jar target/CSE364_dn-1.0-SNAPSHOT.jar arg1arg2 ...`
 
 - Will add this implementation to run.sh later
 
