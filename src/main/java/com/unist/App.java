@@ -20,7 +20,7 @@ public class App {
         else {
             if(args.length > 2) {
                 System.out.println("More than 2 arguments inputted, program will only" +
-                        "consider the first two");
+                        " consider the first two");
             }
             Milestone1 solver = new Milestone1();
             solver.initialize();
