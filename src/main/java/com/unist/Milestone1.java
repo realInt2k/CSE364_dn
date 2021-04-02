@@ -45,6 +45,13 @@ public class Milestone1 {
         return newCatList;
     }
 
+    public boolean isWrongOrder(String[] args) {
+        if (args.length == 1) return false;
+        String genreStr = args[0].toLowerCase().replaceAll("\\s+", "");
+        if (parseOccupation.containsKey(genreStr)) return true;
+        return false;
+    }
+
     public void solve(String[] arg) {
         String occupationStr = "no occupation";
         int occupation = 0;
