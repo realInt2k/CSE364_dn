@@ -55,8 +55,12 @@ public class Milestone1 {
         long score = 0;
         long nMatches = 0;
         
+<<<<<<< HEAD
         System.out.format("%nCalculating score for '%s' according to these genres: %n",
                             occupationStr);
+=======
+        System.out.println("\nCalculating score for '" + arg[1] + "' according to these genres: ");
+>>>>>>> 49206e1469235a705b2935a8d2b17129b4312a07
         for (int i = 0; i < categories.length; ++i) {
             System.out.print(categories[i] + " ");
         }

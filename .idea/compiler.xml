@@ -9,8 +9,12 @@
         <module name="CSE364_dn" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
     <bytecodeTargetLevel>
       <module name="CSE364_dn" target="11" />
     </bytecodeTargetLevel>
+=======
+    <bytecodeTargetLevel target="11" />
+>>>>>>> 49206e1469235a705b2935a8d2b17129b4312a07
   </component>
 </project>
