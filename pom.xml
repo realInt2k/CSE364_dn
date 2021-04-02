@@ -59,6 +59,38 @@
                     <finalName>cse364-project-1.0-SNAPSHOT-jar-with-dependencies</finalName>
                 </configuration>
             </plugin>
+            <!-- for future use
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/no_dependency.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin> -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <extensions>false</extensions>
+                <inherited>true</inherited>
+                <configuration>
+                    <finalName>cse364-project-1.0-SNAPSHOT-jar</finalName>
+                    <attach>false</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!--USAGE: mvn clean test -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
