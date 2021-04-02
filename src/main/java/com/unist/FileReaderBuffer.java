@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FileReaderBuffer {
     public String[] readFile(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(path));;
+        BufferedReader reader = new BufferedReader(new FileReader(path));
         List<String> tmp = new ArrayList<String>();
         String line = reader.readLine();
         while(line != null) {
