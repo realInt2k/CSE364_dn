@@ -18,6 +18,8 @@ public class Milestone1 {
     Reviewer[] reviewers;
     Movie[] movies;
     Rating[] ratings;
+    String[] genres; //a.k.a categoriess.
+
     double finalResult;
     Map<String, Integer> parseOccupation = new HashMap<>();
     Map<Integer, Reviewer> reviewerMap = new HashMap<>();
@@ -116,6 +118,12 @@ public class Milestone1 {
         for (int i = 0; i < lines.length; ++i) {
             String[] subLine = lines[i].split(":").clone();
             parseOccupation.put(subLine[1], Integer.parseInt(subLine[0]));
+        }
+        // read all available genres
+        lines = reader.readFile(ud.get() + "/data/genres.dat").clone();
+        genres = new String[lines.length];
+        for (int i = 0; i < lines.length; ++i) {
+            genres[i] = lines[i];
         }
     }
 
