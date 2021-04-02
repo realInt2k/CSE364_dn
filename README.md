@@ -55,7 +55,7 @@ CMD ["/bin/bash"]
   - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
   - Navigate to your cloned folder: `cd */CSE364_dn`
   - On Terminal, type: 
-    `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2`  Here, we substitute arg1 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""), and arg2 by occupation. 
+    `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2`. Here, we substitute arg1 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""), and arg2 by occupation. 
 
 # 31 Mar 2021: We need your test cases
 - Suggestion: implement your own score calculation & compare, test the validity of milestone1.initialize().
