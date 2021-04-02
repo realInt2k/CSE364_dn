@@ -29,6 +29,10 @@ public class Milestone1 {
         int occupation = 0;
         String[] categories = null;
         categories = arg[0].split("\\|").clone();
+        if (!genre_check(categories)){
+            this.finalResult = -1;
+            return;
+        }
 
         if (arg.length > 1) {
             occupationStr = arg[1].toLowerCase();
@@ -124,6 +128,22 @@ public class Milestone1 {
         for (int i = 0; i < lines.length; ++i) {
             genres[i] = lines[i];
         }
+    }
+
+    public boolean genre_check(String [] categories){
+        for (int i = 0; i < categories.length; i++){
+            for (int j = 0; j < genres.length; j++) {
+                if (categories[i].equalsIgnoreCase(genres[j])){
+                    j = genres.length + 2;
+                }
+                if (j == genres.length - 1){
+                    System.out.println("No such genre as " + categories[i]);
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     public double output() {
