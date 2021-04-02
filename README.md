@@ -19,7 +19,7 @@ Milestone 1 due: 11:59PM, Friday, April 2, 2021
 
 ## Works from team members <--- edit please
 - Dung: make working environments, work on main implementations, a few fixes here and there in corner cases, improve visualization.
-- Luong: 
+- Luong: refactor source code, fix bugs & handle corner cases, create unit tests.
 - Bao:  review code, test the dockerfile and application
 - Bekatan: 
 
