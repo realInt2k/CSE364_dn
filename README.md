@@ -13,6 +13,8 @@ Milestone 1 due: 11:59PM, Friday, April 2, 2021
 - ≥ 2 arguments => warning prompt, only use first 2.
 
 ## Cases handling
+- If input strings have white spaces i.e  java .. "ad venture| comedy" "docto r " => still accepted and be calculated normally.
+- If you query a genre more than one i.e java .. "adventure|adventurE|AdVeNtUrE|" => only one is selected and displayed in the result.
 - If occupation input is incorrect => warning prompt + hints and terminate.
 - If any of the genres' input is incorect => warning prompt + hints and terminate.
 - If arguments are in wrong order then a prompt will let you known it's in wrong order and terminate.
