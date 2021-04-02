@@ -11,6 +11,7 @@ public class App {
 
     public static void main (String[] args) throws IOException {
         // args = new String[]{"Adventure", "educator"};
+        System.out.println();
         if(args.length <= 0) {
             System.out.println("Project compiled successfully, please input 2 args (genres occupation) to run");
         } else {
@@ -23,5 +24,6 @@ public class App {
                 System.out.println("Average score = " + solver.output());
             }
         }
+        System.out.println();
     }
 }
