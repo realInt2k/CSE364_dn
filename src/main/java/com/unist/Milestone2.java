@@ -339,9 +339,9 @@ public class Milestone2 {
         this.calculateAvgScore();
 
         /*  https://www.statisticshowto.com/how-to-use-slovins-formula/*/
-        float percent = (float)0.30;
-        nReviewsThreshold = (int)((float)reviewers.length / ((float)1 + Math.pow((float)reviewers.length, (float)percent*(float)percent)));
-        System.out.println("Threshold:  over " + nReviewsThreshold + " reviews for " + percent*100 + "% error (kinda)");
+        float errorPercent = (float)0.10;
+        nReviewsThreshold = (int)((float)reviewers.length / ((float)1 + (float)reviewers.length * Math.pow((float)errorPercent, (float)2)));
+        //System.out.println("Threshold:  over " + nReviewsThreshold + " reviews for " + errorPercent*100 + "% error (kinda)");
     }
 
     public void solve() throws IOException {
@@ -365,19 +365,19 @@ public class Milestone2 {
                 }
             }
         });
-        for(int i = 0; i < 20; ++i)
+        for(int i = 0; i < 10; ++i)
         {
             /* THIS IS DEBUGING LINEs */
-            System.out.format("%d. %s (%s) avg score:%.3f, n.o ratings::%d, relScore:%.3f \n",
-                    i+1, specialList[i].title,
-                    "imdb " + movieImdbID.get(specialList[i].ID) + "/",
-                    movieAvgScore.get(specialList[i].ID),
-                    movieCnt.get(specialList[i].ID),
-                    movieRelevantScore.get(specialList[i].ID));
-            /*THIS IS THE CORRECT OUTPUT LINES*/
-//            System.out.format("%d. %s (%s)\n",
+//            System.out.format("%d. %s (%s) avg score:%.3f, n.o ratings::%d, relScore:%.3f \n",
 //                    i+1, specialList[i].title,
-//                    "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
+//                    "imdb " + movieImdbID.get(specialList[i].ID) + "/",
+//                    movieAvgScore.get(specialList[i].ID),
+//                    movieCnt.get(specialList[i].ID),
+//                    movieRelevantScore.get(specialList[i].ID));
+            /*THIS IS THE CORRECT OUTPUT LINES*/
+            System.out.format("%d. %s (%s)\n",
+                    i+1, specialList[i].title,
+                    "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
         }
     }
 }
