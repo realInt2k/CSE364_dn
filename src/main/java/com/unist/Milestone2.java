@@ -90,8 +90,8 @@ public class Milestone2 {
     }
 
     public Milestone2(String[] args) throws IOException {
-        if(args.length < 3 || args.length > 4) {
-            System.out.println("arguments length incorrect, please follow this format: " +
+        if(args.length > 4) {
+            System.out.println("arguments length > 4, please follow this format: " +
                     "\"Gender\" " +
                     "\"Age\" " +
                     "\"Occupation\"");
@@ -102,9 +102,9 @@ public class Milestone2 {
         String welcome = "";
         welcome += "Finding movies for a customer with: \n\n";
         if(!args[0].isEmpty()) {
-            if(args[0].charAt(0) != 'F' && args[0].charAt(0) != 'M') {
+            if(args[0].toLowerCase().charAt(0) != 'f' && args[0].toLowerCase().charAt(0) != 'm') {
                 this.badArgs = true;
-                this.badArgsExit("Gender is not \"F\" or \"M\"");
+                this.badArgsExit("Gender \"" + args[0] + "\" is not \"F\" or \"M\"");
                 return;
             }
             customer.setGender(args[0].charAt(0));
