@@ -25,12 +25,6 @@
             <version>2.6</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-lambda</artifactId>
             <version>1.0.0</version>
@@ -64,6 +58,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*Milestone1.*</exclude>
+                        <exclude>**/*Mile1*</exclude>
+                    </excludes>
+                </configuration>
+
             </plugin>
             <!-- USAGE: mvn compiler:compile -->
             <!-- USAGE: mvn compiler:testCompile -->
