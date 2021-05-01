@@ -60,8 +60,13 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/*Milestone1.*</exclude>
+                        <exclude>**/Milestone1**</exclude>
+                        <exclude>**/ReviewerCmpID**</exclude>
                         <exclude>**/*Mile1*</exclude>
+                        <exclude>**/App*</exclude>
+                        <exclude>**/FileReader*</exclude>
+                        <exclude>**/Read*</exclude>
+                        <exclude>**/UserDir*</exclude>
                     </excludes>
                 </configuration>
 
