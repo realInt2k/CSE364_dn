@@ -264,7 +264,8 @@ public class Milestone2 {
             public int compare(Movie o1, Movie o2) {
                 int cntO1 = movieCnt.get(o1.ID);
                 int cntO2 = movieCnt.get(o2.ID);
-                if ((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold)) {
+                if ((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
+                        (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)) {
                     float scoreO1 = movieRelevantScore.get(o1.ID);
                     float scoreO2 = movieRelevantScore.get(o2.ID);
                     return Float.compare(scoreO2, scoreO1);
@@ -352,7 +353,8 @@ public class Milestone2 {
             public int compare(Movie o1, Movie o2) {
                 int cntO1 = movieCnt.get(o1.ID);
                 int cntO2 = movieCnt.get(o2.ID);
-                if((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold)){
+                if((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
+                        (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)){
                     float scoreO1 = movieAvgScore.get(o1.ID);
                     float scoreO2 = movieAvgScore.get(o2.ID);
                     float relScoreO1 = movieRelevantScore.get(o1.ID);
@@ -363,7 +365,7 @@ public class Milestone2 {
                 }
             }
         });
-        for(int i = 0; i < Math.min(100, specialList.length); ++i)
+        for(int i = 0; i < 20; ++i)
         {
             /* THIS IS DEBUGING LINEs */
             System.out.format("%d. %s (%s) avg score:%.3f, n.o ratings::%d, relScore:%.3f \n",
