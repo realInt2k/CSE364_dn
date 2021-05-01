@@ -11,6 +11,11 @@ public class Movie {
         title = null;
         ID = -1;
     }
+    public Movie(Movie another) {
+        this.cat = another.cat.clone();
+        this.title = another.title;
+        this.ID = another.ID;
+    }
     public void input (String line) {
         String[] subLine = line.split("::");
         this.ID = Integer.parseInt(subLine[0]);

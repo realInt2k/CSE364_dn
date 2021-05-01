@@ -10,7 +10,6 @@ public abstract class ReadMovieData {
         FileReaderBuffer reader = new FileReaderBuffer();
         UserDir ud = new UserDir();
         String[] lines = reader.readFile(ud.get() + path).clone();
-        lines = reader.readFile(ud.get() + "/data/movies.dat").clone();
         Movie[] movies = new Movie[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             movies[i] = new Movie();
