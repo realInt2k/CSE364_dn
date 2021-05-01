@@ -19,6 +19,7 @@ public class Milestone2 {
     public Person customer = new Person();
     public Link[] links;
 
+    private boolean badArgs = false;
     private Map<Integer, String> movieImdbID = new HashMap<>();
     private Map<Integer, Float> movieRelevantScore = new HashMap<>();
     private Map<Integer, Float> movieAvgScore = new HashMap<>();
@@ -55,21 +56,46 @@ public class Milestone2 {
         genres = new String[lines.length];
         System.arraycopy(lines, 0, genres, 0, lines.length);
     }
-
+    private void badArgsExit(String problem) {
+        System.out.println(problem);
+    }
     public Milestone2(String[] args) throws IOException {
+        if(args.length < 3 || args.length > 4) {
+            System.out.println("arguments length incorrect, please follow this format: " +
+                    "\"Gender\" " +
+                    "\"Age\" " +
+                    "\"Occupation\"");
+            this.badArgs = true;
+            return;
+        }
         this.prepareData();
-        System.out.println("Finding movies for a customer with: \n");
+        String welcome = "";
+        welcome += "Finding movies for a customer with: \n\n";
         if(!args[0].isEmpty()) {
+            if(args[0].charAt(0) != 'F' && args[0].charAt(0) != 'M') {
+                this.badArgs = true;
+                this.badArgsExit("Gender is not \"F\" or \"M\"");
+                return;
+            }
             customer.setGender(args[0].charAt(0));
-            System.out.println("\tgender: " + customer.getGender());
+            welcome += "\tgender: " + customer.getGender() + '\n';
         } else {
-            System.out.println("\tgender: no preference ");
+           welcome += "\tgender: no preference \n";
         }
         if(!args[1].isEmpty()) {
-            customer.setAge(Integer.parseInt(args[1]));
-            System.out.println("\tage: " + customer.getAge());
+            int age = 0;
+            try {
+                age = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                this.badArgs = true;
+                this.badArgsExit("age input \"" + args[1] + "\" is incorrect, please check if they're all numeric, " +
+                        "or contain whitespaces, etc.");
+                return;
+            }
+            customer.setAge(age);
+            welcome += "\tage: " + customer.getAge() + '\n';
         } else {
-            System.out.println("\tage: no preference ");
+            welcome += "\tage: no preference\n";
         }
         boolean occupationNotFound=false;
         if(!args[2].isEmpty()) {
@@ -80,20 +106,20 @@ public class Milestone2 {
                 occupationNotFound = true;
                 customer.setOccupation(parseOccupation.get("other"));
             }
-            System.out.println("\toccupation: " + args[2]);
+            welcome += "\toccupation: " + args[2] + '\n';
         } else {
-            System.out.println("\toccupation: no preference ");
+            welcome += "\toccupation: no preference \n";
         }
         System.out.println();
         if(occupationNotFound)
-            System.out.println("No such occupation found, use 'other' as default\n");
+            welcome += "No such occupation found, use 'other' as default\n";
         //customer.setAge();
         if(args.length == 4) {
             String[] genre;
             genre = args[3].split("\\|");
             customer.setGenre(genre);
         }
-
+        System.out.println(welcome);
     }
 
     public float[] analyseRating(Person A) throws IOException {
@@ -182,6 +208,9 @@ public class Milestone2 {
     }
 
     public void solve() throws IOException {
+        if(this.badArgs) {
+            return;
+        }
         Movie[] specialList = this.find_relevant_movies().clone();
         //for(Movie i: specialList) System.out.println(i.title + " " + i.ID);
         this.calculateAvgScore();
