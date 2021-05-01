@@ -1,27 +1,15 @@
 package com.unist;
-import com.data.*;
-import com.help.UserDir;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class App {
-    /*
+
     public static void Mile1(String[] args) throws IOException {
-        // args = new String[]{"Adventure", "educator"};
-        // args = new String[]{"Comedy", "educator"};
-        // args = new String[]{"educator", "Adventure"};
         System.out.println();
         if(args.length <= 0) {
             System.out.println("Project compiled successfully, please input 2 args (genres occupation) to run");
         }
         else {
-            if(args.length > 2) {
-                System.out.println("More than 2 arguments inputted, program will only" +
-                        " consider the first two");
-            }
             Milestone1 solver = new Milestone1();
             solver.initialize();
 
@@ -38,7 +26,7 @@ public class App {
             }
         }
         System.out.println();
-    }*/
+    }
 
     public static void Mile2(String[] args) throws IOException {
         System.out.println();
@@ -48,6 +36,10 @@ public class App {
     }
 
     public static void main (String[] args) throws IOException {
-        Mile2(args);
+        if(args.length <= 2) {
+            Mile1(args);
+        } else {
+            Mile2(args);
+        }
     }
 }
