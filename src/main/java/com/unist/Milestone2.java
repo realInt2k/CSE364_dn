@@ -143,6 +143,13 @@ public class Milestone2 {
         //customer.setAge();
         if(args.length == 4) {
             String[] genre;
+            if(args[3].isEmpty()) {
+                this.badArgs = true;
+                this.badArgsExit("4 arguments but no genres were inputted, please input some.");
+                System.out.format("Try some of these: \n");
+                print_genres();
+                return;
+            }
             genre = args[3].split("\\|");
             customer.setGenre(genre);
             if(!genre_check(genre)) {
