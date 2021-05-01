@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
+    /*
     public static void Mile1(String[] args) throws IOException {
         // args = new String[]{"Adventure", "educator"};
         // args = new String[]{"Comedy", "educator"};
@@ -37,7 +38,7 @@ public class App {
             }
         }
         System.out.println();
-    }
+    }*/
 
     public static void Mile2(String[] args) throws IOException {
         System.out.println();
