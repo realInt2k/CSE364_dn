@@ -19,7 +19,7 @@ public class AgeGapScore extends RelevanceScore{
         if(A == null || B == null) {
             return 1;
         } else {
-            return (float) Math.pow(1.160, -(float)Math.abs(A - B));
+            return (float) Math.pow(1.120, -(float)Math.abs(A - B));
         }
     }
 }

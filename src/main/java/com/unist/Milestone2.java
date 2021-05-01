@@ -1,9 +1,11 @@
 package com.unist;
 
 import com.data.*;
+import com.help.GenreGapScore;
 import com.help.RelevanceScore;
 import com.help.UserDir;
 
+import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.*;
 
@@ -19,16 +21,17 @@ public class Milestone2 {
     public Person customer = new Person();
     public Link[] links;
     public int nReviewsThreshold = 0;
+    public float maxRelevant = 0;
+    public float maxScore = 0;
 
     public boolean badArgs = false;
     public Map<Integer, String> movieImdbID = new HashMap<>();
     public Map<Integer, Float> movieRelevantScore = new HashMap<>();
-    public Map<Integer, Float> movieRelevantStd = new HashMap<>();
-    public Map<Integer, Float> movieAvgScoreStd = new HashMap<>();
     public Map<Integer, Float> movieAvgScore = new HashMap<>();
     public Map<Integer, Integer> movieCnt = new HashMap<>();
 
     public Milestone2() {}
+
     public void prepareData() throws IOException {
         this.ratings = ReadRatingData.data("/data/ratings.dat").clone();
         this.reviewers = ReadReviewerData.data("/data/users.dat").clone();
@@ -59,6 +62,7 @@ public class Milestone2 {
         genres = new String[lines.length];
         System.arraycopy(lines, 0, genres, 0, lines.length);
     }
+
     public void badArgsExit(String problem) {
         System.out.println(problem);
     }
@@ -90,6 +94,7 @@ public class Milestone2 {
     }
 
     public Milestone2(String[] args) throws IOException {
+        this.prepareData();
         if(args.length > 4) {
             System.out.println("arguments length > 4, please follow this format: " +
                     "\"Gender\" " +
@@ -98,7 +103,7 @@ public class Milestone2 {
             this.badArgs = true;
             return;
         }
-        this.prepareData();
+
         String welcome = "";
         welcome += "Finding movies for a customer with: \n\n";
         if(!args[0].isEmpty()) {
@@ -144,6 +149,7 @@ public class Milestone2 {
         if(occupationNotFound)
             welcome += "No such occupation found, use 'other' as default\n";
         //customer.setAge();
+
         if(args.length == 4) {
             String[] genre;
             if(args[3].isEmpty()) {
@@ -168,25 +174,7 @@ public class Milestone2 {
         System.out.println(welcome);
     }
 
-    public float[] analyseRating(Person A) throws IOException {
-        float[] score = new float[this.ratings.length];
-        for (int i = 0; i < score.length; ++i) {
-            Movie movie = movieMap.get(ratings[i].movieId);
-            Reviewer reviewer = reviewerMap.get(ratings[i].userId);
-            Person B = new Person();
-            B.setAge(reviewer.age);
-            B.setOccupation(reviewer.occupation);
-            B.setGender(reviewer.gender);
-            B.setGenre(movie.cat);
-
-            score[i] = RelevanceScore.getScore(A, B);
-            /*if(movie.ID == 2019) {
-                System.out.println(score[i]);
-            }*/
-        }
-        return score;
-    }
-
+    // dependent on Rating && Movie list
     public void countMovie() {
         for(Rating rate:ratings) {
             if(!movieCnt.containsKey(rate.movieId)) {
@@ -200,14 +188,17 @@ public class Milestone2 {
             if(!movieCnt.containsKey(movie.ID)) {
                 movieCnt.put(movie.ID, 0);
             }
-            nReviewsThreshold += movieCnt.get(movie.ID);
         }
-        nReviewsThreshold /= movies.length;
-        //System.out.println(nReviewsThreshold);
     }
-    public void calculateAvgScore() {
+
+    // dependent on Rating && Movie list
+    public void calculateAvgScore() throws IOException {
         for(Rating rate:ratings) {
             int cnt = movieCnt.get(rate.movieId);
+            if(cnt == 0) {
+                movieAvgScore.put(rate.movieId, (float)0);
+                continue;
+            }
             if(!movieAvgScore.containsKey(rate.movieId)) {
                 movieAvgScore.put(rate.movieId, (float)rate.rating/(float)cnt);
             } else {
@@ -216,46 +207,44 @@ public class Milestone2 {
                 movieAvgScore.replace(rate.movieId, newSum);
             }
         }
-
-        for(int i = 0; i < ratings.length; ++i) {
-            float cnt = (float)movieCnt.get(ratings[i].movieId);
-            float mean = movieAvgScore.get(ratings[i].movieId);
-
-            if(movieAvgScoreStd.containsKey(ratings[i].movieId)) {
-                float oldScore = movieAvgScoreStd.get(ratings[i].movieId);
-                movieAvgScoreStd.replace(ratings[i].movieId, oldScore +
-                        (ratings[i].rating - mean)*(ratings[i].rating - mean)/cnt);
-            } else {
-                movieAvgScoreStd.put(ratings[i].movieId,
-                        (ratings[i].rating - mean) * (ratings[i].rating - mean)/cnt);
-            }
-        }
-
         for(Movie movie:movies) {
             if(!movieAvgScore.containsKey(movie.ID)) {
                 movieAvgScore.put(movie.ID, (float)0);
-                movieAvgScoreStd.put(movie.ID, (float)0);
             } else {
-                float std = movieAvgScoreStd.get(movie.ID);
                 float score = movieAvgScore.get(movie.ID);
-                movieAvgScoreStd.replace(movie.ID, score - std);
+                maxScore = Math.max(maxScore, score);
             }
         }
 
     }
 
+    public float[] analyseRating(Person A) throws IOException {
+        float[] score = new float[this.ratings.length];
+        for (int i = 0; i < score.length; ++i) {
+            Movie movie = movieMap.get(ratings[i].movieId);
+            Reviewer reviewer = reviewerMap.get(ratings[i].userId);
+            Person B = new Person();
+            B.setAge(reviewer.age);
+            B.setOccupation(reviewer.occupation);
+            B.setGender(reviewer.gender);
+            B.setGenre(movie.cat);
+
+            score[i] = RelevanceScore.getScore(A, B);
+            maxRelevant = Math.max(maxRelevant, score[i]);
+        }
+        return score;
+    }
+
     public Movie [] find_relevant_movies() throws IOException {
         float[] relevantScore = this.analyseRating(customer).clone();
-        float maxRelevant = relevantScore[0];
-        float minRelevant = relevantScore[0];
-        for (float v : relevantScore) {
-            maxRelevant = Math.max(maxRelevant, v);
-            minRelevant = Math.min(minRelevant, v);
-        }
-        //System.out.println(maxRelevant + "   " + minRelevant);
 
         for(int i = 0; i < ratings.length; ++i) {
             float cnt = (float)movieCnt.get(ratings[i].movieId);
+            if(cnt == 0)
+            {
+                movieRelevantScore.put(ratings[i].movieId, (float)0);
+                continue;
+            }
             if(movieRelevantScore.containsKey(ratings[i].movieId)) {
                 float oldScore = movieRelevantScore.get(ratings[i].movieId);
                 movieRelevantScore.replace(ratings[i].movieId, oldScore + (relevantScore[i]/cnt));
@@ -264,47 +253,28 @@ public class Milestone2 {
             }
         }
 
-        for(int i = 0; i < ratings.length; ++i) {
-            float cnt = (float)movieCnt.get(ratings[i].movieId);
-            float mean = movieRelevantScore.get(ratings[i].movieId);
-
-            if(movieRelevantStd.containsKey(ratings[i].movieId)) {
-                float oldScore = movieRelevantStd.get(ratings[i].movieId);
-                movieRelevantStd.replace(ratings[i].movieId, oldScore +
-                        (relevantScore[i] - mean)*(relevantScore[i] - mean)/cnt);
-            } else {
-                movieRelevantStd.put(ratings[i].movieId,
-                        (relevantScore[i] - mean) * (relevantScore[i] - mean)/cnt);
-            }
+        for(Movie x : movies) {
+            if(!movieRelevantScore.containsKey(x.ID))
+                movieRelevantScore.put(x.ID, (float)0);
+            maxRelevant = Math.max(maxRelevant, movieRelevantScore.get(x.ID));
         }
 
-
-        for(int i = 0; i < movies.length; ++i) {
-            if(!movieRelevantScore.containsKey(movies[i].ID)) {
-                movieRelevantStd.put(movies[i].ID, (float) 0);
-                movieRelevantScore.put(movies[i].ID, (float) 0);
-            } else {
-                float variance = movieRelevantStd.get(movies[i].ID);
-                float relScore = movieRelevantScore.get(movies[i].ID);
-                movieRelevantStd.replace(movies[i].ID, (float) Math.sqrt(variance));
-                movieRelevantScore.replace(movies[i].ID, relScore - (float)Math.sqrt(variance));
-            }
-        }
         Arrays.sort(movies, new Comparator<Movie>() {
             @Override
             public int compare(Movie o1, Movie o2) {
                 int cntO1 = movieCnt.get(o1.ID);
                 int cntO2 = movieCnt.get(o2.ID);
-                if(cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) {
+                if ((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold)) {
                     float scoreO1 = movieRelevantScore.get(o1.ID);
                     float scoreO2 = movieRelevantScore.get(o2.ID);
-                    return Float.compare(scoreO2, scoreO1 );
+                    return Float.compare(scoreO2, scoreO1);
                 } else {
                     return (cntO2 - cntO1);
                 }
             }
         });
 
+        // select data
         float diff = 0;
         int separationPoint = 0;
         for(int i = 10; i < movies.length; ++i) {
@@ -314,48 +284,98 @@ public class Milestone2 {
                 diff = thisDiff;
             }
         }
-        //System.out.println(diff + "   " + separationPoint);
-        separationPoint = Math.max(separationPoint, (int)movies.length/10);
+        //System.out.println(diff + "   " + separationPoint); // DEBUG
+        separationPoint = Math.max(separationPoint, (int)movies.length / 100 * 5); //5%
+
         Movie[] res = new Movie[separationPoint];
         for(int i = 0; i < separationPoint; i ++) {
+            //System.out.println(movies[i].title + " " + movieRelevantScore.get(movies[i].ID));
             res[i] = new Movie(movies[i]);
         }
         return res;
     }
 
-    public void solve() throws IOException {
-        if(this.badArgs) {
-            return;
+    public void filterData(Person person) throws IOException {
+        ArrayList<Rating> newRatings = new ArrayList<>();
+        ArrayList<Movie> newMovies = new ArrayList<>();
+        ArrayList<Reviewer> newReviewers = new ArrayList<>();
+        for(Movie x : movies) {
+            if(GenreGapScore.getPercentCompare(x.cat, person.genre) == 1)
+                newMovies.add(x);
         }
+        if(newMovies.size() < 10)
+        {
+            for(Movie x : movies) {
+                if (GenreGapScore.getPercentCompare(x.cat, person.genre) != 1)
+                    newMovies.add(x);
+                if(newMovies.size() >= 10)
+                    break;
+            }
+        }
+        HashMap<Integer, Boolean> selectReviewers = new HashMap<>();
+        for(Reviewer x: reviewers) selectReviewers.put(x.ID, false);
+        for(Rating x : ratings) {
+            if(GenreGapScore.getPercentCompare(movieMap.get(x.movieId).cat, person.genre) == 1) {
+                if(selectReviewers.containsKey(x.userId))
+                    selectReviewers.replace(x.userId, true);
+                else
+                    selectReviewers.put(x.userId, true);
+                newRatings.add(x);
+            }
+        }
+        for(Reviewer x: reviewers)
+            if(selectReviewers.get(x.ID)) {
+                newReviewers.add(x);
+            }
+        this.reviewers = new Reviewer[newReviewers.size()];
+        newReviewers.toArray(this.reviewers);
+        this.ratings = new Rating[newRatings.size()];
+        newRatings.toArray(this.ratings);
+        this.movies = new Movie[newMovies.size()];
+        newMovies.toArray(this.movies);
+
         this.countMovie();
-        Movie[] specialList = this.find_relevant_movies().clone();
         this.calculateAvgScore();
+
+        /*  https://www.statisticshowto.com/how-to-use-slovins-formula/*/
+        float percent = (float)0.30;
+        nReviewsThreshold = (int)((float)reviewers.length / ((float)1 + Math.pow((float)reviewers.length, (float)percent*(float)percent)));
+        System.out.println("Threshold:  over " + nReviewsThreshold + " reviews for " + percent*100 + "% error (kinda)");
+    }
+
+    public void solve() throws IOException {
+        if(this.badArgs) {return;}
+        this.filterData(customer);
+        Movie[] specialList = this.find_relevant_movies().clone();
         Arrays.sort(specialList, new Comparator<Movie>() {
             @Override
             public int compare(Movie o1, Movie o2) {
                 int cntO1 = movieCnt.get(o1.ID);
                 int cntO2 = movieCnt.get(o2.ID);
-                if(cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) {
+                if((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold)){
                     float scoreO1 = movieAvgScore.get(o1.ID);
                     float scoreO2 = movieAvgScore.get(o2.ID);
                     float relScoreO1 = movieRelevantScore.get(o1.ID);
                     float relScoreO2 = movieRelevantScore.get(o2.ID);
-                    return Float.compare(10*scoreO2 + (float)0.6*relScoreO2, 10*scoreO1 + (float)0.6*relScoreO1);
+                    return Float.compare(scoreO2/maxScore + relScoreO2/maxRelevant, scoreO1/maxScore + relScoreO1/maxRelevant);
                 } else {
                     return cntO2 - cntO1;
                 }
             }
         });
-
-        for(int i = 0; i < 10; ++i)
+        for(int i = 0; i < Math.min(100, specialList.length); ++i)
         {
-            /* THIS IS DEBUGING LINE */
+            /* THIS IS DEBUGING LINEs */
             System.out.format("%d. %s (%s) avg score:%.3f, n.o ratings::%d, relScore:%.3f \n",
                     i+1, specialList[i].title,
-                    "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/",
+                    "imdb " + movieImdbID.get(specialList[i].ID) + "/",
                     movieAvgScore.get(specialList[i].ID),
                     movieCnt.get(specialList[i].ID),
                     movieRelevantScore.get(specialList[i].ID));
+            /*THIS IS THE CORRECT OUTPUT LINES*/
+//            System.out.format("%d. %s (%s)\n",
+//                    i+1, specialList[i].title,
+//                    "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
         }
     }
 }

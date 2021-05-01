@@ -1,9 +1,11 @@
 package com.data;
 
+import com.help.GenreGapScore;
 import com.help.UserDir;
 import com.unist.FileReaderBuffer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public abstract class ReadRatingData {
     public static Rating[] data(String path) throws IOException {
@@ -18,3 +20,4 @@ public abstract class ReadRatingData {
         return ratings;
     }
 }
+

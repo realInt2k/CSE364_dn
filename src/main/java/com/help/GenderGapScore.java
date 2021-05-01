@@ -19,7 +19,7 @@ public class GenderGapScore extends RelevanceScore{
         if(A == null || B == null) {
             return (float)1.0;
         } else {
-            return A == B ? (float) 1.0 : (float) 0.2;
+            return A == B ? (float) 1.0 : (float) 0.1;
         }
     }
 }
