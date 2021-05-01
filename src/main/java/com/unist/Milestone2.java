@@ -59,6 +59,33 @@ public class Milestone2 {
     private void badArgsExit(String problem) {
         System.out.println(problem);
     }
+
+    public void print_genres() {
+        int i = 0;
+        for(; i < genres.length; ++i) {
+            System.out.format("- %s ", genres[i]);
+            if(i%4 == 0) System.out.println();
+        }
+        if(i%4 != 0) System.out.println();
+    }
+
+    public boolean genre_check(String [] categories) {
+        for (int i = 0; i < categories.length; i++) {
+            for (int j = 0; j < genres.length; j++) {
+                if (categories[i].equalsIgnoreCase(genres[j])) {
+                    j = genres.length + 2;
+                }
+                if (j == genres.length - 1) {
+                    System.out.format("No such genre: \"%s\"%n", categories[i]);
+                    System.out.format("Try one of these: %n");
+                    print_genres();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public Milestone2(String[] args) throws IOException {
         if(args.length < 3 || args.length > 4) {
             System.out.println("arguments length incorrect, please follow this format: " +
@@ -118,6 +145,15 @@ public class Milestone2 {
             String[] genre;
             genre = args[3].split("\\|");
             customer.setGenre(genre);
+            if(!genre_check(genre)) {
+                this.badArgs = true;
+                return;
+            }
+            welcome += "\tGenres: ";
+            for(String i : genre) {
+                welcome += i  + " ";
+            }
+            welcome += '\n';
         }
         System.out.println(welcome);
     }
