@@ -2,7 +2,24 @@
 Software Engineering course
 
 
-Milestone 1 due: 11:59PM, Friday, April 2, 2021
+Milestone 2 due: 11:59PM, May 3rd, 2021
+
+# Milestone 2 relevancy and Similarity algorithm
+
+## How relevance scores are calculated:
+
+- The weight of each Age, Gender, Occupation, Genre defined in respective AgeGapScore, GenderGapScore, etc.. are to be modified by dev. The primitive values of these written in those files aren't important, the inter-ratio between them does
+- The Similarity between the reviewer Y and our customer X in term of Age, Gender, etc. will determine how many percentage should we take from weight of each Age, Gender, etc. respecively.
+- For example, if Y has the same age as X, and semi-different in every other field, then 100% of the score for Age is taken, and for other fields, some% of the score is taken. The sum of the scores is the similarity of the people making the review.
+- We go thru the review list, if the review i is for the movie j, then the relevance score of movie i will be increased by the similarity score of the reviewer i in review i.
+
+## get top relevant movie:
+
+- We then sort the relevancy from high to low, and find the largest score gap exists within the list. If the gap exists in the very early index ( < 10% of number of movies), then we take the first 10% of the movie data set into consideration. If it doesn't exist in the indices under 10% of the number of movies, we take all the movies before the gap into consideration.
+
+## Get top 10 movie recommendations: 
+
+- We then sort the selected list via each movie's average rating score. This rating score is independent of the similarity between the reviewers and customer, as the merit of the movie is greatly subjective.
 
 # Milestone 1 highlights:
 
