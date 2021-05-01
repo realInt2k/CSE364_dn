@@ -40,8 +40,10 @@ public class App {
     }
 
     public static void Mile2(String[] args) throws IOException {
+        System.out.println();
         Milestone2 solver = new Milestone2(args);
         solver.solve();
+        System.out.println();
     }
 
     public static void main (String[] args) throws IOException {

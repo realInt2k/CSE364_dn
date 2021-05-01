@@ -8,20 +8,20 @@ public class Person {
         this.age = null;
         this.occupation = null;
     }
-    public char getGender() {
-        return Character.valueOf(this.gender);
+    public Character getGender() {
+        return this.gender;
     }
     public void setGender(char gender) {
         this.gender = gender;
     }
-    public int getAge() {
-        return Integer.valueOf(this.age);
+    public Integer getAge() {
+        return this.age;
     }
     public void setAge(int age) {
         this.age = age;
     }
-    public int getOccupation() {
-        return Integer.valueOf(this.occupation);
+    public Integer getOccupation() {
+        return this.occupation;
     }
     public void setOccupation(int occupation){
         this.occupation = occupation;

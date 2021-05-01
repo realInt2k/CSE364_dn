@@ -3,7 +3,7 @@ package com.help;
 public class AgeGapScore extends RelevanceScore{
     private float ageScorePercent;
     public AgeGapScore(Float ageScorePercent) {
-        this.ageScorePercent = ageScorePercent == null ? 94 : Float.valueOf(ageScorePercent);
+        this.ageScorePercent = ageScorePercent == null ? defaultScore.ageScore : Float.valueOf(ageScorePercent);
     }
     @Override
     public float getScorePercent() {
@@ -15,7 +15,11 @@ public class AgeGapScore extends RelevanceScore{
         this.ageScorePercent = x;
     }
 
-    public static float getPercentCompare(int A, int B) {
-        return (float) Math.pow(1.09, -Math.abs(A-B));
+    public static float getPercentCompare(Integer A, Integer B) {
+        if(A == null || B == null) {
+            return 1;
+        } else {
+            return (float) Math.pow(1.09, -Math.abs(A - B));
+        }
     }
 }

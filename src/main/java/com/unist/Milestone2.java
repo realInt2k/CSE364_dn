@@ -17,8 +17,9 @@ public class Milestone2 {
     public Map<Integer, Reviewer> reviewerMap = new HashMap<>();
     public Map<Integer, Movie> movieMap = new HashMap<>();
     public Person customer = new Person();
+    public Link[] links;
 
-
+    private Map<Integer, String> movieImdbID = new HashMap<>();
     private Map<Integer, Float> movieRelevantScore = new HashMap<>();
     private Map<Integer, Float> movieAvgScore = new HashMap<>();
     private Map<Integer, Integer> movieCnt = new HashMap<>();
@@ -28,11 +29,15 @@ public class Milestone2 {
         this.ratings = ReadRatingData.data("/data/ratings.dat").clone();
         this.reviewers = ReadReviewerData.data("/data/users.dat").clone();
         this.movies = ReadMovieData.data("/data/movies.dat").clone();
-        for(int i = 0; i < movies.length; ++i) {
-            movieMap.put(movies[i].ID, movies[i]);
+        this.links = ReadLinkData.data("/data/links.dat").clone();
+        for (Movie movie : movies) {
+            movieMap.put(movie.ID, movie);
         }
-        for(int i = 0; i < reviewers.length; ++i) {
-            reviewerMap.put(reviewers[i].ID, reviewers[i]);
+        for (Reviewer reviewer : reviewers) {
+            reviewerMap.put(reviewer.ID, reviewer);
+        }
+        for (Link link : links) {
+            movieImdbID.put(link.movieID, link.imdbID);
         }
         FileReaderBuffer reader = new FileReaderBuffer();
         UserDir ud = new UserDir();
@@ -48,35 +53,47 @@ public class Milestone2 {
         // read all available genres
         lines = reader.readFile(ud.get() + "/data/genres.dat").clone();
         genres = new String[lines.length];
-        for (int i = 0; i < lines.length; ++i) {
-            genres[i] = lines[i];
-        }
+        System.arraycopy(lines, 0, genres, 0, lines.length);
     }
 
     public Milestone2(String[] args) throws IOException {
         this.prepareData();
-        if(!args[0].isEmpty())
+        System.out.println("Finding movies for a customer with: \n");
+        if(!args[0].isEmpty()) {
             customer.setGender(args[0].charAt(0));
-        if(!args[1].isEmpty())
-            customer.setAge(Integer.parseInt(args[1]));
-        if(!args[2].isEmpty()) {
-            if(parseOccupation.containsKey(args[2]))
-                customer.setOccupation(parseOccupation.get(args[2]));
-            else
-                customer.setOccupation(parseOccupation.get("other"));
+            System.out.println("\tgender: " + customer.getGender());
+        } else {
+            System.out.println("\tgender: no preference ");
         }
+        if(!args[1].isEmpty()) {
+            customer.setAge(Integer.parseInt(args[1]));
+            System.out.println("\tage: " + customer.getAge());
+        } else {
+            System.out.println("\tage: no preference ");
+        }
+        boolean occupationNotFound=false;
+        if(!args[2].isEmpty()) {
+            if(parseOccupation.containsKey(args[2].toLowerCase())) {
+                customer.setOccupation(parseOccupation.get(args[2].toLowerCase()));
+            }
+            else {
+                occupationNotFound = true;
+                customer.setOccupation(parseOccupation.get("other"));
+            }
+            System.out.println("\toccupation: " + args[2]);
+        } else {
+            System.out.println("\toccupation: no preference ");
+        }
+        System.out.println();
+        if(occupationNotFound)
+            System.out.println("No such occupation found, use 'other' as default\n");
         //customer.setAge();
         if(args.length == 4) {
             String[] genre;
-            genre = args[4].split("\\|");
+            genre = args[3].split("\\|");
             customer.setGenre(genre);
         }
 
-    }
-
-    public float similar(Person A, Person B) {
-        float score = RelevanceScore.getScore(A, B);
-        return score;
     }
 
     public float[] analyseRating(Person A) throws IOException {
@@ -88,7 +105,8 @@ public class Milestone2 {
             B.setAge(reviewer.age);
             B.setOccupation(reviewer.occupation);
             B.setGender(reviewer.gender);
-            score[i] = similar(A, B);
+            B.setGenre(movie.cat);
+            score[i] = RelevanceScore.getScore(A, B);
         }
         return score;
     }
@@ -117,9 +135,9 @@ public class Milestone2 {
         float[] relevantScore = this.analyseRating(customer).clone();
         float maxRelevant = relevantScore[0];
         float minRelevant = relevantScore[0];
-        for(int i = 0; i < relevantScore.length; ++i) {
-            maxRelevant = Math.max(maxRelevant, relevantScore[i]);
-            minRelevant = Math.min(minRelevant, relevantScore[i]);
+        for (float v : relevantScore) {
+            maxRelevant = Math.max(maxRelevant, v);
+            minRelevant = Math.min(minRelevant, v);
         }
         //System.out.println(maxRelevant + "   " + minRelevant);
 
@@ -154,7 +172,7 @@ public class Milestone2 {
                 diff = thisDiff;
             }
         }
-        System.out.println(diff + "   " + separationPoint);
+        //System.out.println(diff + "   " + separationPoint);
         separationPoint = Math.max(separationPoint, (int)movies.length/10);
         Movie[] res = new Movie[separationPoint];
         for(int i = 0; i < separationPoint; i ++) {
@@ -175,11 +193,10 @@ public class Milestone2 {
                 return Float.compare(scoreO2, scoreO1);
             }
         });
-        int cnt = 0;
-        for(Movie movie:specialList) {
-            cnt ++;
-            System.out.println(movie.title + " " + movie.ID);
-            if(cnt == 10) break;
+        for(int i = 0; i < 10; ++i)
+        {
+            System.out.format("%d. %s (%s)\n", i+1, specialList[i].title,
+                    "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
         }
     }
 }

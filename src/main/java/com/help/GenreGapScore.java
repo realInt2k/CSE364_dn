@@ -3,7 +3,7 @@ package com.help;
 public class GenreGapScore extends RelevanceScore{
     private float genreScorePercent;
     public GenreGapScore(Float genreScorePercent) {
-        this.genreScorePercent = genreScorePercent == null ? 150 : Float.valueOf(genreScorePercent);
+        this.genreScorePercent = genreScorePercent == null ? defaultScore.genreScore : Float.valueOf(genreScorePercent);
     }
     @Override
     public float getScorePercent() {
@@ -15,6 +15,9 @@ public class GenreGapScore extends RelevanceScore{
         this.genreScorePercent = x;
     }
 
+    /*
+    Determine how many genres in A match with B.
+     */
     public static float getPercentCompare(String[] genreA, String[] genreB)
     {
         float cnt = 0;

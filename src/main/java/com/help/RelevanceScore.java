@@ -2,7 +2,7 @@ package com.help;
 
 import com.data.Person;
 
-public abstract class RelevanceScore {
+public abstract class RelevanceScore extends defaultScore {
     abstract public float getScorePercent();
     abstract public void setScorePercent(float x);
 
