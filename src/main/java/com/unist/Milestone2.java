@@ -340,7 +340,7 @@ public class Milestone2 {
                     float scoreO2 = movieAvgScore.get(o2.ID);
                     float relScoreO1 = movieRelevantScore.get(o1.ID);
                     float relScoreO2 = movieRelevantScore.get(o2.ID);
-                    return Float.compare(2*scoreO2 + (float)0.6*relScoreO2, 2*scoreO1 + (float)0.6*relScoreO1);
+                    return Float.compare(10*scoreO2 + (float)0.6*relScoreO2, 10*scoreO1 + (float)0.6*relScoreO1);
                 } else {
                     return cntO2 - cntO1;
                 }

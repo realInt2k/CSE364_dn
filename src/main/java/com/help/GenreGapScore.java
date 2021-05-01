@@ -39,7 +39,7 @@ public class GenreGapScore extends RelevanceScore{
         }
 
         //if(cntA/allA >= 0.5)
-            return  cntA/Math.max(allB, allA);
+            return  cntA/allA;
         //else
           //  return (float)0;
     }
