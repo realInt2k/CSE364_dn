@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
-
-    public static void main (String[] args) throws IOException {
+    public static void Mile1(String[] args) throws IOException {
         // args = new String[]{"Adventure", "educator"};
         // args = new String[]{"Comedy", "educator"};
         // args = new String[]{"educator", "Adventure"};
@@ -29,7 +28,7 @@ public class App {
                 System.out.println("You should input genre before occupation");
                 return;
             }
-            
+
             solver.solve(args);
             double output = solver.output();
             if (output != -1) {
@@ -38,5 +37,14 @@ public class App {
             }
         }
         System.out.println();
+    }
+
+    public static void Mile2(String[] args) throws IOException {
+        Milestone2 solver = new Milestone2(args);
+        solver.solve();
+    }
+
+    public static void main (String[] args) throws IOException {
+        Mile2(args);
     }
 }

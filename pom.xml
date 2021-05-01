@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- id, name, version of project -->
-    <groupId>unist.milestone1</groupId>
+    <groupId>unist.milestone2</groupId>
     <artifactId>CSE364_dn</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
