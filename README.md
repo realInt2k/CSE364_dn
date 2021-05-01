@@ -3,23 +3,33 @@ Software Engineering course
 
 Milestone 2 due: 11:59PM, May 3rd, 2021
 
-# Milestone 2 relevancy and Similarity algorithm
+# Milestone 2 relevancy and Similarity algorithm - fix May 2nd 2021.
+
+## Filter first
+- We filter the relevant data: movies that contains the specific genres, reviews that for the movies with specific genres, Users that review movies in specific genres.
+- If after filtering we have < 10 movies, we will select more random movies (that doesn't have the matching genres with User-input of-course)
+
+## Threshold
+- Then we calculate the threshold Number of valid samples = n / (1-n*e^2) where n = number of valid Users and e is error in percentage.
 
 ## How relevance scores are calculated:
-
-- The weight of each Age, Gender, Occupation, Genre defined in respective AgeGapScore, GenderGapScore, etc.. are to be modified by dev. The primitive values of these written in those files aren't important, the inter-ratio between them does
+- The weight of each Age, Gender, Occupation, Genre defined in respective AgeGapScore, GenderGapScore, etc.. are to be modified by dev. The primitive values of these are written in com.help.defaultScore, the inter-ratio between them does the job.
 - The Similarity between the reviewer Y and our customer X in term of Age, Gender, etc. will determine how many percentage should we take from weight of each Age, Gender, etc. respecively.
 - For example, if Y has the same age as X, and semi-different in every other fields, then 100% of the score for Age is taken, and for other fields, some% of the score is taken. The sum of the scores is the similarity of the people making the review.
 - We go thru the review list, if the review i is for the movie j, then the relevanceScore of movie j will be increased by the similarity score of the reviewer i.
+- We then divide the relevance score of each movie i by the number of reviews for it, to get Average Relevance Score.
 
 ## get top relevant movie:
-
-- We then sort the relevancy from high to low, and find the largest score gap exists within the list. If the gap exists in the very early index ( < 10% of number of movies), then we take the first 10% of the movie data set into consideration. If it doesn't exist in the indices under 10% of the number of movies, we take all the movies before the gap into consideration.
+- We then sort the movie list according to the Criteria (1).
+- We then find the largest score gap exists within the list. If the gap exists in the very early index ( < 10% of number of movies), then we take the first 5% of the movie data set into consideration. If it doesn't exist in the indices under 10% of the number of movies, we take all the movies before the gap into consideration.
+- 
+### Criteria (1) (movie A vs B):
+- If the number of reviews for movie A && number of reviews for movie B are both greater then threshold or both smaller than threshold then we see which one has higher Average Relevance Score.
 
 ## Get top 10 movie recommendations: 
-
-- We then sort the selected list via each movie's average rating score. This rating score is independent of the similarity between the reviewers and customer, as the merit of the movie is greatly subjective.
-
+- We then sort the selected list via Criteria (2). And we have top 10.
+### Criteria (2) (movie A vs B):
+- If the number of reviews for movie A && number of reviews for movie B are both greater then threshold or both smaller than threshold then we see which one has higher score/maxScore + relevanceScore/maxRelevanceScore.
 
 # Milestone 1 highlights:
 
