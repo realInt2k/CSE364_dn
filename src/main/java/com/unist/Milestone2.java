@@ -19,11 +19,11 @@ public class Milestone2 {
     public Person customer = new Person();
     public Link[] links;
 
-    private boolean badArgs = false;
-    private Map<Integer, String> movieImdbID = new HashMap<>();
-    private Map<Integer, Float> movieRelevantScore = new HashMap<>();
-    private Map<Integer, Float> movieAvgScore = new HashMap<>();
-    private Map<Integer, Integer> movieCnt = new HashMap<>();
+    public boolean badArgs = false;
+    public Map<Integer, String> movieImdbID = new HashMap<>();
+    public Map<Integer, Float> movieRelevantScore = new HashMap<>();
+    public Map<Integer, Float> movieAvgScore = new HashMap<>();
+    public Map<Integer, Integer> movieCnt = new HashMap<>();
 
     public Milestone2() {}
     public void prepareData() throws IOException {
@@ -56,7 +56,7 @@ public class Milestone2 {
         genres = new String[lines.length];
         System.arraycopy(lines, 0, genres, 0, lines.length);
     }
-    private void badArgsExit(String problem) {
+    public void badArgsExit(String problem) {
         System.out.println(problem);
     }
 
