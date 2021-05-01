@@ -20,7 +20,8 @@ public class GenreGapScore extends RelevanceScore{
      */
     public static float getPercentCompare(String[] genreA, String[] genreB)
     {
-        float cnt = 0;
+        float cntA = 0;
+        float allA = genreA.length, allB = genreB.length;
         for (String i: genreA)
         {
             boolean same = false;
@@ -33,9 +34,13 @@ public class GenreGapScore extends RelevanceScore{
                 }
             }
             if(same) {
-                cnt += 1;
+                cntA += 1;
             }
         }
-        return (float) (cnt/ (1.0*genreA.length));
+
+        //if(cntA/allA >= 0.5)
+            return  cntA/Math.max(allB, allA);
+        //else
+          //  return (float)0;
     }
 }

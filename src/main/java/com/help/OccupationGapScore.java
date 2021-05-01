@@ -17,9 +17,9 @@ public class OccupationGapScore extends RelevanceScore{
 
     public static float getPercentCompare (Integer A, Integer B) {
         if(A == null || B == null) {
-            return 1;
+            return (float)1.0;
         } else {
-            return A == B ? (float) 1.0 : (float) 0.5;
+            return A == B ? (float) 1.0 : (float) 0.2;
         }
     }
 }
