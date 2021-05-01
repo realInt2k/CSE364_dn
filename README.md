@@ -9,8 +9,8 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
 
 - The weight of each Age, Gender, Occupation, Genre defined in respective AgeGapScore, GenderGapScore, etc.. are to be modified by dev. The primitive values of these written in those files aren't important, the inter-ratio between them does
 - The Similarity between the reviewer Y and our customer X in term of Age, Gender, etc. will determine how many percentage should we take from weight of each Age, Gender, etc. respecively.
-- For example, if Y has the same age as X, and semi-different in every other field, then 100% of the score for Age is taken, and for other fields, some% of the score is taken. The sum of the scores is the similarity of the people making the review.
-- We go thru the review list, if the review i is for the movie j, then the relevance score of movie i will be increased by the similarity score of the reviewer i in review i.
+- For example, if Y has the same age as X, and semi-different in every other fields, then 100% of the score for Age is taken, and for other fields, some% of the score is taken. The sum of the scores is the similarity of the people making the review.
+- We go thru the review list, if the review i is for the movie j, then the relevanceScore of movie j will be increased by the similarity score of the reviewer i.
 
 ## get top relevant movie:
 
