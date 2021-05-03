@@ -23,6 +23,7 @@ public class Milestone2 {
     public float maxRelevant = 0;
     public float maxScore = 0;
 
+    public StringBuilder welcome;
     public boolean badArgs = false;
     public Map<Integer, String> movieImdbID = new HashMap<>();
     public Map<Integer, Float> movieRelevantScore = new HashMap<>();
@@ -107,7 +108,7 @@ public class Milestone2 {
             return;
         }
 
-        StringBuilder welcome = new StringBuilder();
+        welcome = new StringBuilder();
         welcome.append("Finding movies for a customer with: \n\n");
         if(!args[0].isEmpty()) {
             if(args[0].toLowerCase().charAt(0) != 'f' && args[0].toLowerCase().charAt(0) != 'm') {

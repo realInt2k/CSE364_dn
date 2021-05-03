@@ -53,6 +53,33 @@ public class Milestone2Test extends TestCase {
     public void testFind_relevant_movies() {
     }
 
+    public void test_no_gender_age_preference() throws Exception{
+        Milestone2 mile2 = new Milestone2(new String[]{"", "", "Superhero", "crime"});
+        String text = "Finding movies for a customer with: \n" +
+                "\n" +
+                "\tgender: no preference \n" +
+                "\tage: no preference\n" +
+                "\toccupation: Superhero\n" +
+                "No such occupation found, use 'other' as default\n" +
+                "\tGenres: crime \n";
+        Assert.assertEquals(mile2.welcome.toString(), text);
+    }
+
+    public void test_unknown_genre() throws Exception{
+        Milestone2 mile2 = new Milestone2(new String[]{"F", "25", "gradStudent", "Astralis"});
+        Assert.assertEquals(mile2.badArgs, true);
+    }
+
+    public void test_transgender() throws Exception{
+        Milestone2 mile2 = new Milestone2(new String[]{"T", "25", "gradStudent", "crime"});
+        Assert.assertEquals(mile2.badArgs, true);
+    }
+
+    public void test_four_args_no_genre()throws Exception{
+        Milestone2 mile2 = new Milestone2(new String[]{"F", "25", "gradStudent", ""});
+        Assert.assertEquals(mile2.badArgs, true);
+    }
+
     public void testSolve() throws Exception {
         Milestone2 mile2_A = new Milestone2(new String[]{"F", "25", "gradStudent", "action|comedy|War"});
         Milestone2 mile2_B = new Milestone2(new String[]{"F", "25", "gradStudent", "comedy|action|War|Action"});
