@@ -75,15 +75,19 @@ public class Milestone2 {
         if(i%4 != 0) System.out.println();
     }
 
-    public boolean genre_check(String [] categories) {
+    public boolean genre_check(String [] categories, boolean v) { // v as verbose
+        if(categories == null || categories.length == 0)
+            return false;
         for (int i = 0; i < categories.length; i++) {
             for (int j = 0; j < genres.length; j++) {
                 if (categories[i].equalsIgnoreCase(genres[j])) {
                     j = genres.length + 2;
                 }
                 if (j == genres.length - 1) {
-                    System.out.format("No such genre: \"%s\"%n", categories[i]);
-                    System.out.format("Try one of these: %n");
+                    if(v == true) {
+                        System.out.format("No such genre: \"%s\"%n", categories[i]);
+                        System.out.format("Try one of these: %n");
+                    }
                     print_genres();
                     return false;
                 }
@@ -160,7 +164,7 @@ public class Milestone2 {
             }
             genre = args[3].split("\\|");
             customer.setGenre(genre);
-            if(!genre_check(genre)) {
+            if(!genre_check(genre, true)) {
                 this.badArgs = true;
                 return;
             }
@@ -370,5 +374,6 @@ public class Milestone2 {
                     i+1, specialList[i].title,
                     "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
         }
+        //this.genre_check(new String[]{"children's", "war", "Documentary", "war", "Fantasy"}, true);
     }
 }
