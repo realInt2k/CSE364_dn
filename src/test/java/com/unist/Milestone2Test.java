@@ -126,4 +126,13 @@ public class Milestone2Test extends TestCase {
         Milestone2 dungn = new Milestone2(new String[]{"F", "25", "", "action|comedy|War"});
         dungn.prepareData();
     }
+
+    public void noMovie() throws IOException {
+        Milestone2 dungn = new Milestone2(new String[]{"F", "25", "", "action|comedy|War"});
+        dungn.prepareData();
+        //dungn.movies = new Movie[1];
+        //dungn.movies[0].input("3007::American Movie (1999)::Documentary");
+        dungn.movies[0].ID = 9999;
+        dungn.solve();
+    }
 }
