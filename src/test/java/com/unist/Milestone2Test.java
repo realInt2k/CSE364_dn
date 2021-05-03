@@ -1,12 +1,16 @@
 package com.unist;
 
 import com.data.Movie;
+import com.data.Person;
+import com.help.UserDir;
 import junit.framework.TestCase;
 import org.junit.Assert;
 
 import javax.sound.midi.MidiEvent;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut;
 
@@ -50,8 +54,8 @@ public class Milestone2Test extends TestCase {
     }
 
     public void testSolve() throws Exception {
-        Milestone2 mile2_A = new Milestone2(new String[]{"F", "25", "gradStudent", "action|comedy"});
-        Milestone2 mile2_B = new Milestone2(new String[]{"F", "25", "gradStudent", "action|comedy"});
+        Milestone2 mile2_A = new Milestone2(new String[]{"F", "25", "gradStudent", "action|comedy|War"});
+        Milestone2 mile2_B = new Milestone2(new String[]{"F", "25", "gradStudent", "comedy|action|War|Action"});
         String text1 = tapSystemOut(mile2_A::solve);
         String text2 = tapSystemOut(mile2_B::solve);
         Assert.assertEquals(text1, text2);
@@ -60,5 +64,21 @@ public class Milestone2Test extends TestCase {
     public void testToo_many_args() throws Exception{
         Milestone2 mile2 = new Milestone2(new String[]{"F", "23", "gradStudent", "aciton", "Netflix"});
         Assert.assertEquals(mile2.badArgs, true);
+    }
+
+    public void testFields() throws IOException {
+        Milestone2 dungn = new Milestone2(new String[]{"F", "25", "gradStudent", "action|comedy|War"});
+        Person x = new Person(new String[] {"action", "comedy", "War"});
+        dungn.prepareData();
+
+        Milestone2 int2k = new Milestone2(new String[]{"M", "25", "gradStudent", "action|comedy|War"});
+        Person y = new Person(new String[] {"action", "comedy", "War"});
+        int2k.prepareData();
+
+        Assert.assertEquals(dungn.parseOccupation.entrySet(), int2k.parseOccupation.entrySet());
+        for(Map.Entry<Integer, Movie> e : dungn.movieMap.entrySet())
+        {
+            Assert.assertEquals(e.getValue().title, int2k.movieMap.get(e.getKey()).title);
+        }
     }
 }
