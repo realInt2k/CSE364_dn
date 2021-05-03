@@ -10,12 +10,12 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
 - If after filtering we have < 10 movies, we will select more random movies (that doesn't have the matching genres with User-input of-course)
 
 ## Threshold
-- Then we calculate the threshold Number of valid samples = n / (1-n*e^2) where n = number of valid Users and e is error in percentage.
+- Then we calculate the threshold Number of valid samples = n / (1-n\*e^2) where n = number of valid Users and e is error in percentage.
 
 ## How relevance scores are calculated:
 - The weight of each Age, Gender, Occupation, Genre defined in respective AgeGapScore, GenderGapScore, etc.. are to be modified by dev. The primitive values of these are written in com.help.defaultScore, the inter-ratio between them does the job.
-- The Similarity between the reviewer Y and our customer X in term of Age, Gender, etc. will determine how many percentage should we take from weight of each Age, Gender, etc. respecively.
-- For example, if Y has the same age as X, and semi-different in every other fields, then 100% of the score for Age is taken, and for other fields, some% of the score is taken. The sum of the scores is the similarity of the people making the review.
+- The Similarity between the reviewer Y and our customer X in term of Age, Gender, etc. will determine how many percentage should we take from weight of each Age, Gender, etc. respecively. The similarity functions are defined under \*GapScore.java, with \*.getPercentCompare method to calculate similarity between obj A and B.
+- For example, if Y has the same age as X, and semi-different in every other fields, then in the similarity score, 100% of the weight for Age is taken, and for other fields (Gender, Occupation, etc..), some% of the weight is taken. The sum of the weights taken is the similarity score of the people making the review.
 - We go thru the review list, if the review i is for the movie j, then the relevanceScore of movie j will be increased by the similarity score of the reviewer i.
 - We then divide the relevance score of each movie i by the number of reviews for it, to get Average Relevance Score.
 
@@ -30,7 +30,8 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
 - We then sort the selected list via Criteria (2). And we have top 10.
 ### Criteria (2) (movie A vs B):
 - If the number of reviews for movie A && number of reviews for movie B are both greater then threshold or both smaller than threshold then we see which one has higher score/maxScore + relevanceScore/maxRelevanceScore.
-## How to run our program by Java command line:
+
+# How to run our program by Java command line:
   - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
   - Navigate to your cloned folder: `cd */CSE364_dn`
   - Given user data, on Terminal, type: 
