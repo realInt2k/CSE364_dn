@@ -4,7 +4,7 @@ Software Engineering course
 Milestone 2 due: 11:59PM, May 3rd, 2021
 
 # Milestone 2 relevancy and Similarity algorithm - fix May 2nd 2021.
-
+- The algorithm is implemented in the file **Milestone2.java**.
 ## Filter first
 - We filter the relevant data: movies that contains the specific genres, reviews that for the movies with specific genres, Users that review movies in specific genres.
 - If after filtering we have < 10 movies, we will select more random movies (that doesn't have the matching genres with User-input of-course)
