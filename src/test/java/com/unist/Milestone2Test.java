@@ -36,6 +36,8 @@ public class Milestone2Test extends TestCase {
         Assert.assertEquals(check1, true);
         boolean check2 = mile2.genre_check(new String[]{}, false);
         Assert.assertEquals(check2, false);
+        boolean check3 = mile2.genre_check(new String[]{"Beka"}, true);
+        Assert.assertEquals(check3, false);
     }
 
     public void testAnalyseRating() {
@@ -55,4 +57,8 @@ public class Milestone2Test extends TestCase {
         Assert.assertEquals(text1, text2);
     }
 
+    public void testToo_many_args() throws Exception{
+        Milestone2 mile2 = new Milestone2(new String[]{"F", "23", "gradStudent", "aciton", "Netflix"});
+        Assert.assertEquals(mile2.badArgs, true);
+    }
 }
