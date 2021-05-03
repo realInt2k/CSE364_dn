@@ -58,7 +58,7 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
 - Dung: make working environments, work on main implementations, a few fixes here and there in corner cases, improve visualization.
 - Luong: refactor source code, fix bugs & handle corner cases, create unit tests.
 - Bao:  review code, develop test plan and evaluate the dockerfile, POM file and application.
-- Bekatan: 
+- Bekatan: testing Milestone2 corner cases, OccupationGapScore and ensuring >90 branch coverage
 
 # Set up your Dockerfile (ver 1)
 
