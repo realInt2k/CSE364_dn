@@ -5,7 +5,6 @@ import com.help.GenreGapScore;
 import com.help.RelevanceScore;
 import com.help.UserDir;
 
-import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.*;
 
@@ -104,8 +103,8 @@ public class Milestone2 {
             return;
         }
 
-        String welcome = "";
-        welcome += "Finding movies for a customer with: \n\n";
+        StringBuilder welcome = new StringBuilder();
+        welcome.append("Finding movies for a customer with: \n\n");
         if(!args[0].isEmpty()) {
             if(args[0].toLowerCase().charAt(0) != 'f' && args[0].toLowerCase().charAt(0) != 'm') {
                 this.badArgs = true;
@@ -113,9 +112,9 @@ public class Milestone2 {
                 return;
             }
             customer.setGender(args[0].charAt(0));
-            welcome += "\tgender: " + customer.getGender() + '\n';
+            welcome.append("\tgender: ").append(customer.getGender()).append('\n');
         } else {
-           welcome += "\tgender: no preference \n";
+           welcome.append("\tgender: no preference \n");
         }
         if(!args[1].isEmpty()) {
             int age = 0;
@@ -128,9 +127,9 @@ public class Milestone2 {
                 return;
             }
             customer.setAge(age);
-            welcome += "\tage: " + customer.getAge() + '\n';
+            welcome.append("\tage: ").append(customer.getAge()).append('\n');
         } else {
-            welcome += "\tage: no preference\n";
+            welcome.append("\tage: no preference\n");
         }
         boolean occupationNotFound=false;
         if(!args[2].isEmpty()) {
@@ -141,13 +140,13 @@ public class Milestone2 {
                 occupationNotFound = true;
                 customer.setOccupation(parseOccupation.get("other"));
             }
-            welcome += "\toccupation: " + args[2] + '\n';
+            welcome.append("\toccupation: ").append(args[2]).append('\n');
         } else {
-            welcome += "\toccupation: no preference \n";
+            welcome.append("\toccupation: no preference \n");
         }
         System.out.println();
         if(occupationNotFound)
-            welcome += "No such occupation found, use 'other' as default\n";
+            welcome.append("No such occupation found, use 'other' as default\n");
         //customer.setAge();
 
         if(args.length == 4) {
@@ -165,11 +164,9 @@ public class Milestone2 {
                 this.badArgs = true;
                 return;
             }
-            welcome += "\tGenres: ";
-            for(String i : genre) {
-                welcome += i  + " ";
-            }
-            welcome += '\n';
+            welcome.append("\tGenres: ");
+            for(String i : genre) welcome.append(i).append(" ");
+            welcome.append('\n');
         }
         System.out.println(welcome);
     }
@@ -192,7 +189,7 @@ public class Milestone2 {
     }
 
     // dependent on Rating && Movie list
-    public void calculateAvgScore() throws IOException {
+    public void calculateAvgScore() {
         for(Rating rate:ratings) {
             int cnt = movieCnt.get(rate.movieId);
             if(cnt == 0) {
@@ -218,7 +215,7 @@ public class Milestone2 {
 
     }
 
-    public float[] analyseRating(Person A) throws IOException {
+    public float[] analyseRating(Person A) {
         float[] score = new float[this.ratings.length];
         for (int i = 0; i < score.length; ++i) {
             Movie movie = movieMap.get(ratings[i].movieId);
@@ -235,7 +232,7 @@ public class Milestone2 {
         return score;
     }
 
-    public Movie [] find_relevant_movies() throws IOException {
+    public Movie [] find_relevant_movies() {
         float[] relevantScore = this.analyseRating(customer).clone();
 
         for(int i = 0; i < ratings.length; ++i) {
@@ -259,19 +256,16 @@ public class Milestone2 {
             maxRelevant = Math.max(maxRelevant, movieRelevantScore.get(x.ID));
         }
 
-        Arrays.sort(movies, new Comparator<Movie>() {
-            @Override
-            public int compare(Movie o1, Movie o2) {
-                int cntO1 = movieCnt.get(o1.ID);
-                int cntO2 = movieCnt.get(o2.ID);
-                if ((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
-                        (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)) {
-                    float scoreO1 = movieRelevantScore.get(o1.ID);
-                    float scoreO2 = movieRelevantScore.get(o2.ID);
-                    return Float.compare(scoreO2, scoreO1);
-                } else {
-                    return (cntO2 - cntO1);
-                }
+        Arrays.sort(movies, (o1, o2) -> {
+            int cntO1 = movieCnt.get(o1.ID);
+            int cntO2 = movieCnt.get(o2.ID);
+            if ((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
+                    (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)) {
+                float scoreO1 = movieRelevantScore.get(o1.ID);
+                float scoreO2 = movieRelevantScore.get(o2.ID);
+                return Float.compare(scoreO2, scoreO1);
+            } else {
+                return (cntO2 - cntO1);
             }
         });
 
@@ -286,7 +280,7 @@ public class Milestone2 {
             }
         }
         //System.out.println(diff + "   " + separationPoint); // DEBUG
-        separationPoint = Math.max(separationPoint, (int)movies.length / 100 * 5); //5%
+        separationPoint = Math.max(separationPoint, movies.length / 100 * 5); //5%
 
         Movie[] res = new Movie[separationPoint];
         for(int i = 0; i < separationPoint; i ++) {
@@ -296,7 +290,7 @@ public class Milestone2 {
         return res;
     }
 
-    public void filterData(Person person) throws IOException {
+    public void filterData(Person person) {
         ArrayList<Rating> newRatings = new ArrayList<>();
         ArrayList<Movie> newMovies = new ArrayList<>();
         ArrayList<Reviewer> newReviewers = new ArrayList<>();
@@ -340,7 +334,7 @@ public class Milestone2 {
 
         /*  https://www.statisticshowto.com/how-to-use-slovins-formula/*/
         float errorPercent = (float)0.10;
-        nReviewsThreshold = (int)((float)reviewers.length / ((float)1 + (float)reviewers.length * Math.pow((float)errorPercent, (float)2)));
+        nReviewsThreshold = (int)((float)reviewers.length / ((float)1 + (float)reviewers.length * Math.pow(errorPercent, (float)2)));
         //System.out.println("Threshold:  over " + nReviewsThreshold + " reviews for " + errorPercent*100 + "% error (kinda)");
     }
 
@@ -348,21 +342,18 @@ public class Milestone2 {
         if(this.badArgs) {return;}
         this.filterData(customer);
         Movie[] specialList = this.find_relevant_movies().clone();
-        Arrays.sort(specialList, new Comparator<Movie>() {
-            @Override
-            public int compare(Movie o1, Movie o2) {
-                int cntO1 = movieCnt.get(o1.ID);
-                int cntO2 = movieCnt.get(o2.ID);
-                if((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
-                        (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)){
-                    float scoreO1 = movieAvgScore.get(o1.ID);
-                    float scoreO2 = movieAvgScore.get(o2.ID);
-                    float relScoreO1 = movieRelevantScore.get(o1.ID);
-                    float relScoreO2 = movieRelevantScore.get(o2.ID);
-                    return Float.compare(scoreO2/maxScore + relScoreO2/maxRelevant, scoreO1/maxScore + relScoreO1/maxRelevant);
-                } else {
-                    return cntO2 - cntO1;
-                }
+        Arrays.sort(specialList, (o1, o2) -> {
+            int cntO1 = movieCnt.get(o1.ID);
+            int cntO2 = movieCnt.get(o2.ID);
+            if((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
+                    (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)){
+                float scoreO1 = movieAvgScore.get(o1.ID);
+                float scoreO2 = movieAvgScore.get(o2.ID);
+                float relScoreO1 = movieRelevantScore.get(o1.ID);
+                float relScoreO2 = movieRelevantScore.get(o2.ID);
+                return Float.compare(scoreO2/maxScore + relScoreO2/maxRelevant, scoreO1/maxScore + relScoreO1/maxRelevant);
+            } else {
+                return cntO2 - cntO1;
             }
         });
         for(int i = 0; i < 10; ++i)
