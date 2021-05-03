@@ -8,7 +8,7 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
 - Bekatan Satyev: Code the jUnit tests, refactor some small parts of the code.
 - Bao Truong: Help in designing the algorithm in the first stage, made the new run.sh.
 
-# Milestone 2 relevancy and Similarity algorithm - fix May 2nd 2021.
+# Milestone 2 Relevancy and Similarity algorithm - fix May 2nd 2021.
 - The algorithm is implemented in the file **Milestone2.java**.
 ## Filter first
 - We filter the relevant data: movies that contains the specific genres, reviews that for the movies with specific genres, Users that review movies in specific genres.
