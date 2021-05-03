@@ -108,4 +108,12 @@ public class Milestone2Test extends TestCase {
             Assert.assertEquals(e.getValue().title, int2k.movieMap.get(e.getKey()).title);
         }
     }
+
+    public void testSmallerThan10() throws IOException {
+        Milestone2 dungn = new Milestone2(new String[]{"F", "25", "gradStudent", "action|comedy|War"});
+        Person x = new Person(new String[] {});
+        dungn.prepareData();
+        dungn.filterData(x);
+        Assert.assertEquals(dungn.movies.length, 10);
+    }
 }
