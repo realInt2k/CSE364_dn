@@ -3,7 +3,7 @@ Software Engineering course
 
 Milestone 2 due: 11:59PM, May 3rd, 2021
 
-# Milestone 2 relevancy and Similarity algorithm - fix May 2nd 2021.
+# Milestone 2 Relevancy and Similarity algorithm - fix May 2nd 2021.
 - The algorithm is implemented in the file **Milestone2.java**.
 ## Filter first
 - We filter the relevant data: movies that contains the specific genres, reviews that for the movies with specific genres, Users that review movies in specific genres.
@@ -38,6 +38,11 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
     `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation. The arguments may be empty.
   - Given categories, on Terminal, type:
     `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3 arg4`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation, arg4 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""). The arguments may be empty, except for arg4.
+ 
+## Works from team members
+- Dung: make working environments, work on main implementations, a few fixes here and there in corner cases, improve visualization.
+- Bao:  design algorithm, review code, develop test plan and evaluate the application in corner cases.
+- Bekatan: unit testing.
 
 # Milestone 1 highlights:
 
