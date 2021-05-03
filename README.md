@@ -19,10 +19,10 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
 - We go thru the review list, if the review i is for the movie j, then the relevanceScore of movie j will be increased by the similarity score of the reviewer i.
 - We then divide the relevance score of each movie i by the number of reviews for it, to get Average Relevance Score.
 
-## get top relevant movie:
+## Get top relevant movie:
 - We then sort the movie list according to the Criteria (1).
 - We then find the largest score gap exists within the list. If the gap exists in the very early index ( < 10% of number of movies), then we take the first 5% of the movie data set into consideration. If it doesn't exist in the indices under 10% of the number of movies, we take all the movies before the gap into consideration.
-- 
+
 ### Criteria (1) (movie A vs B):
 - If the number of reviews for movie A && number of reviews for movie B are both greater then threshold or both smaller than threshold then we see which one has higher Average Relevance Score.
 
