@@ -116,4 +116,14 @@ public class Milestone2Test extends TestCase {
         dungn.filterData(x);
         Assert.assertEquals(dungn.movies.length, 10);
     }
+
+    public void testDefaultConstructor() throws IOException {
+        Milestone2 dungn = new Milestone2();
+        Assert.assertEquals(dungn.movieMap.get(1), null);
+    }
+
+    public void testNoOccupation() throws IOException {
+        Milestone2 dungn = new Milestone2(new String[]{"F", "25", "", "action|comedy|War"});
+        dungn.prepareData();
+    }
 }
