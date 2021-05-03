@@ -35,7 +35,7 @@ Milestone 2 due: 11:59PM, May 3rd, 2021
   - Navigate to your cloned folder: `cd */CSE364_dn`
   - Given user data, on Terminal, type: 
     `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation. The arguments may be empty.
-  - Given categories,on Terminal, type:
+  - Given categories, on Terminal, type:
     `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3 arg4`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation, arg4 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""). The arguments may be empty, except for arg4.
 
 # Milestone 1 highlights:
