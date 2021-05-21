@@ -124,6 +124,7 @@ public class Milestone2 {
            welcome.append("\tgender: no preference \n");
         }
         if(!args[1].isEmpty()) {
+
             int age = 0;
             try {
                 age = Integer.parseInt(args[1]);
@@ -231,7 +232,6 @@ public class Milestone2 {
                 maxScore = Math.max(maxScore, score);
             }
         }
-
     }
 
     public float[] analyseRating(Person A) {

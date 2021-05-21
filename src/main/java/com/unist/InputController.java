@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class argument {
+class argument1 {
     public String gender, age, occupation;
     public String genre;
 
@@ -27,12 +27,26 @@ class argument {
     }
 }
 
+class argument2 {
+    public String title = null;
+    public String limit = null;
+
+    public void print() {
+        System.out.println(this.title + " " + this.limit);
+    }
+
+    public String[] args() {
+        String[] res = new String[2];
+        res[0] = this.title;
+        res[1] = this.limit;
+        return res;
+    }
+}
+
 @RestController
 public class InputController {
-    @GetMapping("/users/recommendations")
-    public String getUsersRecommendationsInput(@RequestBody argument inp) throws IOException, JSONException {
-        Milestone2 mile2 = new Milestone2(inp.args());
-        JSONObject[] objs = mile2.solve();
+
+    public String output(JSONObject[] objs) throws JSONException {
         ArrayList<String> output = new ArrayList<>();
         for(JSONObject js: objs) {
             output.add(js.toString(4));
@@ -40,6 +54,20 @@ public class InputController {
         String consoleOutput = null;
         consoleOutput = output.toString();
         return consoleOutput;
+    }
+
+    @GetMapping("/users/recommendations")
+    public String getUsersRecommendationsInput(@RequestBody argument1 inp) throws IOException, JSONException {
+        Milestone2 mile2 = new Milestone2(inp.args());
+        JSONObject[] objs = mile2.solve();
+        return output(objs);
+    }
+
+    @GetMapping("/movies/recommendations")
+    public String getUsersRecommendedMovieTitle(@RequestBody argument2 inp) throws IOException, JSONException {
+        Milestone3 mile3 = new Milestone3(inp.args());
+        JSONObject[] objs = mile3.solve();
+        return output(objs);
     }
 
     @RequestMapping("/")

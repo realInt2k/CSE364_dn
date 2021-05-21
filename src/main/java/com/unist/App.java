@@ -1,10 +1,10 @@
 package com.unist;
+import com.data.Universal;
 import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @SpringBootApplication
@@ -43,6 +43,9 @@ public class App {
     }
 
     public static void main (String[] args) throws IOException {
+        Universal.prepareData();
+        Universal.countMovie();
+        Universal.calculateAvgScore();
         SpringApplication.run(App.class, args);
         /*if(args.length <= 2) {
             Mile1(args);
