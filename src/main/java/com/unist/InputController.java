@@ -16,24 +16,26 @@ class argument {
     public void print() {
         System.out.println(this.gender + " " + this.age + " " + this.occupation +  " " + this.genre);
     }
+
+    public String[] args() {
+        String[] res = new String[4];
+        res[0] = this.gender;
+        res[1] = this.age;
+        res[2] = this.occupation;
+        res[3] = this.genre;
+        return res;
+    }
 }
 
 @RestController
 public class InputController {
     @GetMapping("/users/recommendations")
     public String getUsersRecommendationsInput(@RequestBody argument inp) throws IOException, JSONException {
-        inp.print();
-        String[] args = new String[4];
-        args[0] = inp.gender;
-        args[1] = inp.age;
-        args[2] = inp.occupation;
-        args[3] = inp.genre;
-        Milestone2 mile2 = new Milestone2(args);
+        Milestone2 mile2 = new Milestone2(inp.args());
         JSONObject[] objs = mile2.solve();
         ArrayList<String> output = new ArrayList<>();
         for(JSONObject js: objs) {
             output.add(js.toString(4));
-            System.out.println(js.toString());
         }
         String consoleOutput = null;
         consoleOutput = output.toString();
@@ -42,7 +44,7 @@ public class InputController {
 
     @RequestMapping("/")
     public String index() {
-        return "Greetings from Spring Boot!\n";
+        return "Greetings from Group 5\n";
     }
 }
 

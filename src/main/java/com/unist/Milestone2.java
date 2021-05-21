@@ -374,9 +374,11 @@ public class Milestone2 {
 //                    movieCnt.get(specialList[i].ID),
 //                    movieRelevantScore.get(specialList[i].ID));
             /*THIS IS THE CORRECT OUTPUT LINES*/
-            jsonString[i] = new JSONObject().put("title", specialList[i].title)
-                    .put("genre", specialList[i].cat)
-                    .put("imdb","http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID));
+            jsonString[i] = new JSONObject()
+                    .put("imdb","http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID))
+                    .put("genre", specialList[i].genre())
+                    .put("title", specialList[i].title);
+
             System.out.format("%d. %s (%s)\n",
                     i+1, specialList[i].title,
                     "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");

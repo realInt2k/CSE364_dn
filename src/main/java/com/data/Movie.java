@@ -6,6 +6,17 @@ public class Movie {
     public String[] cat; //short for categories, representing Genres, staying closed to problem's statement.
     public String title;
     public int ID;
+    public String genre() {
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < this.cat.length; ++i) {
+            if(i == 0) {
+                res.append(this.cat[i]);
+            } else {
+                res.append("|").append(this.cat[i]);
+            }
+        }
+        return res.toString();
+    }
     public Movie() {
         cat = null;
         title = null;
