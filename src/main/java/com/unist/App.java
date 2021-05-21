@@ -1,4 +1,5 @@
 package com.unist;
+import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +35,7 @@ public class App {
         System.out.println();
     }
 
-    public static void Mile2(String[] args) throws IOException {
+    public static void Mile2(String[] args) throws IOException, JSONException {
         System.out.println();
         Milestone2 solver = new Milestone2(args);
         solver.solve();

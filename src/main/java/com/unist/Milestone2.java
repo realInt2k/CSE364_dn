@@ -4,6 +4,8 @@ import com.data.*;
 import com.help.GenreGapScore;
 import com.help.RelevanceScore;
 import com.help.UserDir;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.*;
@@ -343,8 +345,8 @@ public class Milestone2 {
         //System.out.println("Threshold:  over " + nReviewsThreshold + " reviews for " + errorPercent*100 + "% error (kinda)");
     }
 
-    public void solve() throws IOException {
-        if(this.badArgs) {return;}
+    public JSONObject[] solve() throws IOException, JSONException {
+        if(this.badArgs) {return new JSONObject[]{new JSONObject().put("arg","fault")};}
         this.filterData(customer);
         Movie[] specialList = this.find_relevant_movies().clone();
         Arrays.sort(specialList, (o1, o2) -> {
@@ -361,6 +363,7 @@ public class Milestone2 {
                 return cntO2 - cntO1;
             }
         });
+        JSONObject[] jsonString = new JSONObject[10];
         for(int i = 0; i < 10; ++i)
         {
             /* THIS IS DEBUGING LINEs */
@@ -371,10 +374,15 @@ public class Milestone2 {
 //                    movieCnt.get(specialList[i].ID),
 //                    movieRelevantScore.get(specialList[i].ID));
             /*THIS IS THE CORRECT OUTPUT LINES*/
+            jsonString[i] = new JSONObject().put("title", specialList[i].title)
+                    .put("genre", specialList[i].cat)
+                    .put("imdb","http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID));
             System.out.format("%d. %s (%s)\n",
                     i+1, specialList[i].title,
                     "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
+
         }
+        return jsonString;
         //this.genre_check(new String[]{"children's", "war", "Documentary", "war", "Fantasy"}, true);
     }
 }
