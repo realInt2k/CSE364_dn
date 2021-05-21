@@ -80,7 +80,7 @@ public class Milestone2 {
 
     public boolean genre_check(String [] categories, boolean v) { // v as verbose
         if(categories == null || categories.length == 0)
-            return false;
+            return true;
         for (int i = 0; i < categories.length; i++) {
             for (int j = 0; j < genres.length; j++) {
                 if (categories[i].equalsIgnoreCase(genres[j])) {
@@ -133,6 +133,11 @@ public class Milestone2 {
                         "or contain whitespaces, etc.");
                 return;
             }
+            if(age < 0) {
+                this.badArgs = true;
+                this.badArgsExit("age input \"" + args[1] + "\" is negative.");
+                return;
+            }
             customer.setAge(age);
             welcome.append("\tage: ").append(customer.getAge()).append('\n');
         } else {
@@ -159,20 +164,27 @@ public class Milestone2 {
         if(args.length == 4) {
             String[] genre;
             if(args[3].isEmpty()) {
-                this.badArgs = true;
+                /*this.badArgs = true;
                 this.badArgsExit("4 arguments but no genres were inputted, please input some.");
                 System.out.format("Try some of these: \n");
                 print_genres();
-                return;
+                return;*/
+                genre = null;
             }
-            genre = args[3].split("\\|");
+            else {
+                genre = args[3].split("\\|");
+            }
             customer.setGenre(genre);
             if(!genre_check(genre, true)) {
                 this.badArgs = true;
                 return;
             }
             welcome.append("\tGenres: ");
-            for(String i : genre) welcome.append(i).append(" ");
+            if(genre != null) {
+                for (String i : genre) welcome.append(i).append(" ");
+            } else {
+                welcome.append(" ");
+            }
             welcome.append('\n');
         }
         System.out.println(welcome);

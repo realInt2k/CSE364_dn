@@ -6,8 +6,12 @@ public class Movie {
     public String[] cat; //short for categories, representing Genres, staying closed to problem's statement.
     public String title;
     public int ID;
+    /* convert the array of string to a single string with separator | */
     public String genre() {
         StringBuilder res = new StringBuilder();
+        if(cat == null) {
+            return "";
+        }
         for(int i = 0; i < this.cat.length; ++i) {
             if(i == 0) {
                 res.append(this.cat[i]);

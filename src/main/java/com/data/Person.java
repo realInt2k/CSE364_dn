@@ -33,10 +33,14 @@ public class Person {
         this.init();
     }
     public Person(String[] genre) {
-        this.genre = genre.clone();
+        if(genre != null)
+            this.genre = genre.clone();
+        else
+            genre = null;
         this.init();
     }
     public void setGenre(String[] genre) {
-        this.genre = genre.clone();
+        if(genre != null)
+            this.genre = genre.clone();
     }
 }
