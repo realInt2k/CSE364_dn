@@ -13,6 +13,20 @@ public class Milestone3 {
     public int limit = 10;
     public boolean badArg = false;
     public String badArgMsg = "";
+    public boolean warning = false;
+    public String warningMsg = "";
+
+    public void setBadArg(String e) {
+        this.badArg = true;
+        if(e!=null)
+            this.badArgMsg = e;
+    }
+
+    public void setWarning(String w) {
+        this.warning = true;
+        if(w!=null)
+            this.warningMsg = w;
+    }
 
     Milestone3() {}
     Milestone3(String[] args) {
@@ -23,11 +37,14 @@ public class Milestone3 {
             try {
                 lim = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
-                this.badArg = true;
+                this.setBadArg("limit is not an integer\n");
                 return;
             }
             if(lim > Universal.movies.length) {
-                this.badArg = true;
+                this.setBadArg("movie limit input by user > number of movies in database\n");
+            } else if(lim < 0)
+            {
+                this.setBadArg("movie limit input by user is negative\n");
             } else {
                 this.limit = Integer.parseInt(args[1]);
             }
@@ -35,23 +52,27 @@ public class Milestone3 {
     }
     public Movie findMovie(String title) {
         Movie res = null;
+        String modTitle = title.replaceAll("\\s+","");
         for(int i = 0; i < Universal.movies.length; ++i) {
-            if(title.equalsIgnoreCase(Universal.movies[i].title)) {
+            if(modTitle.equalsIgnoreCase(Universal.movies[i].title.replaceAll("\\s+",""))) {
                 res = Universal.movies[i];
                 break;
             }
         }
+        if(res == null) {
+            this.setWarning("No such movie found, recommending top "+limit+" any movie instead\n");
+        }
         return res;
     }
     public double compareGenreScore(Movie x) {
-        if(x == null) {
+        if(userMovie == null) { // solely dependent on score
             return 1.0;
         }
         double cnt = 0.0;
         for(String genre1 : userMovie.cat) {
             for(String genre2 : x.cat) {
                 if(genre1.equalsIgnoreCase(genre2))
-                    ++cnt;
+                    cnt += 1.0;
             }
         }
         return cnt / (double)userMovie.cat.length;
@@ -82,7 +103,7 @@ public class Milestone3 {
     }
     public JSONObject[] solve() throws JSONException {
         if(this.badArg) {
-            return new JSONObject[]{new JSONObject().put("arg","fault")};
+            return new JSONObject[]{new JSONObject().put("bad arg",this.badArgMsg)};
         }
         JSONObject[] res = null;
         userMovie = findMovie(this.title);

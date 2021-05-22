@@ -4,6 +4,7 @@ import com.data.Movie;
 import com.data.Person;
 import com.help.UserDir;
 import junit.framework.TestCase;
+import org.json.JSONException;
 import org.junit.Assert;
 
 import javax.sound.midi.MidiEvent;
@@ -127,7 +128,7 @@ public class Milestone2Test extends TestCase {
         dungn.prepareData();
     }
 
-    public void noMovie() throws IOException {
+    public void noMovie() throws IOException, JSONException {
         Milestone2 dungn = new Milestone2(new String[]{"F", "25", "", "action|comedy|War"});
         dungn.prepareData();
         //dungn.movies = new Movie[1];

@@ -67,7 +67,10 @@ public class InputController {
     public String getUsersRecommendedMovieTitle(@RequestBody argument2 inp) throws IOException, JSONException {
         Milestone3 mile3 = new Milestone3(inp.args());
         JSONObject[] objs = mile3.solve();
-        return output(objs);
+        if(mile3.warning)
+            return mile3.warningMsg + output(objs);
+        else
+            return output(objs);
     }
 
     @RequestMapping("/")

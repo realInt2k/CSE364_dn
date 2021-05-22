@@ -35,10 +35,11 @@ public class Milestone2 {
     public Milestone2() {}
 
     public void prepareData() throws IOException {
-        this.ratings = ReadRatingData.data("/data/ratings.dat").clone();
-        this.reviewers = ReadReviewerData.data("/data/users.dat").clone();
-        this.movies = ReadMovieData.data("/data/movies.dat").clone();
-        this.links = ReadLinkData.data("/data/links.dat").clone();
+        this.ratings = Universal.ratings.clone();
+        this.reviewers = Universal.reviewers.clone();
+        this.movies = Universal.movies.clone();
+        this.links = Universal.links.clone();
+
         for (Movie movie : movies) {
             movieMap.put(movie.ID, movie);
         }
