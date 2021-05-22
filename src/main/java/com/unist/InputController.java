@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 class argument1 {
-    public String gender, age, occupation;
-    public String genre;
+    public String gender = null, age = null, occupation = null;
+    public String genre = null;
 
     public void print() {
         System.out.println(this.gender + " " + this.age + " " + this.occupation +  " " + this.genre);
@@ -27,6 +27,7 @@ class argument1 {
     }
 }
 
+/*http://localhost:8080/movies/recommendations*/
 class argument2 {
     public String title = null;
     public String limit = null;

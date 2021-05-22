@@ -25,12 +25,11 @@ public class Milestone3 {
     public void setWarning(String w) {
         this.warning = true;
         if(w!=null)
-            this.warningMsg = w;
+            this.warningMsg += w;
     }
 
     Milestone3() {}
-    Milestone3(String[] args) {
-        title = args[0];
+    public void parseArg1(String[] args) {
         if(args[1] != null)
         {
             int lim = 0;
@@ -49,6 +48,17 @@ public class Milestone3 {
                 this.limit = Integer.parseInt(args[1]);
             }
         }
+    }
+    public void parseArg0(String[] args) {
+        title = args[0];
+        if(title == null) {
+            title = "";
+            setWarning("No title argument found\n");
+        }
+    }
+    Milestone3(String[] args) {
+        this.parseArg0(args);
+        this.parseArg1(args);
     }
     public Movie findMovie(String title) {
         Movie res = null;
