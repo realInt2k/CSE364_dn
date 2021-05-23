@@ -3,19 +3,20 @@ package com.help;
 import com.data.Person;
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 
 public class RelevanceScoreTest extends TestCase {
-
+    @Test
     public void testGetScorePercent() {
         RelevanceScore gap = new GenderGapScore((float)1.2);
         gap.setScorePercent((float)1.3);
         assertEquals(gap.getScorePercent(), (float)1.3);
     }
-
+    @Test
     public void testSetScorePercent() {
         assertEquals(GenderGapScore.getPercentCompare(null, null), (float)1);
     }
-
+    @Test
     public void testGetScore() {
         RelevanceScore rel = new RelevanceScore() {
             @Override

@@ -91,7 +91,7 @@ public class Milestone2 {
                     j = genres.length + 2;
                 }
                 if (j == genres.length - 1) {
-                    if(v == true) {
+                    if(v) {
                         System.out.format("No such genre: \"%s\"%n", categories[i]);
                         System.out.format("Try one of these: %n");
                     }
@@ -116,12 +116,12 @@ public class Milestone2 {
 
         welcome = new StringBuilder();
         welcome.append("Finding movies for a customer with: \n\n");
-        if(args[0] == null) {
+        if(args[0] == null || args[0].isEmpty()) {
             extraMsg.setWarning("No gender Input\n");
             welcome.append("\tgender: no preference \n");
-        } else
-        if(!args[0].isEmpty()) {
+        } else {
             if(args[0].toLowerCase().charAt(0) != 'f' && args[0].toLowerCase().charAt(0) != 'm') {
+                this.extraMsg.setBadArg("Gender is not F or M");
                 this.badArgs = true;
                 this.badArgsExit("Gender \"" + args[0] + "\" is not \"F\" or \"M\"");
                 return;
@@ -130,16 +130,16 @@ public class Milestone2 {
             welcome.append("\tgender: ").append(customer.getGender()).append('\n');
         }
 
-        if(args[1] == null) {
+        if(args[1] == null || args[1].isEmpty()) {
             this.extraMsg.setWarning("No age input\n");
             welcome.append("\tage: no preference\n");
-        } else
-        if(!args[1].isEmpty()) {
+        } else {
             int age = 0;
             try {
                 age = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
                 this.badArgs = true;
+                this.extraMsg.setBadArg("Age input not numeric");
                 this.badArgsExit("age input \"" + args[1] + "\" is incorrect, please check if they're all numeric, " +
                         "or contain whitespaces, etc.");
                 return;
@@ -154,12 +154,11 @@ public class Milestone2 {
             welcome.append("\tage: ").append(customer.getAge()).append('\n');
         }
         boolean occupationNotFound=false;
-        if(args[2] == null) {
+        if(args[2] == null || args[2].isEmpty()) {
             this.extraMsg.setWarning("no occupation input\n");
             welcome.append("\toccupation: no preference \n");
             customer.setOccupation(parseOccupation.get("other"));
-        } else
-        if(!args[2].isEmpty()) {
+        } else {
             if(parseOccupation.containsKey(args[2].toLowerCase())) {
                 customer.setOccupation(parseOccupation.get(args[2].toLowerCase()));
             }
@@ -185,6 +184,7 @@ public class Milestone2 {
             }
             customer.setGenre(genre);
             if(!genre_check(genre, true)) {
+                this.extraMsg.setBadArg("genre(s) doesn't exist");
                 this.badArgs = true;
                 return;
             }
