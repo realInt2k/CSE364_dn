@@ -1,9 +1,12 @@
 package com.unist;
 
 import com.data.*;
+import com.errorAndWarning.JSONEW_1;
+import com.errorAndWarning.JSONErrorAndWarning;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Milestone3 {
@@ -11,24 +14,8 @@ public class Milestone3 {
     public Movie userMovie;
     public String title = "";
     public int limit = 10;
-    public boolean badArg = false;
-    public String badArgMsg = "";
-    public boolean warning = false;
-    public String warningMsg = "";
+    public JSONErrorAndWarning extraMsg = new JSONEW_1();
 
-    public void setBadArg(String e) {
-        this.badArg = true;
-        if(e!=null)
-            this.badArgMsg = e;
-    }
-
-    public void setWarning(String w) {
-        this.warning = true;
-        if(w!=null)
-            this.warningMsg += w;
-    }
-
-    Milestone3() {}
     public void parseArg1(String[] args) {
         if(args[1] != null)
         {
@@ -36,14 +23,14 @@ public class Milestone3 {
             try {
                 lim = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
-                this.setBadArg("limit is not an integer\n");
+                this.extraMsg.setBadArg("limit is not an integer\n");
                 return;
             }
             if(lim > Universal.movies.length) {
-                this.setBadArg("movie limit input by user > number of movies in database\n");
+                this.extraMsg.setBadArg("movie limit input by user > number of movies in database\n");
             } else if(lim < 0)
             {
-                this.setBadArg("movie limit input by user is negative\n");
+                this.extraMsg.setBadArg("movie limit input by user is negative\n");
             } else {
                 this.limit = Integer.parseInt(args[1]);
             }
@@ -53,7 +40,7 @@ public class Milestone3 {
         title = args[0];
         if(title == null) {
             title = "";
-            setWarning("No title argument found\n");
+            this.extraMsg.setWarning("No title argument found\n");
         }
     }
     Milestone3(String[] args) {
@@ -70,7 +57,7 @@ public class Milestone3 {
             }
         }
         if(res == null) {
-            this.setWarning("No such movie found, recommending top "+limit+" any movie instead\n");
+            this.extraMsg.setWarning("No such movie found, recommending top "+limit+" any movie instead\n");
         }
         return res;
     }
@@ -87,9 +74,24 @@ public class Milestone3 {
         }
         return cnt / (double)userMovie.cat.length;
     }
+
+    public void filter(Movie mv) {
+        ArrayList<Movie> tmp = new ArrayList<>();
+        if(mv == null)
+            this.movies = Universal.movies.clone();
+        else {
+            for(Movie m : Universal.movies) {
+                if(!mv.equals(m)) {
+                    tmp.add(m);
+                }
+            }
+            this.movies = new Movie[tmp.size()];
+            tmp.toArray(this.movies);
+        }
+    }
     public JSONObject[] findSimilar(Movie mv) throws JSONException {
         JSONObject[] res = null;
-        this.movies = Universal.movies.clone();
+        this.filter(mv);
         Arrays.sort(this.movies, (o1, o2) -> {
             double genreSimilarityO1 = this.compareGenreScore(o1);
             double genreSimilarityO2 = this.compareGenreScore(o2);
@@ -112,8 +114,8 @@ public class Milestone3 {
         return res;
     }
     public JSONObject[] solve() throws JSONException {
-        if(this.badArg) {
-            return new JSONObject[]{new JSONObject().put("bad arg",this.badArgMsg)};
+        if(this.extraMsg.hasBadArg()) {
+            return new JSONObject[]{new JSONObject().put("bad arg",this.extraMsg.badArgMsg)};
         }
         JSONObject[] res = null;
         userMovie = findMovie(this.title);
