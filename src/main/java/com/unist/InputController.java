@@ -12,17 +12,16 @@ import java.util.ArrayList;
 class argument1 {
     public String gender = null, age = null, occupation = null;
     public String genre = null;
-
-    public void print() {
-        System.out.println(this.gender + " " + this.age + " " + this.occupation +  " " + this.genre);
-    }
-
+    public String genres = null;
     public String[] args() {
         String[] res = new String[4];
         res[0] = this.gender;
         res[1] = this.age;
         res[2] = this.occupation;
-        res[3] = this.genre;
+        if(this.genres == null)
+            res[3] = this.genre;
+        else
+            res[3] = this.genres;
         return res;
     }
 }
@@ -31,11 +30,6 @@ class argument1 {
 class argument2 {
     public String title = null;
     public String limit = null;
-
-    public void print() {
-        System.out.println(this.title + " " + this.limit);
-    }
-
     public String[] args() {
         String[] res = new String[2];
         res[0] = this.title;
@@ -61,7 +55,10 @@ public class InputController {
     public String getUsersRecommendationsInput(@RequestBody argument1 inp) throws IOException, JSONException {
         Milestone2 mile2 = new Milestone2(inp.args());
         JSONObject[] objs = mile2.solve();
-        return output(objs);
+        if(mile2.extraMsg.hasWarning())
+            return mile2.extraMsg.warningMsg + output(objs);
+        else
+            return output(objs);
     }
 
     @GetMapping("/movies/recommendations")

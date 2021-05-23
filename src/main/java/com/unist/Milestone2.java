@@ -1,6 +1,8 @@
 package com.unist;
 
 import com.data.*;
+import com.errorAndWarning.JSONEW_1;
+import com.errorAndWarning.JSONErrorAndWarning;
 import com.help.GenreGapScore;
 import com.help.RelevanceScore;
 import com.help.UserDir;
@@ -24,6 +26,7 @@ public class Milestone2 {
     public int nReviewsThreshold = 0;
     public float maxRelevant = 0;
     public float maxScore = 0;
+    public JSONErrorAndWarning extraMsg = new JSONEW_1();
 
     public StringBuilder welcome;
     public boolean badArgs = false;
@@ -113,6 +116,10 @@ public class Milestone2 {
 
         welcome = new StringBuilder();
         welcome.append("Finding movies for a customer with: \n\n");
+        if(args[0] == null) {
+            extraMsg.setWarning("No gender Input\n");
+            welcome.append("\tgender: no preference \n");
+        } else
         if(!args[0].isEmpty()) {
             if(args[0].toLowerCase().charAt(0) != 'f' && args[0].toLowerCase().charAt(0) != 'm') {
                 this.badArgs = true;
@@ -121,11 +128,13 @@ public class Milestone2 {
             }
             customer.setGender(args[0].charAt(0));
             welcome.append("\tgender: ").append(customer.getGender()).append('\n');
-        } else {
-           welcome.append("\tgender: no preference \n");
         }
-        if(!args[1].isEmpty()) {
 
+        if(args[1] == null) {
+            this.extraMsg.setWarning("No age input\n");
+            welcome.append("\tage: no preference\n");
+        } else
+        if(!args[1].isEmpty()) {
             int age = 0;
             try {
                 age = Integer.parseInt(args[1]);
@@ -136,16 +145,20 @@ public class Milestone2 {
                 return;
             }
             if(age < 0) {
+                this.extraMsg.setBadArg("Age input is negative");
                 this.badArgs = true;
                 this.badArgsExit("age input \"" + args[1] + "\" is negative.");
                 return;
             }
             customer.setAge(age);
             welcome.append("\tage: ").append(customer.getAge()).append('\n');
-        } else {
-            welcome.append("\tage: no preference\n");
         }
         boolean occupationNotFound=false;
+        if(args[2] == null) {
+            this.extraMsg.setWarning("no occupation input\n");
+            welcome.append("\toccupation: no preference \n");
+            customer.setOccupation(parseOccupation.get("other"));
+        } else
         if(!args[2].isEmpty()) {
             if(parseOccupation.containsKey(args[2].toLowerCase())) {
                 customer.setOccupation(parseOccupation.get(args[2].toLowerCase()));
@@ -155,15 +168,14 @@ public class Milestone2 {
                 customer.setOccupation(parseOccupation.get("other"));
             }
             welcome.append("\toccupation: ").append(args[2]).append('\n');
-        } else {
-            welcome.append("\toccupation: no preference \n");
         }
+
         System.out.println();
-        if(occupationNotFound)
+        if(args[2] != null && occupationNotFound)
             welcome.append("No such occupation found, use 'other' as default\n");
         //customer.setAge();
 
-        if(args.length == 4) {
+        if(args[3] != null) {
             String[] genre;
             if(args[3].isEmpty()) {
                 genre = null;
@@ -183,6 +195,8 @@ public class Milestone2 {
                 welcome.append(" ");
             }
             welcome.append('\n');
+        } else {
+            this.extraMsg.setWarning("No input genre\n");
         }
         System.out.println(welcome);
     }
@@ -354,7 +368,7 @@ public class Milestone2 {
     }
 
     public JSONObject[] solve() throws IOException, JSONException {
-        if(this.badArgs) {return new JSONObject[]{new JSONObject().put("arg","fault")};}
+        if(this.badArgs) {return new JSONObject[]{new JSONObject().put("arg fault",this.extraMsg.badArgMsg)};}
         this.filterData(customer);
         Movie[] specialList = this.find_relevant_movies().clone();
         Arrays.sort(specialList, (o1, o2) -> {
