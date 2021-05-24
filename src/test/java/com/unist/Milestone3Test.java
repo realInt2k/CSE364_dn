@@ -33,7 +33,11 @@ class Milestone3Test {
         assertEquals(t2.extraMsg.hasBadArg(), true);
         args[1] = null;
         Milestone3 t3 = new Milestone3(args);
-        assertEquals(t2.limit, 10);
+        assertEquals(t3.limit, 10);
+        args[0] = "Requiem a Dream (2000)";
+        args[1] = "50";
+        Milestone3 t4 = new Milestone3(args);
+        assertEquals(t4.limit, 50);
     }
 
     @Test

@@ -26,7 +26,10 @@ public class Milestone3 {
                 this.extraMsg.setBadArg("limit is not an integer\n");
                 return;
             }
-            if(lim > Universal.movies.length) {
+            int length = Universal.movies.length;
+            if(this.findMovie(this.title) != null)
+                length -= 1;
+            if(lim > length) {
                 this.extraMsg.setBadArg("movie limit input by user > number of movies in database\n");
             } else if(lim < 0)
             {
