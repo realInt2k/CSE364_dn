@@ -15,6 +15,7 @@ RUN apt-get install -y git gcc g++ python3 vim python3-pip
 RUN pip3 install essential_generators
 RUN apt-get install -y openjdk-11-jdk
 RUN apt install -y  maven
+RUN apt install curl
 
 #exe after building
 CMD ["/bin/bash"]
