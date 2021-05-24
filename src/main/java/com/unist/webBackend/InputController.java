@@ -1,42 +1,13 @@
-package com.unist;
+package com.unist.webBackend;
 
-import com.data.Person;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.unist.Milestone2;
+import com.unist.Milestone3;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-class argument1 {
-    public String gender = null, age = null, occupation = null;
-    public String genre = null;
-    public String genres = null;
-    public String[] args() {
-        String[] res = new String[4];
-        res[0] = this.gender;
-        res[1] = this.age;
-        res[2] = this.occupation;
-        if(this.genres == null)
-            res[3] = this.genre;
-        else
-            res[3] = this.genres;
-        return res;
-    }
-}
-
-/*http://localhost:8080/movies/recommendations*/
-class argument2 {
-    public String title = null;
-    public String limit = null;
-    public String[] args() {
-        String[] res = new String[2];
-        res[0] = this.title;
-        res[1] = this.limit;
-        return res;
-    }
-}
 
 @RestController
 public class InputController {
@@ -48,20 +19,20 @@ public class InputController {
         }
         String consoleOutput = null;
         consoleOutput = output.toString();
-        return consoleOutput;
+        return consoleOutput + "\n";
     }
 
-    @GetMapping("/users/recommendations")
+    @RequestMapping("/users/recommendations")
     public String getUsersRecommendationsInput(@RequestBody argument1 inp) throws IOException, JSONException {
         Milestone2 mile2 = new Milestone2(inp.args());
         JSONObject[] objs = mile2.solve();
         if(mile2.extraMsg.hasWarning())
-            return mile2.extraMsg.warningMsg + output(objs);
+            return mile2.extraMsg.warningMsg + output(objs) ;
         else
             return output(objs);
     }
 
-    @GetMapping("/movies/recommendations")
+    @RequestMapping("/movies/recommendations")
     public String getUsersRecommendedMovieTitle(@RequestBody argument2 inp) throws IOException, JSONException {
         Milestone3 mile3 = new Milestone3(inp.args());
         JSONObject[] objs = mile3.solve();

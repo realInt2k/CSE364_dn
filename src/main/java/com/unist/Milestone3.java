@@ -37,6 +37,7 @@ public class Milestone3 {
             } else {
                 this.limit = Integer.parseInt(args[1]);
             }
+        } else {
         }
     }
     public void parseArg0(String[] args) {
@@ -46,7 +47,7 @@ public class Milestone3 {
             this.extraMsg.setWarning("No title argument found\n");
         }
     }
-    Milestone3(String[] args) {
+    public Milestone3(String[] args) {
         this.parseArg0(args);
         this.parseArg1(args);
     }
@@ -58,9 +59,6 @@ public class Milestone3 {
                 res = Universal.movies[i];
                 break;
             }
-        }
-        if(res == null) {
-            this.extraMsg.setWarning("No such movie found, recommending top "+limit+" any movie instead\n");
         }
         return res;
     }
@@ -122,6 +120,9 @@ public class Milestone3 {
         }
         JSONObject[] res = null;
         userMovie = findMovie(this.title);
+        if(userMovie == null) {
+            this.extraMsg.setWarning("No such movie found, recommending top "+limit+" any movie instead\n");
+        }
         res = findSimilar(userMovie);
         return res;
     }
