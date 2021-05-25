@@ -11,7 +11,7 @@ Milestone 3 due: 11:59PM, Mayday 25rd, 2021
 _All were trying really hard._
 
 ## Milestone 3 algorithm (mile3 + changes in mile2)
-- No genres in mile2 now isn't an error, we simply recommend movies based on the remaning factors (if inputed) like age, occupation, gender.
+- No genres in mile2 now isn't an error, we simply recommend movies based on the remaining factors (if inputed) like age, occupation, gender.
 - In movie recommendation with input movie title, we sort the movie data set with relevancy first, then score second. Relevancy of user movie X and a random movie Y is defined as the percentage of matches in X's genres and Y's genres. 
 ## Milestone 3 case handling:
 - Accept movie title with errors in spacing, although letters in title should be precise and the year should be precisely included (i.e: "(1996)" = ok, but "(1996" = not ok)
