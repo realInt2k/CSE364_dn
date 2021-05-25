@@ -1,7 +1,25 @@
 # CSE364_dn
 Software Engineering course
 
-Milestone 2 due: 11:59PM, May 3rd, 2021
+Milestone 3 due: 11:59PM, Mayday 25rd, 2021
+
+# Milestone 3 highlight:
+- Dung Nguyen: implement the main algorithm for part 3, testing, improve code flow and add fix corner cases for part 2 and part 3. Write unit tests for the mile3 classes, controller classes and more.
+- Bekatan Satyev: peer programming with Dung in the production of part 3 and part 2.
+- Bao Truong: Providing new run.sh and Dockerfile, adding more unit test to get maximum coverages in some classes. Try to implement the project with tutorial including a database, but it's not working yet.
+All were trying hard.
+
+## Milestone 3 algorithm (mile3 + changes in mile2)
+- No genres in mile2 now isn't an error, we simply recommend movies based on the remaning factors (if inputed) like age, occupation, gender.
+- In movie recommendation with input movie title, we sort the movie data set with relevancy first, then score second. Relevancy of user movie X and a random movie Y is defined as the percentage of matches in X's genres and Y's genres. 
+## Milestone 3 case handling:
+- Accept movie title with errors in spacing, although letters in title should be precise and the year should be precisely included (i.e: "(1996)" = ok, but "(1996" = not ok)
+- If movie is not found, then recommend movies based solely on score, and a warning will be prompted in a non-JSON format.
+- Missing arguments will result in a warning.
+- Argument error like negative age (mile2) or limit (mile3) will result in a badarg JSON.
+- GET or POST in curl works the same.
+- No graphics in web server yet.
+- "localhost/" will have text "Greeting from group 5".
 
 # Milestone 2 highlight:
 - Dung Nguyen: Design the main algorithm, code the main implementation, do some jUnit cases.
