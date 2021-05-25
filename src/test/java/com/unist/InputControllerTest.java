@@ -68,6 +68,7 @@ class InputControllerTest {
         ).andExpect(status().isOk());
         
         object.gender = "";
+        object.genres = "Drama";
         ObjectWriter ow1 = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json1 = ow1.writeValueAsString(object);
         this.mockMvc.perform(MockMvcRequestBuilders
