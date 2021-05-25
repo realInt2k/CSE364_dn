@@ -66,6 +66,16 @@ class InputControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
+        
+        object.gender = "";
+        ObjectWriter ow1 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json1 = ow1.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/users/recommendations")
+                .content(json1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
     }
 
     @Test
@@ -81,6 +91,16 @@ class InputControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/movies/recommendations")
                 .content(json)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+        
+        object.title = "Toy Story (1995)";
+        ObjectWriter ow1 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json1 = ow1.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/movies/recommendations")
+                .content(json1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
