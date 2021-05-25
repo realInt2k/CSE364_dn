@@ -59,10 +59,10 @@ class InputControllerTest {
         object.genre = "Action|War";
         object.occupation = "gradstudent";
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = ow.writeValueAsString(object);
+        String json1 = ow.writeValueAsString(object);
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/users/recommendations")
-                .content(json)
+                .content(json1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
@@ -70,10 +70,30 @@ class InputControllerTest {
         object.gender = "";
         object.genres = "Drama";
         ObjectWriter ow1 = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json1 = ow1.writeValueAsString(object);
+        String json2 = ow1.writeValueAsString(object);
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/users/recommendations")
-                .content(json1)
+                .content(json2)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        object.occupation = "Pro CSGO player";
+        ObjectWriter ow2 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json3 = ow2.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/users/recommendations")
+                .content(json3)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        object.genres = "";
+        ObjectWriter ow3 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json4 = ow3.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/users/recommendations")
+                .content(json4)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
@@ -102,6 +122,36 @@ class InputControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/movies/recommendations")
                 .content(json1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        object.limit = "-1";
+        ObjectWriter ow2 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json2 = ow2.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/movies/recommendations")
+                .content(json2)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        object.limit = "0";
+        ObjectWriter ow3 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json3 = ow3.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/movies/recommendations")
+                .content(json3)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
+
+        object.limit = "10000";
+        ObjectWriter ow4 = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json4 = ow4.writeValueAsString(object);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .get("/movies/recommendations")
+                .content(json4)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
