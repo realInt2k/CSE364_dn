@@ -33,7 +33,7 @@ public class RelevanceScoreTest extends TestCase {
         A.setGenre(new String[]{"Interesting", "Alien"});
         Person B = new Person();
         B.setGenre(new String[]{"Adult", "Awesome"});
-        Person C = new Person();
+        Person C = new Person(null);
         float scAB = RelevanceScore.getScore(A, B);
         float scAC = RelevanceScore.getScore(A, C);
         float scCB = RelevanceScore.getScore(C, B);
