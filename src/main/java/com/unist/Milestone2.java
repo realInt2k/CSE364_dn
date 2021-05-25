@@ -117,7 +117,7 @@ public class Milestone2 {
         welcome = new StringBuilder();
         welcome.append("Finding movies for a customer with: \n\n");
         if(args[0] == null || args[0].isEmpty()) {
-            extraMsg.setWarning("No gender Input\n");
+            extraMsg.setWarning("No gender preference\n");
             welcome.append("\tgender: no preference \n");
         } else {
             if(args[0].toLowerCase().charAt(0) != 'f' && args[0].toLowerCase().charAt(0) != 'm') {
@@ -131,7 +131,7 @@ public class Milestone2 {
         }
 
         if(args[1] == null || args[1].isEmpty()) {
-            this.extraMsg.setWarning("No age input\n");
+            this.extraMsg.setWarning("No age preference\n");
             welcome.append("\tage: no preference\n");
         } else {
             int age = 0;
@@ -155,7 +155,7 @@ public class Milestone2 {
         }
         boolean occupationNotFound=false;
         if(args[2] == null || args[2].isEmpty()) {
-            this.extraMsg.setWarning("no occupation input\n");
+            this.extraMsg.setWarning("no occupation preference\n");
             welcome.append("\toccupation: no preference \n");
             customer.setOccupation(parseOccupation.get("other"));
         } else {
@@ -170,8 +170,10 @@ public class Milestone2 {
         }
 
         System.out.println();
-        if(args[2] != null && occupationNotFound)
+        if(args[2] != null && occupationNotFound) {
             welcome.append("No such occupation found, use 'other' as default\n");
+            this.extraMsg.setWarning("No such occupation found, use 'other' as default\n");
+        }
         //customer.setAge();
 
         if(args[3] != null) {
@@ -196,7 +198,7 @@ public class Milestone2 {
             }
             welcome.append('\n');
         } else {
-            this.extraMsg.setWarning("No input genre\n");
+            this.extraMsg.setWarning("No genre preference\n");
         }
         System.out.println(welcome);
     }
