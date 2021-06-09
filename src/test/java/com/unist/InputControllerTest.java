@@ -1,12 +1,12 @@
 package com.unist;
 
 import com.data.Universal;
-import com.unist.webBackend.InputController;
 
 import static org.assertj.core.api.Assertions.*;
 
-import com.unist.webBackend.argument1;
-import com.unist.webBackend.argument2;
+import com.unist.webApp.InputController;
+import com.unist.webApp.Argument1;
+import com.unist.webApp.Argument2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,8 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.containsString;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-
-import java.io.IOException;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -53,7 +51,7 @@ class InputControllerTest {
         Universal.prepareData();
         Universal.countMovie();
         Universal.calculateAvgScore();
-        argument1 object = new argument1();
+        Argument1 object = new Argument1();
         object.age = "12";
         object.gender = "F";
         object.genre = "Action|War";
@@ -104,7 +102,7 @@ class InputControllerTest {
         Universal.prepareData();
         Universal.countMovie();
         Universal.calculateAvgScore();
-        argument2 object = new argument2();
+        Argument2 object = new Argument2();
         object.title = "toy";
         object.limit = "10";
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();

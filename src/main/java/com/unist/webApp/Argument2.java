@@ -1,7 +1,7 @@
-package com.unist.webBackend;
+package com.unist.webApp;
 
 /*http://localhost:8080/movies/recommendations*/
-public class argument2 {
+public class Argument2 {
     public String title = null;
     public String limit = null;
 

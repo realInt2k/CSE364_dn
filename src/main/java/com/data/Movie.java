@@ -1,11 +1,17 @@
 package com.data;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /*MovieID::Title::Genres
  i.e: 1::Toy Story (1995)::Animation|Children's|Comedy
  */
+@Document
 public class Movie {
-    public String[] cat; //short for categories, representing Genres, staying closed to problem's statement.
+    @Id
     public String title;
     public int ID;
+    public String[] cat; //short for categories, representing Genres, staying closed to problem's statement.
     /* convert the array of string to a single string with separator | */
     public String genre() {
         StringBuilder res = new StringBuilder();

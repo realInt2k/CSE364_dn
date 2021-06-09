@@ -13,6 +13,7 @@ public class Universal {
     public static Movie[] movies;
     public static String[] genres; //a.k.a categories
     public static String[] occupation;
+    public static Map<Integer, String> moviePoster = new HashMap<>();
     public static Map<String, Integer> parseOccupation = new HashMap<>();
     public static Map<Integer, Reviewer> reviewerMap = new HashMap<>();
     public static Map<Integer, Movie> movieMap = new HashMap<>();
@@ -52,6 +53,12 @@ public class Universal {
         lines = reader.readFile(ud.get() + "/data/genres.dat").clone();
         genres = new String[lines.length];
         System.arraycopy(lines, 0, genres, 0, lines.length);
+
+        lines = reader.readFile(ud.get() + "/data/movie_poster.csv").clone();
+        for (int i = 0; i < lines.length; ++i) {
+            String[] subline = lines[i].split(",").clone();
+            moviePoster.put(Integer.parseInt(subline[0]), subline[1]);
+        }
     }
     /*count number of rating for each movies*/
     public static void countMovie() {

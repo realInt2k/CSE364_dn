@@ -2,13 +2,21 @@ package com.unist;
 import com.data.Universal;
 import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
 @SpringBootApplication
 @RestController
+@Configuration
+@EnableMongoRepositories
 public class App {
 
     public static void Mile1(String[] args) throws IOException {
@@ -47,10 +55,5 @@ public class App {
         Universal.countMovie();
         Universal.calculateAvgScore();
         SpringApplication.run(App.class, args);
-        /*if(args.length <= 2) {
-            Mile1(args);
-        } else {
-            Mile2(args);
-        }*/
     }
 }

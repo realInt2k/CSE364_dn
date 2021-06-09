@@ -1,7 +1,7 @@
-package com.unist.webBackend;
+package com.unist.webApp;
 
 // "/users/recommendations"
-public class argument1 {
+public class Argument1 {
     public String gender = null, age = null, occupation = null;
     public String genre = null;
     public String genres = null;

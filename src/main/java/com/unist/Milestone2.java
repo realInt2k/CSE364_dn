@@ -263,7 +263,7 @@ public class Milestone2 {
         return score;
     }
 
-    public Movie [] find_relevant_movies() {
+    public Movie[] find_relevant_movies() {
         float[] relevantScore = this.analyseRating(customer).clone();
 
         for(int i = 0; i < ratings.length; ++i) {
@@ -390,14 +390,6 @@ public class Milestone2 {
         JSONObject[] jsonString = new JSONObject[10];
         for(int i = 0; i < 10; ++i)
         {
-            /* THIS IS DEBUGING LINEs */
-//            System.out.format("%d. %s (%s) avg score:%.3f, n.o ratings::%d, relScore:%.3f \n",
-//                    i+1, specialList[i].title,
-//                    "imdb " + movieImdbID.get(specialList[i].ID) + "/",
-//                    movieAvgScore.get(specialList[i].ID),
-//                    movieCnt.get(specialList[i].ID),
-//                    movieRelevantScore.get(specialList[i].ID));
-            /*THIS IS THE CORRECT OUTPUT LINES*/
             jsonString[i] = new JSONObject()
                     .put("imdb","http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID))
                     .put("genre", specialList[i].genre())
@@ -406,9 +398,38 @@ public class Milestone2 {
             System.out.format("%d. %s (%s)\n",
                     i+1, specialList[i].title,
                     "http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID) + "/");
-
         }
         return jsonString;
-        //this.genre_check(new String[]{"children's", "war", "Documentary", "war", "Fantasy"}, true);
+    }
+
+    public JSONObject[] customSolve() throws IOException, JSONException {
+        if(this.badArgs) {return new JSONObject[]{new JSONObject().put("arg fault",this.extraMsg.badArgMsg)};}
+        this.filterData(customer);
+        Movie[] specialList = this.find_relevant_movies().clone();
+        Arrays.sort(specialList, (o1, o2) -> {
+            int cntO1 = movieCnt.get(o1.ID);
+            int cntO2 = movieCnt.get(o2.ID);
+            if((cntO1 >= nReviewsThreshold && cntO2 >= nReviewsThreshold) ||
+                    (cntO1 < nReviewsThreshold && cntO2 < nReviewsThreshold)){
+                float scoreO1 = movieAvgScore.get(o1.ID);
+                float scoreO2 = movieAvgScore.get(o2.ID);
+                float relScoreO1 = movieRelevantScore.get(o1.ID);
+                float relScoreO2 = movieRelevantScore.get(o2.ID);
+                return Float.compare(scoreO2/maxScore + relScoreO2/maxRelevant, scoreO1/maxScore + relScoreO1/maxRelevant);
+            } else {
+                return cntO2 - cntO1;
+            }
+        });
+        JSONObject[] jsonString = new JSONObject[10];
+        for(int i = 0; i < 10; ++i)
+        {
+            jsonString[i] = new JSONObject()
+                    .put("imdb","http://www.imdb.com/title/tt" + movieImdbID.get(specialList[i].ID))
+                    .put("genre", specialList[i].genre())
+                    .put("title", specialList[i].title)
+                    .put("imageLink", Universal.moviePoster.get(specialList[i].ID))
+                    .put("id", specialList[i].ID);
+        }
+        return jsonString;
     }
 }
