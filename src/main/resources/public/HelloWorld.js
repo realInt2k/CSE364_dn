@@ -33,7 +33,6 @@ $(document).ready(function() {
             $('<img src="'+ path +'">').load(function() {
                 $(this).width(width).height(height).appendTo(target);
             }).error(function(e) {
-                console.log(e);
                 $(this).attr("src", "where.png").width(width).height(height);
             });
         }

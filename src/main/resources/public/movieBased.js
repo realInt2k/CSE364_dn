@@ -21,7 +21,7 @@ $(document).ready(function() {
                 if(data.warning) {
                     let str = data["warning"];
                     $(".MovieContainer").append(
-                        str + "<br>"
+                        str.replaceAll('\n', '<br>')
                     );
                 }
                 let content = "";
@@ -34,10 +34,8 @@ $(document).ready(function() {
                         "id="+("Image_"+cnt)+
                         " href=" + data.movieList[i].imdb + "></div>"}).after(function(){
                         if(data.movieList[i].imageLink) {
-                            //console.log("1" + "   #Image_"+cnt);
                             loadImage(data.movieList[i].imageLink, w, h, $("#Image_"+cnt), data.movieList[i].title);
                         } else {
-                            //console.log("2");
                             loadImage("where.png", w, h, $("#Image_"+cnt), data.movieList[i].title);
                         }
                     });
@@ -46,19 +44,17 @@ $(document).ready(function() {
                     });
                 }
                 function loadImage(path, width, height, target, title = "No title") {
-                    //console.log(path);
                     $("<p>        </p><br>").appendTo(target);
                     $("<p>"+title+"</p>").appendTo(target);
                     $('<img src="'+ path +'">').load(function() {
                         $(this).width(width).height(height).appendTo(target);
                     }).error(function(e) {
-                        console.log(e);
                         $(this).attr("src", "where.png").width(width).height(height);
                     });
                 }
             }
         }).error(function (e) {
-            console.log(e);
+            console.log("error: ", e);
         });
     })
 });

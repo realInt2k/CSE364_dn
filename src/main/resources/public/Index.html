@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Movie recommendation</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="HelloWorld.js"></script>
+    <link rel="stylesheet" href="beauty.css">
 </head>
 <body>
-    <div>
-        <p class="greeting-id">Greeting</p>
-        <p class="greeting-content">Top 10 movie today:</p>
-    </div>
+<div>
+    <p class="header">Top 10 movie today:</p>
+</div>
+<div class = "headerContainer"
+     style="position: sticky; top: 0; background: beige">
     <input type="button" onClick="location.href='http://localhost:8080/userBasedRecommend.html';" value="pick your own top 10"/>
     <input type="button" onClick="location.href='http://localhost:8080/movieBasedRecommend.html';" value="Find similar movie!"/>
-    <div class="MovieContainer">
-    </div>
+</div>
+    <div class="MovieContainer"></div>
+
 <script>
 </script>
 </body>

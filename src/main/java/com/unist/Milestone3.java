@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class Milestone3 {
     public Movie[] movies;
@@ -15,6 +16,7 @@ public class Milestone3 {
     public String title = "";
     public int limit = 10;
     public JSONErrorAndWarning extraMsg = new JSONEW_1();
+    public String closetMatch = "";
 
     public void parseArg1(String[] args) {
 
@@ -34,10 +36,11 @@ public class Milestone3 {
             if(this.findMovie(this.title) != null)
                 length -= 1;
             if(lim > length) {
-                this.extraMsg.setBadArg("movie limit input by user > number of movies in database\n");
+                this.extraMsg.setWarning("movie limit input is too large\n");
+                limit = Universal.movies.length;
             } else if(lim < 0)
             {
-                this.extraMsg.setBadArg("movie limit input by user is negative\n");
+                this.extraMsg.setBadArg("movie limit input is negative\n");
             } else {
                 this.limit = Integer.parseInt(args[1]);
             }
@@ -58,8 +61,14 @@ public class Milestone3 {
         Movie res = null;
         String modTitle = title.replaceAll("\\s+","");
         for(int i = 0; i < Universal.movies.length; ++i) {
-            if(modTitle.equalsIgnoreCase(Universal.movies[i].title.replaceAll("\\s+",""))) {
+            if(modTitle.equalsIgnoreCase(Universal.movies[i].title.replaceAll("\\s+",""))
+            || Universal.movies[i].title.replaceAll("\\s+", "").toLowerCase().contains(modTitle.toLowerCase())
+            || modTitle.contains(Universal.movies[i].title.replaceAll("\\s+", "").toLowerCase())) {
                 res = Universal.movies[i];
+                if(!modTitle.equalsIgnoreCase(Universal.movies[i].title.replaceAll("\\s+","")))
+                {
+                    closetMatch = Universal.movies[i].title;
+                }
                 break;
             }
         }
@@ -81,9 +90,14 @@ public class Milestone3 {
 
     public void filter(Movie mv) {
         ArrayList<Movie> tmp = new ArrayList<>();
-        if(mv == null)
+        if(mv == null || !closetMatch.isEmpty()) {
+            this.extraMsg.setWarning("Closest match: " + closetMatch);
             this.movies = Universal.movies.clone();
+        }
         else {
+            if(limit == Universal.movies.length) {
+                limit -= 1;
+            }
             for(Movie m : Universal.movies) {
                 if(!mv.equals(m)) {
                     tmp.add(m);
@@ -125,9 +139,11 @@ public class Milestone3 {
         }
         JSONObject[] res = null;
         userMovie = findMovie(this.title);
+
         if(userMovie == null) {
             this.extraMsg.setWarning("No such movie found, recommending top "+limit+" any movie instead\n");
         }
+
         res = findSimilar(userMovie);
         return res;
     }

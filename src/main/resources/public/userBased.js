@@ -45,6 +45,12 @@ $(document).ready(function() {
                     "<div>" + data.movieList[0]["arg fault"] + "</div>"
                 );
             } else {
+                if(data.warning) {
+                    let str = data["warning"];
+                    $(".MovieContainer").append(
+                        str.replaceAll('\n', '<br>')
+                    );
+                }
                 let content = "";
                 let cnt = 0;
                 let w = 100;
@@ -67,13 +73,11 @@ $(document).ready(function() {
                     });
                 }
                 function loadImage(path, width, height, target, title = "No title") {
-                    //console.log(path);
                     $("<p>        </p><br>").appendTo(target);
                     $("<p>"+title+"</p>").appendTo(target);
                     $('<img src="'+ path +'">').load(function() {
                         $(this).width(width).height(height).appendTo(target);
                     }).error(function(e) {
-                        console.log(e);
                         $(this).attr("src", "where.png").width(width).height(height);
                     });
                 }
