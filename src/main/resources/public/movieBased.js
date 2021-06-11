@@ -6,12 +6,12 @@ $(document).ready(function() {
         let query = "http://localhost:8080/movies/recommendations?";
         query += "title="+title;
         query += "&limit="+limit;
-        console.log(query);
+        // console.log(query);
         $.ajax({
             url: query,
             dataType: "json"
         }).success(function(data) {
-            console.log(data);
+            // console.log(data);
             $(".MovieContainer").empty();
             if(data.movieList[0]["arg fault"]) {
                 $(".MovieContainer").append(

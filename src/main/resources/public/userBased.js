@@ -13,12 +13,16 @@ $(document).ready(function() {
         })
     })
     $("#query").on("click", function() {
+        let selection = $("#genreSelection");
+        if(selection.css("display") === "block") {
+            selection.css("display", "none");
+        }
         let age = $("#age").val();
         let gender = $( "#gender option:selected" ).val();
         let occupation = $( "#occupation option:selected" ).val();
         let genres = [];
         $('input:checked').each(function(){
-            console.log($(this).val())
+            // console.log($(this).val())
             genres.push($(this).val());
         })
         let genresInp = "";
@@ -33,12 +37,12 @@ $(document).ready(function() {
         query += "&age="+age;
         query += "&occupation="+occupation;
         query += "&genres="+genresInp;
-        console.log(query);
+        // console.log(query);
         $.ajax({
             url: query,
             dataType: "json"
         }).success(function(data) {
-            console.log(data);
+            // console.log(data);
             $(".MovieContainer").empty();
             if(data.movieList[0]["arg fault"]) {
                 $(".MovieContainer").append(
