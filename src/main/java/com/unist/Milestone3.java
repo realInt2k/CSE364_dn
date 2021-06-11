@@ -17,8 +17,12 @@ public class Milestone3 {
     public JSONErrorAndWarning extraMsg = new JSONEW_1();
 
     public void parseArg1(String[] args) {
+
         if(args[1] != null)
         {
+            if(args[1].isEmpty()) {
+                return;
+            }
             int lim = 0;
             try {
                 lim = Integer.parseInt(args[1]);
@@ -37,7 +41,6 @@ public class Milestone3 {
             } else {
                 this.limit = Integer.parseInt(args[1]);
             }
-        } else {
         }
     }
     public void parseArg0(String[] args) {
@@ -110,13 +113,15 @@ public class Milestone3 {
             res[i] = new JSONObject()
                     .put("imdb","http://www.imdb.com/title/tt" + Universal.movieImdbID.get(this.movies[i].ID))
                     .put("genre", this.movies[i].genre())
-                    .put("title", this.movies[i].title);
+                    .put("title", this.movies[i].title)
+                    .put("imageLink", Universal.moviePoster.get(this.movies[i].ID))
+                    .put("id", this.movies[i].ID);
         }
         return res;
     }
     public JSONObject[] solve() throws JSONException {
         if(this.extraMsg.hasBadArg()) {
-            return new JSONObject[]{new JSONObject().put("bad arg",this.extraMsg.badArgMsg)};
+            return new JSONObject[]{new JSONObject().put("arg fault",this.extraMsg.badArgMsg)};
         }
         JSONObject[] res = null;
         userMovie = findMovie(this.title);

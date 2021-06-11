@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="movieBased.js"></script>
+    <link rel="stylesheet" href="beauty.css">
+</head>
+<body>
+<div>
+    <p class="header">Find a similar movie ;)</p>
+</div>
+<div class = "headerContainer" style="position: sticky; top: 0; background: beige">
+    <input type="button" onClick="location.href='http://localhost:8080/Index.html';" value="HOME"/>
+    <input type="button" onClick="location.href='http://localhost:8080/userBasedRecommend.html';" value="pick your own top 10"/>
+    <br>
+    <label for="title">Movie title: </label>
+    <input type="text" id="title"> <br>
+    <label for="limit">N.o movies to be displayed: </label>
+    <input type="text" id="limit"> <br>
+    <button id="query">Search</button>
+</div>
+<div class="MovieContainer">
+</div>
+<script>
+</script>
+</body>
+</html>

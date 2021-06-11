@@ -71,6 +71,7 @@ public class InputController {
         inp.age = age;
         inp.occupation = occupation;
         inp.genres = genres;
+        System.out.println(genres);
         Milestone2 mile2 = new Milestone2(inp.args());
         JSONObject[] objs = mile2.solve();
         JSONObject bigOutput = new JSONObject();
@@ -87,6 +88,7 @@ public class InputController {
             @RequestParam(value = "genres", defaultValue = "") String genres
     ) throws IOException, JSONException {
         Argument1 inp = new Argument1();
+        genres = genres.replaceAll("_", "\\|");
         inp.gender = gender;
         inp.age = age;
         inp.occupation = occupation;
@@ -100,13 +102,19 @@ public class InputController {
     }
 
     @RequestMapping("/movies/recommendations")
-    public String getUsersRecommendedMovieTitle(@RequestBody Argument2 inp) throws IOException, JSONException {
+    public String getUsersRecommendedMovieTitle(
+            @RequestParam(value = "title", defaultValue = "") String title,
+            @RequestParam(value = "limit", defaultValue = "") String limit
+    ) throws IOException, JSONException {
+        Argument2 inp = new Argument2();
+        inp.title = title;
+        inp.limit = limit;
         Milestone3 mile3 = new Milestone3(inp.args());
         JSONObject[] objs = mile3.solve();
-        if(mile3.extraMsg.hasWarning())
-            return mile3.extraMsg.warningMsg + output(objs);
-        else
-            return output(objs);
+        JSONObject bigOutput = new JSONObject();
+        bigOutput.put("movieList", objs);
+        bigOutput.put("warning", mile3.extraMsg.warningMsg);
+        return bigOutput.toString();
     }
 
 }
