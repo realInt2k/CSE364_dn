@@ -3,6 +3,8 @@ Software Engineering course
 
 Milestone 3 due: 11:59PM, Mayday 25rd, 2021
 
+# Milestone 4 highlight:
+
 # Milestone 3 highlight:
 - Dung Nguyen: implement the main algorithm for part 3, testing, improve code flow and add fix corner cases for part 2 and part 3. Write unit tests for the mile3 classes, controller classes and more.
 - Bekatan Satyev: peer programming with Dung in the production of part 3 and part 2.
