@@ -55,6 +55,7 @@ public class App extends SpringBootServletInitializer {
         Universal.prepareData();
         Universal.countMovie();
         Universal.calculateAvgScore();
+        // test;
         SpringApplication.run(App.class, args);
     }
 }
