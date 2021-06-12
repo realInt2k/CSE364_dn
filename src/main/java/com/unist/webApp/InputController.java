@@ -1,29 +1,92 @@
 package com.unist.webApp;
 
 import com.data.Movie;
+import com.data.Rating;
 import com.data.Universal;
+import com.help.UserDir;
 import com.mongodb.util.JSON;
+import com.unist.FileReaderBuffer;
 import com.unist.Milestone2;
 import com.unist.Milestone3;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class InputController {
 
     public final MovieDAL movieDAL;
+    public final RatingDAL ratingDAL;
     public final MovieRepository movieRepository;
+    public final RatingRepository ratingRepository;
 
-    public InputController(MovieRepository movieRepository, MovieDAL movieDAL) {
+    public void readEveryThing() throws IOException {
+        //OCCUPATION;
+        System.out.println("\n\n\n\n\n" + "OCCUPATION" + "\n\n\n\n");
+        InputStream input = getClass().getClassLoader().getResourceAsStream("/data/occupations.dat");
+        assert input != null;
+        BufferedReader br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readOccupation(br);
+        //Genres
+        System.out.println("\n\n\n\n\n" + "GENRES" + "\n\n\n\n");
+        input = getClass().getClassLoader().getResourceAsStream("/data/genres.dat");
+        assert input != null;
+        br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readGenres(br);
+        //Movie Poster
+        System.out.println("\n\n\n\n\n" + "MOVIE POSTER" + "\n\n\n\n");
+        input = getClass().getClassLoader().getResourceAsStream("/data/movie_poster.csv");
+        assert input != null;
+        br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readMoviePoster(br);
+        //Read Movie
+        System.out.println("\n\n\n\n\n" + "MOVIE" + "\n\n\n\n");
+        input = getClass().getClassLoader().getResourceAsStream("/data/movies.dat");
+        assert input != null;
+        br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readMovie(br);
+        //Read reviewer
+        System.out.println("\n\n\n\n\n" + "REVIEWER" + "\n\n\n\n");
+        input = getClass().getClassLoader().getResourceAsStream("/data/users.dat");
+        assert input != null;
+        br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readReviewer(br);
+        //Read rating
+        System.out.println("\n\n\n\n\n" + "RATING" + "\n\n\n\n");
+        input = getClass().getClassLoader().getResourceAsStream("/data/ratings.dat");
+        assert input != null;
+        br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readRating(br);
+        //Read Links
+        System.out.println("\n\n\n\n\n" + "LINK" + "\n\n\n\n");
+        input = getClass().getClassLoader().getResourceAsStream("/data/links.dat");
+        assert input != null;
+        br = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        Universal.readLink(br);
+        // Do other stuffs
+        Universal.countMovie();
+        Universal.calculateAvgScore();
+    }
+
+    public InputController(MovieRepository movieRepository, MovieDAL movieDAL,
+                           RatingRepository ratingRepository, RatingDAL ratingDAL) throws IOException {
         //System.out.println("IT goes to yes constructor");
         this.movieDAL = movieDAL;
         this.movieRepository = movieRepository;
+        this.ratingRepository = ratingRepository;
+        this.ratingDAL = ratingDAL;
+        System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (ratingDAL != null) + "   " + UserDir.get() + "\n\n\n\n");
+        if(Universal.movies == null) {
+            readEveryThing();
+        }
         this.movieRepository.save(Arrays.asList(Universal.movies));
     }
 
@@ -35,8 +98,8 @@ public class InputController {
 
     @RequestMapping(value="/movies", method = RequestMethod.GET)
     public String listAllMovies() throws JSONException {
-        movieRepository.deleteAll();
-        this.movieRepository.save(Arrays.asList(Universal.movies));
+        //movieRepository.deleteAll();
+        //this.movieRepository.save(Arrays.asList(Universal.movies));
         List<Movie> arr = movieDAL.getAllMovies();
         JSONObject[] res = new JSONObject[arr.size()];
         for(int i = 0; i < arr.size(); ++i) {
@@ -47,6 +110,16 @@ public class InputController {
         }
         return output(res);
     }
+
+    @RequestMapping(value="/ratings", method = RequestMethod.GET)
+    public String listAllRatings() throws JSONException {
+        //movieRepository.deleteAll();
+        //this.movieRepository.save(Arrays.asList(Universal.movies));
+        List<Rating> arr = ratingDAL.getAllRating();
+        //JSONObject[] res = new JSONObject[arr.size()];
+        return arr.toString();
+    }
+
 
     public String output(JSONObject[] objs) throws JSONException {
         ArrayList<String> output = new ArrayList<>();

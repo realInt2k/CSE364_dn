@@ -126,9 +126,8 @@ public class Milestone1 {
     }
     public void initialize() throws IOException {
         FileReaderBuffer reader = new FileReaderBuffer();
-        UserDir ud = new UserDir();
         // read user.dat
-        String[] lines = reader.readFile(ud.get() + "/data/users.dat").clone();
+        String[] lines = reader.readFile(UserDir.get() + "/data/users.dat").clone();
         reviewers = new Reviewer[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             reviewers[i] = new Reviewer();
@@ -136,7 +135,7 @@ public class Milestone1 {
             reviewerMap.put(reviewers[i].ID, reviewers[i]);
         }
         // read movies.dat
-        lines = reader.readFile(ud.get() + "/data/movies.dat").clone();
+        lines = reader.readFile(UserDir.get() + "/data/movies.dat").clone();
         movies = new Movie[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             movies[i] = new Movie();
@@ -144,14 +143,14 @@ public class Milestone1 {
             movieMap.put(movies[i].ID, movies[i]);
         }
         // read ratings.dat
-        lines = reader.readFile(ud.get() + "/data/ratings.dat").clone();
+        lines = reader.readFile(UserDir.get() + "/data/ratings.dat").clone();
         ratings = new Rating[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             ratings[i] = new Rating();
             ratings[i].input(lines[i]);
         }
         // initialize occupation parser
-        lines = reader.readFile(ud.get() + "/data/occupations.dat").clone();
+        lines = reader.readFile(UserDir.get() + "/data/occupations.dat").clone();
         occupation = new String[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             String[] subLine = lines[i].split(":").clone();
@@ -159,7 +158,7 @@ public class Milestone1 {
             parseOccupation.put(subLine[1], Integer.parseInt(subLine[0]));
         }
         // read all available genres
-        lines = reader.readFile(ud.get() + "/data/genres.dat").clone();
+        lines = reader.readFile(UserDir.get() + "/data/genres.dat").clone();
         genres = new String[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             genres[i] = lines[i];

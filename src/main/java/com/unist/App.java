@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import java.io.IOException;
 @RestController
 @Configuration
 @EnableMongoRepositories
-public class App {
+public class App extends SpringBootServletInitializer {
 
     public static void Mile1(String[] args) throws IOException {
         System.out.println();

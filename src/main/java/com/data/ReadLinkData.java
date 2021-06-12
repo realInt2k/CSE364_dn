@@ -8,8 +8,7 @@ import java.io.IOException;
 public class ReadLinkData {
     public static Link[] data(String path) throws IOException {
         FileReaderBuffer reader = new FileReaderBuffer();
-        UserDir ud = new UserDir();
-        String[] lines = reader.readFile(ud.get() + path).clone();
+        String[] lines = reader.readFile(UserDir.get() + path).clone();
         Link[] links = new Link[lines.length];
         for (int i = 0; i < lines.length; ++i) {
             links[i] = new Link();

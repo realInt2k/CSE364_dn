@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie recommendation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="indexBased.js"></script>
+    <link rel="stylesheet" href="beauty.css">
+</head>
+<body>
+<div>
+    <p class="header">Top 10 movie today:</p>
+</div>
+<div class = "headerContainer"
+     style="position: sticky; top: 0; background: beige">
+    <input id = "top10" type="button" onClick="location.href='http://localhost:8080/userBasedRecommend.html';" value="pick your own top 10"/>
+    <input id = "similar" type="button" onClick="location.href='http://localhost:8080/movieBasedRecommend.html';" value="Find similar movie!"/>
+</div>
+<div class="MovieContainer"></div>
+
+<script>
+</script>
+</body>
+</html>

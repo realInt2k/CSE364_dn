@@ -1,9 +1,14 @@
 $(document).ready(function() {
+    let page = window.location.pathname.split("/").pop();
+    let s = window.location.href;
+    let getURL = s.replaceAll(page, "")
+    $("#home").attr("onclick", "location.href='" + getURL + "index.html';");
+    $("#top10").attr("onclick", "location.href='" + getURL + "userBasedRecommend.html';");
     let cnt = 0;
     $("#query").on("click", function() {
         let title = $("#title").val();
         let limit = $("#limit").val();
-        let query = "http://localhost:8080/movies/recommendations?";
+        let query = getURL+"movies/recommendations?";
         query += "title="+title;
         query += "&limit="+limit;
         cnt = 0;
@@ -46,7 +51,6 @@ $(document).ready(function() {
                                 "</button> <br>"
                             )
                             $("#SeeMore").on("click", function(){
-                                console.log("clicked");
                                 display();
                             })
                             break;

@@ -52,21 +52,12 @@ public class Milestone2 {
         for (Link link : links) {
             movieImdbID.put(link.movieID, link.imdbID);
         }
-        FileReaderBuffer reader = new FileReaderBuffer();
-        UserDir ud = new UserDir();
-        String[] lines;
-        // initialize occupation parser
-        lines = reader.readFile(ud.get() + "/data/occupations.dat").clone();
-        occupation = new String[lines.length];
-        for (int i = 0; i < lines.length; ++i) {
-            String[] subLine = lines[i].split(":").clone();
-            occupation[i] = subLine[1];
-            parseOccupation.put(subLine[1], Integer.parseInt(subLine[0]));
+        occupation = Universal.occupation.clone();
+        for(String x:Universal.parseOccupation.keySet()) {
+            parseOccupation.put(x, Universal.parseOccupation.get(x));
         }
         // read all available genres
-        lines = reader.readFile(ud.get() + "/data/genres.dat").clone();
-        genres = new String[lines.length];
-        System.arraycopy(lines, 0, genres, 0, lines.length);
+        this.genres = Universal.genres.clone();
     }
 
     public void badArgsExit(String problem) {

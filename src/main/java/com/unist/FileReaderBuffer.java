@@ -20,4 +20,16 @@ public class FileReaderBuffer {
         tmp.toArray(lines);
         return lines;
     }
+    public String[] readFile (BufferedReader reader) throws IOException {
+        List<String> tmp = new ArrayList<String>();
+        String line = reader.readLine();
+        while(line != null) {
+            tmp.add(line);
+            line = reader.readLine();
+        }
+        reader.close();
+        String[] lines = new String[tmp.size()];
+        tmp.toArray(lines);
+        return lines;
+    }
 }

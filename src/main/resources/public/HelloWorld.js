@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    let location = window.location.href;
+    let userBased = $("#userBased");
+    console.log(location);
+    userBased.attr("onclick", "location.href='"+location+"adsasdasdsauserBasedRecommend.html';");
     $.ajax({
         url: "http://localhost:8080/custom/users/recommendations",
         dataType: "json"

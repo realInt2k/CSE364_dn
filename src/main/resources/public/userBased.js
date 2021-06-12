@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    let page = window.location.pathname.split("/").pop();
+    let s = window.location.href;
+    let getURL = s.replaceAll(page, "")
+    $("#home").attr("onclick", "location.href='" + getURL + "index.html';");
+    $("#similar").attr("onclick", "location.href='" + getURL + "movieBasedRecommend.html';");
+
     $("#genre").on("click", function() {
         let selection = $("#genreSelection");
         if(selection.css("display") === "none") {
@@ -32,7 +38,7 @@ $(document).ready(function() {
             else
                 genresInp+=genres[i];
         }
-        let query = "http://localhost:8080/custom/users/recommendations?";
+        let query = getURL + "custom/users/recommendations?";
         query += "gender="+gender;
         query += "&age="+age;
         query += "&occupation="+occupation;

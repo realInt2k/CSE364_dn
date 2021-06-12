@@ -1,9 +1,18 @@
 package com.data;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /*UserID::MovieID::Rating::Timestamp
   i.e: 3796::356::5::966015052
  */
+@Document
 public class Rating {
-    public int userId, movieId, rating, timestamp;
+    @Id
+    public int userId;
+    public int movieId;
+    public int rating;
+    public int timestamp;
     public Rating() {
 
     }
