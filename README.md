@@ -9,6 +9,7 @@ Milestone 3 due: 11:59PM, Mayday 25rd, 2021
 - In local Github directory type mvn package. => will produce CSE364_dn.war at ${currentDirectory}/target folder.
 - Copy that CSE364_dn war file to the webapps folder under tomcat directory which you downloaded from internet (apache-tomcat-9.0.8.tar.gz at http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/).
 - In the bin/ folder of tomcat, type "./catalina.sh run" to start the server.
+- Or you can stay under the local Github directory, type "java -jar /target/CSE364_dn.war" for the same effect.
 - Go to http://localhost/8080/CSE364_dn/index.html on your web browser and start searching for you movies.
 - Go to http://localhost/8080/CSE364_dn/movies to see all movies in JSON format.
 
