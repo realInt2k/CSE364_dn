@@ -3,6 +3,28 @@ Software Engineering course
 
 Milestone 3 due: 11:59PM, Mayday 25rd, 2021
 
+# Milestone 4 highlight:
+
+## How to run:
+- In local Github directory type mvn package. => will produce CSE364_dn.war at ${currentDirectory}/target folder.
+- Copy that CSE364_dn war file to the webapps folder under tomcat directory which you downloaded from internet (apache-tomcat-9.0.8.tar.gz at http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/).
+- In the bin/ folder of tomcat, type "./catalina.sh run" to start the server.
+- Or you can stay under the local Github directory, type "java -jar /target/CSE364_dn.war" for the same effect.
+- Go to http://localhost/8080/CSE364_dn/index.html on your web browser and start searching for you movies.
+- Go to http://localhost/8080/CSE364_dn/movies to see all movies in JSON format.
+
+## How to use features
+- Very simple app. 3 main functions: 
+- Main page displays the top 10 movies of the day.
+- Go to "pick top 10" page and enter your age, occupation, prefered genres to get the top 10 based on your interest.
+- Go to "find similar movie" page and enter the title, the amount of similar movies you wanna see, and search.
+
+## Case handling:
+- In the "find similar movie" part, due to the search query can be extremely long and slow, 50 movies will be displayed at a time, and if you want to see more, you have to click the buttom at the bottom of the page to see more.
+- There's no error, unless you forcefully input negative integer or unreadable integer at the "age" or "limit" fields.
+- Click on movies title will direct you to imdb page (some link has been broken, because imdb pages themselves don't exist)
+- Some of the poster will not be visible, instead, you will see the picture of confused character "Vincent Vega" from Pulp Fiction, as an annotation of "where?".
+
 # Milestone 3 highlight:
 - Dung Nguyen: implement the main algorithm for part 3, testing, improve code flow and add fix corner cases for part 2 and part 3. Write unit tests for the mile3 classes, controller classes and more.
 - Bekatan Satyev: peer programming with Dung in the production of part 3 and part 2.
