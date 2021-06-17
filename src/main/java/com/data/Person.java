@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 
 //  UserID::Gender::Age::Occupation::Zip-code
 public class Person {
-    @Id
     private Character gender;
     private Integer age, occupation;
 

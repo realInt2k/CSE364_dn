@@ -1,9 +1,17 @@
 package com.data;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 // aka: user: UserID::Gender::Age::Occupation::Zip-code
+@Document
 public class Reviewer{
+    @Id
     public char gender;
     public int age, ID, occupation;
     public String zipCode; // *may* be separated by dash "-"
+
+
     public Reviewer() {
     }
     public void input(String line) {
