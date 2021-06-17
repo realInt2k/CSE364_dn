@@ -5,6 +5,10 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
+## where to look at when you grade my database set up:
+- In com.unist.webApp.InputController, constructor.
+- For start time reason, saving all the ratings.dat to database is fine, but very LONG, so I discard saving that part, program still function like normal.
+
 ## How to run (3 ways):
 
 ### Manually run, with Tomcat catalina (Assuming you have jdk 11 and maven in PATH):
@@ -12,8 +16,8 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to local the cloned Github directory, type "mvn package" => will produce CSE364_dn-1.0.war at ${pwd}/target folder.
 - Copy that CSE364_dn-1.0 war file to the webapps folder under tomcat directory which you downloaded from internet (apache-tomcat-9.0.8.tar.gz at http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/).
 - In the bin/ folder of tomcat, type "./catalina.sh run" to start the server.
-- Go to http://localhost/8080/CSE364_dn/ on your web browser and start searching for you movies.
-- Go to http://localhost/8080/CSE364_dn/movies to see all movies in JSON format.
+- Go to http://localhost/8080/CSE364_dn-1.0/ on your web browser and start searching for you movies.
+- Go to http://localhost/8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
 ### Manually run, with terminal (Dssuming you have jdk 11 and maven in PATH):
 - Clone this repo. Go to the cloned local Github directory.
@@ -26,8 +30,8 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - To the folder that has 3 files: "Dockerfile", "run.sh", "CSE_dn-1.0.war". 
 - Type "Docker build -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
 - Type "Docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
-- Voila, now you can go to http://localhost/8080/CSE364_dn/index.html on your favorite browser to test the app.
-- Go to http://localhost/8080/CSE364_dn/movies to see all movies in JSON format.
+- Voila, now you can go to http://localhost/8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
+- Go to http://localhost/8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
 ## Features
 
