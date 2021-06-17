@@ -19,9 +19,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
 @RestController
-public class InputController {
+public class InputController extends HttpServlet {
 
     public final MovieDAL movieDAL;
     public final RatingDAL ratingDAL;
@@ -90,10 +93,13 @@ public class InputController {
         this.movieRepository.saveAll(Arrays.asList(Universal.movies));
     }
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
-    public String frontPage() throws JSONException {
-        JSONObject res = new JSONObject().put("id", 2).put("content", "RESTapi");
-        return res.toString();
+    @RequestMapping(value="/")
+    public String frontPage(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        //JSONObject res = new JSONObject().put("id", 2).put("content", "RESTapi");
+        //sendRedirect("/index.html");
+        //return res.toString();
+        response.sendRedirect("/index.html");
+        return "redirect:/index.html";
     }
 
     @RequestMapping(value="/movies", method = RequestMethod.GET)
