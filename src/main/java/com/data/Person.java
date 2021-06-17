@@ -1,8 +1,13 @@
 package com.data;
+
+import org.springframework.data.annotation.Id;
+
 //  UserID::Gender::Age::Occupation::Zip-code
 public class Person {
+    @Id
     private Character gender;
     private Integer age, occupation;
+
     private void init() {
         this.gender = null;
         this.age = null;

@@ -2,13 +2,10 @@ package com.unist.webApp;
 
 import com.data.Movie;
 import com.data.Rating;
+import com.data.Reviewer;
 import com.data.Universal;
-import com.help.UserDir;
-import com.mongodb.util.JSON;
-import com.unist.FileReaderBuffer;
 import com.unist.Milestone2;
 import com.unist.Milestone3;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +15,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -30,6 +25,8 @@ public class InputController extends HttpServlet {
     public final RatingDAL ratingDAL;
     public final MovieRepository movieRepository;
     public final RatingRepository ratingRepository;
+    public final ReviewerRepository reviewerRepository;
+    public final ReviewerDAL reviewerDAL;
 
     public void readEveryThing() throws IOException {
         //OCCUPATION;
@@ -80,17 +77,22 @@ public class InputController extends HttpServlet {
     }
 
     public InputController(MovieRepository movieRepository, MovieDAL movieDAL,
-                           RatingRepository ratingRepository, RatingDAL ratingDAL) throws IOException {
+                           RatingRepository ratingRepository, RatingDAL ratingDAL,
+                           ReviewerRepository reviewerRepository, ReviewerDAL reviewerDAL) throws IOException {
         //System.out.println("IT goes to yes constructor");
         this.movieDAL = movieDAL;
         this.movieRepository = movieRepository;
         this.ratingRepository = ratingRepository;
         this.ratingDAL = ratingDAL;
-        System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (ratingDAL != null) + "   " + UserDir.get() + "\n\n\n\n");
+        this.reviewerRepository = reviewerRepository;
+        this.reviewerDAL = reviewerDAL;
+        //System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (personRepository != null) + "   " + UserDir.get() + "\n\n\n\n");
+        System.out.println("\n\n\n\n\n" + "This message appears when every repositories is successfully set up" + "\n\n\n\n");
         if(Universal.movies == null) {
             readEveryThing();
         }
         this.movieRepository.saveAll(Arrays.asList(Universal.movies));
+        this.reviewerRepository.saveAll(Arrays.asList(Universal.reviewers));
     }
 
     @RequestMapping(value="/")
@@ -117,12 +119,20 @@ public class InputController extends HttpServlet {
         return output(res);
     }
 
+    @RequestMapping(value="/users", method = RequestMethod.GET)
+    public String listAllReviewers() throws JSONException {
+        //movieRepository.deleteAll();
+        //this.movieRepository.save(Arrays.asList(Universal.movies));
+        List<Reviewer> arr = reviewerDAL.getAllReviewer();
+        JSONObject[] res = new JSONObject[arr.size()];
+        return res.toString();
+    }
+
     @RequestMapping(value="/ratings", method = RequestMethod.GET)
     public String listAllRatings() throws JSONException {
         //movieRepository.deleteAll();
         //this.movieRepository.save(Arrays.asList(Universal.movies));
         List<Rating> arr = ratingDAL.getAllRating();
-        //JSONObject[] res = new JSONObject[arr.size()];
         return arr.toString();
     }
 
