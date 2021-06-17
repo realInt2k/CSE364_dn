@@ -2,22 +2,13 @@ package com.unist;
 import com.data.Universal;
 import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import java.io.IOException;
 
 @SpringBootApplication
-@RestController
-@Configuration
-@EnableMongoRepositories
+//@EnableMongoRepositories
 public class App extends SpringBootServletInitializer {
 
     public static void Mile1(String[] args) throws IOException {

@@ -87,7 +87,7 @@ public class InputController {
         if(Universal.movies == null) {
             readEveryThing();
         }
-        this.movieRepository.save(Arrays.asList(Universal.movies));
+        this.movieRepository.saveAll(Arrays.asList(Universal.movies));
     }
 
     @RequestMapping(value="/", method = RequestMethod.GET)
