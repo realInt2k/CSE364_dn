@@ -86,13 +86,15 @@ public class InputController extends HttpServlet {
         this.ratingDAL = ratingDAL;
         this.reviewerRepository = reviewerRepository;
         this.reviewerDAL = reviewerDAL;
-        //System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (personRepository != null) + "   " + UserDir.get() + "\n\n\n\n");
+        System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (reviewerRepository != null)  + "\n\n\n\n");
         System.out.println("\n\n\n\n\n" + "This message appears when every repositories is successfully set up" + "\n\n\n\n");
-        if(Universal.movies == null) {
+        if(Universal.movies == null || Universal.reviewers == null) {
             readEveryThing();
         }
         this.movieRepository.saveAll(Arrays.asList(Universal.movies));
         this.reviewerRepository.saveAll(Arrays.asList(Universal.reviewers));
+        /* Uncomment the line bellow to unlease hell. */
+        //this.ratingRepository.saveAll(Arrays.asList(Universal.ratings));
     }
 
     @RequestMapping(value="/")
@@ -121,19 +123,30 @@ public class InputController extends HttpServlet {
 
     @RequestMapping(value="/users", method = RequestMethod.GET)
     public String listAllReviewers() throws JSONException {
-        //movieRepository.deleteAll();
-        //this.movieRepository.save(Arrays.asList(Universal.movies));
         List<Reviewer> arr = reviewerDAL.getAllReviewer();
         JSONObject[] res = new JSONObject[arr.size()];
-        return res.toString();
+        for(int i = 0; i < arr.size(); ++i) {
+            res[i] = new JSONObject()
+                    .put("id", arr.get(i).ID)
+                    .put("gender", arr.get(i).gender)
+                    .put("age", arr.get(i).age)
+                    .put("occupation", arr.get(i).occupation)
+                    .put("ZIP-CODE", arr.get(i).zipCode);
+        }
+        return output(res);
     }
 
     @RequestMapping(value="/ratings", method = RequestMethod.GET)
     public String listAllRatings() throws JSONException {
-        //movieRepository.deleteAll();
-        //this.movieRepository.save(Arrays.asList(Universal.movies));
         List<Rating> arr = ratingDAL.getAllRating();
-        return arr.toString();
+        JSONObject[] res = new JSONObject[arr.size()];
+        for(int i = 0; i < arr.size(); ++i) {
+            res[i] = new JSONObject().put("userID", arr.get(i).userId)
+                    .put("movieID", arr.get(i).movieId)
+                    .put("rating", arr.get(i).rating)
+                    .put("timeStamp", arr.get(i).timestamp);
+        }
+        return output(res);
     }
 
 

@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class Rating {
-    @Id
+    //@Id
     public int userId;
     public int movieId;
     public int rating;

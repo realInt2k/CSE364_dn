@@ -6,9 +6,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 // aka: user: UserID::Gender::Age::Occupation::Zip-code
 @Document
 public class Reviewer{
-    @Id
-    public char gender;
+    //@Id
     public int age, ID, occupation;
+    public char gender;
     public String zipCode; // *may* be separated by dash "-"
 
 
