@@ -1,8 +1,14 @@
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
     float: left;
-    width: 33.33%;
-    padding: 5px;
+    width: 23.5%;
+    padding: 3px;
+}
+
+.column5 {
+    float: left;
+    width: 18.5%;
+    padding: 3px;
 }
 
 /* Clear floats after image containers */

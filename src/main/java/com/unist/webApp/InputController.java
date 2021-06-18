@@ -86,7 +86,7 @@ public class InputController extends HttpServlet {
         this.ratingDAL = ratingDAL;
         this.reviewerRepository = reviewerRepository;
         this.reviewerDAL = reviewerDAL;
-        System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (reviewerRepository != null)  + "\n\n\n\n");
+        //System.out.println("\n\n\n\n\n" + (ratingRepository != null) + " " + (reviewerRepository != null)  + "\n\n\n\n");
         System.out.println("\n\n\n\n\n" + "This message appears when every repositories is successfully set up" + "\n\n\n\n");
         if(Universal.movies == null || Universal.reviewers == null) {
             readEveryThing();

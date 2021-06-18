@@ -63,27 +63,39 @@ $(document).ready(function() {
                 }
                 let content = "";
                 let cnt = 0;
-                let w = 100;
-                let h = 150;
-                for(let i in data.movieList) {
+                let w = "90%";
+                let h = "100%";
+                let nRow = 0;
+                for(let i = cnt; i< data.movieList.length; ++i) {
                     cnt += 1;
-                    $(".MovieContainer").append(function(){return "<div " +
-                        "id="+("Image_"+cnt)+
-                        " href=" + data.movieList[i].imdb + "></div>"}).after(function(){
-                        if(data.movieList[i].imageLink) {
-                            //console.log("1" + "   #Image_"+cnt);
-                            loadImage(data.movieList[i].imageLink, w, h, $("#Image_"+cnt), data.movieList[i].title);
-                        } else {
-                            //console.log("2");
-                            loadImage("where.png", w, h, $("#Image_"+cnt), data.movieList[i].title);
+                    let newPoster = null;
+                    $(".MovieContainer").append(function(){
+                        let res = "";
+                        if(cnt % 5 === 1) {
+                            nRow += 1;
+                            res += "<div class='row' id=row_"+nRow+"></div>"
                         }
-                    });
-                    $("#Image_"+cnt).on('click','img',function(){
-                        window.open(data.movieList[i].imdb);
+                        return res;
+                    }).after(function(){
+                        let res = "";
+                        res += "<div "+"id="+("Image_"+cnt)+" href=" + data.movieList[i].imdb + " class='column5'" + "></div>";
+                        newPoster = $(res);
+                    }).after(function(){
+                        if(data.movieList[i].imageLink) {
+                            loadImage(data.movieList[i].imageLink, w, h, newPoster, data.movieList[i].title);
+                        } else {
+                            loadImage("where.png", w, h, newPoster, data.movieList[i].title);
+                        }
+                    }).after(function(){
+                        let target = $("#row_"+nRow);
+                        newPoster.appendTo(target);
+                        newPoster.on('click','img',function(){
+                            window.open(data.movieList[i].imdb);
+                        });
                     });
                 }
                 function loadImage(path, width, height, target, title = "No title") {
-                    $("<p>        </p><br>").appendTo(target);
+                    $("<br>").appendTo(target);
                     $("<p>"+title+"</p>").appendTo(target);
                     $('<img src="'+ path +'">').load(function() {
                         $(this).width(width).height(height).appendTo(target);
