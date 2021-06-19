@@ -1,22 +1,15 @@
 ![image](https://user-images.githubusercontent.com/49155740/122653472-a0936c80-d17f-11eb-8886-1da6327b0e9f.png)
 ![image](https://user-images.githubusercontent.com/49155740/122653793-1a2c5a00-d182-11eb-8894-2484267437e0.png)
+![image](https://user-images.githubusercontent.com/49155740/122653821-4b0c8f00-d182-11eb-9a63-aec3c4ab20e2.png)
 
-
-
-# CSE364_dn
-Software Engineering course
+# CSE364_dn - Software Engineering course
 
 Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
-## Where is database set up ?:
-- In com.unist.webApp.InputController, constructor.
-- For start time reason, saving the ratings.dat to database is fine, but it takes a long time, so I commented that part out.
-
 ## Installation (4 ways):
 (We are currently supporting Linux-based system only, Window OS can try the Docker method)
-
 
 ### Manually run, with Tomcat catalina 
 (dependency: jdk 11 and maven in PATH):
@@ -66,6 +59,12 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 ### REST APIs
 - Querying to $(projectURL)/movies, $(projectURL)/users [currently omitted $(rootURL)/ratings] to see all JSON data.
 - $(projectURL) is either "http://localhost:8080/CSE364_dn-1.0/" or "http://localhost:8080/" based on your installation.
+
+## Where is database set up ?:
+- In com.unist.webApp.InputController, constructor.
+- For start time reason, saving the ratings.dat to database is fine, but it takes a long time, so I commented that part out.
+
+<br>
 
 # Milestone 3 highlight:
 - Dung Nguyen: implement the main algorithm for part 3, testing, improve code flow and add fix corner cases for part 2 and part 3. Write unit tests for the mile3 classes, controller classes and more.
