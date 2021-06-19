@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/49155740/122653472-a0936c80-d17f-11eb-8886-1da6327b0e9f.png)
 ![image](https://user-images.githubusercontent.com/49155740/122653793-1a2c5a00-d182-11eb-8894-2484267437e0.png)
-<img src="https://user-images.githubusercontent.com/49155740/122653821-4b0c8f00-d182-11eb-9a63-aec3c4ab20e2.png" width="80%">
+<img src="https://user-images.githubusercontent.com/49155740/122653821-4b0c8f00-d182-11eb-9a63-aec3c4ab20e2.png" width="300">
 
 # CSE364_dn - Software Engineering course
 
