@@ -11,6 +11,10 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,11 +102,8 @@ public class InputController extends HttpServlet {
     }
 
     @RequestMapping(value="/")
-    public String frontPage(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        //JSONObject res = new JSONObject().put("id", 2).put("content", "RESTapi");
-        //sendRedirect("/index.html");
-        //return res.toString();
-        response.sendRedirect("/index.html");
+    public String frontPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("index.html");
         return "redirect:/index.html";
     }
 
