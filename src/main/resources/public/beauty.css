@@ -25,3 +25,7 @@
     color: white;
     font-size: 30px;
 }
+
+.row {
+    margin-top: 3em !important;
+}
