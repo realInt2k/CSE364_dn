@@ -20,7 +20,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to http://localhost:8080/CSE364_dn-1.0/ on your web browser and start searching for you movies.
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
-### Manually run, with terminal (Dssuming you have jdk 11 and maven in PATH):
+### Manually run, with terminal (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo. Go to the cloned local Github directory.
 - Type "mvn package" => it will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
 - Type "java -jar /target/CSE364_dn-1.0.jar".
