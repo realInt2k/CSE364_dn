@@ -5,9 +5,9 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
-## Where to look at when you grade my database set up:
+## Where is database set up ?:
 - In com.unist.webApp.InputController, constructor.
-- For start time reason, saving all the ratings.dat to database is fine, but very LONG, so I discard saving that part, program still function like normal.
+- For start time reason, saving the ratings.dat to database is fine, but it takes a LONG time, so I commented that part out. 
 
 ## How to run (3 ways):
 
@@ -43,7 +43,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to "find similar movie" page and enter the title, the amount of similar movies you wanna see, and search.
 
 ### Case handling:
-- Go to localhost/8080/ and it will direct you to index.html
+- Go to localhost:8080/ and it will direct you to index.html
 - In the "find similar movie" part, due to the search query can be extremely long and slow, 50 movies will be displayed at a time, and if you want to see more, you have to click the buttom at the bottom of the page to see more.
 - There's no error, unless you forcefully input negative integer or unreadable integer at the "age" or "limit" fields.
 - Click on movies title will direct you to imdb page (some link has been broken, because imdb pages themselves don't exist)
