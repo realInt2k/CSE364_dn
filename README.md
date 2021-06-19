@@ -27,10 +27,10 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to http://localhost:8080/ on your web browser and start searching for you movies.
 - Go to http://localhost:8080/movies to see all movies in JSON format.
 
-### Run with Docker (Assuming you have docker in PATH):
+### Run with Docker (Assuming you have Docker in PATH):
 - To the folder that has 3 files: "Dockerfile", "run.sh", "CSE364_dn-1.0.war". 
-- Type "docker build <path-to-dockerfile> -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
-- Type "docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
+- Type "Docker build <path-to-dockerfile> -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
+- Type "Docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
 - Voila, now you can go to http://localhost:8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
