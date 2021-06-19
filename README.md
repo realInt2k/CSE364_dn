@@ -5,7 +5,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
-## where to look at when you grade my database set up:
+## Where to look at when you grade my database set up:
 - In com.unist.webApp.InputController, constructor.
 - For start time reason, saving all the ratings.dat to database is fine, but very LONG, so I discard saving that part, program still function like normal.
 
@@ -22,15 +22,15 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 ### Manually run, with terminal (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo. Go to the cloned local Github directory.
-- Type "mvn package" => it will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
+- Type "mvn package" => It will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
 - Type "java -jar /target/CSE364_dn-1.0.jar".
 - Go to http://localhost:8080/ on your web browser and start searching for you movies.
 - Go to http://localhost:8080/movies to see all movies in JSON format.
 
 ### Run with Docker (Assuming you have docker in PATH):
 - To the folder that has 3 files: "Dockerfile", "run.sh", "CSE364_dn-1.0.war". 
-- Type "Docker build -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
-- Type "Docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
+- Type "docker build <path-to-dockerfile> -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
+- Type "docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
 - Voila, now you can go to http://localhost:8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
