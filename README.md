@@ -13,6 +13,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 ### Manually run, with Tomcat catalina (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo.
+- Swap pom.xml and pom_war.xml file. (i.e: "pom.xml" -> "pom_jar.xml" and "pom_war.xml" -> "pom.xml")
 - Go to local the cloned Github directory, type "mvn package" => will produce CSE364_dn-1.0.war at ${pwd}/target folder.
 - Copy that CSE364_dn-1.0 war file to the webapps folder under tomcat directory which you downloaded from internet (apache-tomcat-9.0.8.tar.gz at http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/).
 - In the bin/ folder of tomcat, type "./catalina.sh run" to start the server.
@@ -21,8 +22,8 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 ### Manually run, with terminal (Dssuming you have jdk 11 and maven in PATH):
 - Clone this repo. Go to the cloned local Github directory.
-- Type "mvn package" => it will produce CSE364_dn-1.0.war at ${pwd}/target folder.
-- Type "java -jar /target/CSE364_dn-1.0.war".
+- Type "mvn package" => it will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
+- Type "java -jar /target/CSE364_dn-1.0.jar".
 - Go to http://localhost:8080/ on your web browser and start searching for you movies.
 - Go to http://localhost:8080/movies to see all movies in JSON format.
 
