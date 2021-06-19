@@ -1,7 +1,8 @@
+<p float="left">
 <img src="https://user-images.githubusercontent.com/49155740/122653472-a0936c80-d17f-11eb-8886-1da6327b0e9f.png" width="100">
-<img src="https://user-images.githubusercontent.com/49155740/122653793-1a2c5a00-d182-11eb-8894-2484267437e0.png" width="100" style="display:inline-block">
+<img src="https://user-images.githubusercontent.com/49155740/122653793-1a2c5a00-d182-11eb-8894-2484267437e0.png" width="100">
 <img src="https://user-images.githubusercontent.com/49155740/122653821-4b0c8f00-d182-11eb-9a63-aec3c4ab20e2.png" width="100">
-
+</p>
 # CSE364_dn - Software Engineering course
 
 Milestone 4 due: 11:59PM, Juné 20th, 2021
