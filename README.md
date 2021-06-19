@@ -5,33 +5,34 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
-## where to look at when you grade my database set up:
+## Where is database set up ?:
 - In com.unist.webApp.InputController, constructor.
-- For start time reason, saving all the ratings.dat to database is fine, but very LONG, so I discard saving that part, program still function like normal.
+- For start time reason, saving the ratings.dat to database is fine, but it takes a LONG time, so I commented that part out. 
 
 ## How to run (3 ways):
 
 ### Manually run, with Tomcat catalina (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo.
+- Swap pom.xml and pom_war.xml file. (i.e: "pom.xml" -> "pom_jar.xml" and "pom_war.xml" -> "pom.xml")
 - Go to local the cloned Github directory, type "mvn package" => will produce CSE364_dn-1.0.war at ${pwd}/target folder.
 - Copy that CSE364_dn-1.0 war file to the webapps folder under tomcat directory which you downloaded from internet (apache-tomcat-9.0.8.tar.gz at http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/).
 - In the bin/ folder of tomcat, type "./catalina.sh run" to start the server.
-- Go to http://localhost/8080/CSE364_dn-1.0/ on your web browser and start searching for you movies.
-- Go to http://localhost/8080/CSE364_dn-1.0/movies to see all movies in JSON format.
+- Go to http://localhost:8080/CSE364_dn-1.0/ on your web browser and start searching for you movies.
+- Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
-### Manually run, with terminal (Dssuming you have jdk 11 and maven in PATH):
+### Manually run, with terminal (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo. Go to the cloned local Github directory.
-- Type "mvn package" => it will produce CSE364_dn-1.0.war at ${pwd}/target folder.
-- Type "java -jar /target/CSE364_dn-1.0.war".
-- Go to http://localhost/8080/ on your web browser and start searching for you movies.
-- Go to http://localhost/8080/movies to see all movies in JSON format.
+- Type "mvn package" => It will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
+- Type "java -jar /target/CSE364_dn-1.0.jar".
+- Go to http://localhost:8080/ on your web browser and start searching for you movies.
+- Go to http://localhost:8080/movies to see all movies in JSON format.
 
-### Run with Docker (Assuming you have docker in PATH):
-- To the folder that has 3 files: "Dockerfile", "run.sh", "CSE_dn-1.0.war". 
-- Type "Docker build -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
+### Run with Docker (Assuming you have Docker in PATH):
+- To the folder that has 3 files: "Dockerfile", "run.sh", "CSE364_dn-1.0.war". 
+- Type "Docker build <path-to-dockerfile> -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
 - Type "Docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
-- Voila, now you can go to http://localhost/8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
-- Go to http://localhost/8080/CSE364_dn-1.0/movies to see all movies in JSON format.
+- Voila, now you can go to http://localhost:8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
+- Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
 ## Features
 
@@ -42,7 +43,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to "find similar movie" page and enter the title, the amount of similar movies you wanna see, and search.
 
 ### Case handling:
-- Go to localhost/8080/ and it will direct you to index.html
+- Go to localhost:8080/ and it will direct you to index.html
 - In the "find similar movie" part, due to the search query can be extremely long and slow, 50 movies will be displayed at a time, and if you want to see more, you have to click the buttom at the bottom of the page to see more.
 - There's no error, unless you forcefully input negative integer or unreadable integer at the "age" or "limit" fields.
 - Click on movies title will direct you to imdb page (some link has been broken, because imdb pages themselves don't exist)
