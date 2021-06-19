@@ -10,13 +10,13 @@ $(document).ready(function() {
     }).success(function(data) {
         console.log(data);
         let cnt = 0;
-        let w = 100;
-        let h = 150;
+        let w = 120;
+        let h = 180;
         for(let i in data.movieList) {
             cnt += 1;
-            $(".MovieContainer").append(function(){ return "<div " +
+            $(".MovieContainer").append(function(){ return "<div class='card'><div classs='card-body' " +
                 "id="+("Image_"+cnt)+
-                " href=" + data.movieList[i].imdb + "></div>"}).after(function(){
+                " href=" + data.movieList[i].imdb + "></div></div>"}).after(function(){
                 if(data.movieList[i].imageLink) {
                     //console.log("1" + "   #Image_"+cnt);
                     loadImage(data.movieList[i].imageLink, w, h, $("#Image_"+cnt), data.movieList[i].title);
@@ -34,8 +34,9 @@ $(document).ready(function() {
         function loadImage(path, width, height, target, title = "No title") {
             //console.log(path);
             $("<p>        </p><br>").appendTo(target);
-            $("<p>"+title+"</p>").appendTo(target);
-            $('<img src="'+ path +'">').load(function() {
+            $("<h5 class='card-title'>"+title+"</h5>").appendTo(target);
+            $("<p>        </p><br>").appendTo(target);
+            $('<img class="img-thumbnail" src="'+ path +'">').load(function() {
                 $(this).width(width).height(height).appendTo(target);
             }).error(function(e) {
                 $(this).attr("src", "where.png").width(width).height(height);
