@@ -4,7 +4,6 @@
 <h1 align="center">A Web Application that recommend your favorite movies using Collaborative Filtering</h1>
 Underlying Idea: If two persons both liked certain common movies, then the movies that one person has liked that the other person has not yet watched can be recommended to him.
 
-
 # CSE364_dn
 Software Engineering course
 
