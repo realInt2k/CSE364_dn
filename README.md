@@ -5,44 +5,45 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
-## where to look at when you grade my database set up:
+## Where is database set up ?:
 - In com.unist.webApp.InputController, constructor.
-- For start time reason, saving all the ratings.dat to database is fine, but very LONG, so I discard saving that part, program still function like normal.
+- For start time reason, saving the ratings.dat to database is fine, but it takes a long time, so I commented that part out.
 
 ## How to run (3 ways):
 
 ### Manually run, with Tomcat catalina (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo.
+- Swap pom.xml and pom_war.xml file. (i.e: "pom.xml" -> "pom_jar.xml" and "pom_war.xml" -> "pom.xml")
 - Go to local the cloned Github directory, type "mvn package" => will produce CSE364_dn-1.0.war at ${pwd}/target folder.
 - Copy that CSE364_dn-1.0 war file to the webapps folder under tomcat directory which you downloaded from internet (apache-tomcat-9.0.8.tar.gz at http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/).
 - In the bin/ folder of tomcat, type "./catalina.sh run" to start the server.
-- Go to http://localhost/8080/CSE364_dn-1.0/ on your web browser and start searching for you movies.
-- Go to http://localhost/8080/CSE364_dn-1.0/movies to see all movies in JSON format.
+- Go to http://localhost:8080/CSE364_dn-1.0/ on your web browser and start searching for you movies.
+- Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
-### Manually run, with terminal (Dssuming you have jdk 11 and maven in PATH):
+### Manually run, with terminal (Assuming you have jdk 11 and maven in PATH):
 - Clone this repo. Go to the cloned local Github directory.
-- Type "mvn package" => it will produce CSE364_dn-1.0.war at ${pwd}/target folder.
-- Type "java -jar /target/CSE364_dn-1.0.war".
-- Go to http://localhost/8080/ on your web browser and start searching for you movies.
-- Go to http://localhost/8080/movies to see all movies in JSON format.
+- Type "mvn package" => It will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
+- Type "java -jar /target/CSE364_dn-1.0.jar".
+- Go to http://localhost:8080/ on your web browser and start searching for you movies.
+- Go to http://localhost:8080/movies to see all movies in JSON format.
 
-### Run with Docker (Assuming you have docker in PATH):
-- To the folder that has 3 files: "Dockerfile", "run.sh", "CSE_dn-1.0.war". 
-- Type "Docker build -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
-- Type "Docker run -d -p 8080:8080 imageName". This will match YOUR 8080 port with this container 8080, so the app can work on YOUR local host.
-- Voila, now you can go to http://localhost/8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
-- Go to http://localhost/8080/CSE364_dn-1.0/movies to see all movies in JSON format.
+### Run with docker (Assuming you have Docker in PATH):
+- To the folder that has 3 files: "Dockerfile", "run.sh", "CSE364_dn-1.0.war".
+- Type "docker build <path-to-dockerfile> -t imageName ." where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
+- Type "docker run -d -p 8080:8080 imageName". This will match your 8080 port with this container 8080, so the app can work on YOUR local host.
+- Voila, now you can go to http://localhost:8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
+- Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
 ## Features
 
 ### How to use features
-- Very simple app. 3 main functions: 
+- Very simple app. 3 main functions:
 - Main page displays the top 10 movies of the day.
 - Go to "pick top 10" page and enter your age, occupation, prefered genres to get the top 10 based on your interest.
 - Go to "find similar movie" page and enter the title, the amount of similar movies you wanna see, and search.
 
 ### Case handling:
-- Go to localhost/8080/ and it will direct you to index.html
+- Go to localhost:8080/ and it will direct you to index.html
 - In the "find similar movie" part, due to the search query can be extremely long and slow, 50 movies will be displayed at a time, and if you want to see more, you have to click the buttom at the bottom of the page to see more.
 - There's no error, unless you forcefully input negative integer or unreadable integer at the "age" or "limit" fields.
 - Click on movies title will direct you to imdb page (some link has been broken, because imdb pages themselves don't exist)
@@ -57,7 +58,7 @@ _All were trying really hard._
 
 ## Milestone 3 algorithm (mile3 + changes in mile2)
 - No genres in mile2 now isn't an error, we simply recommend movies based on the remaining factors (if inputed) like age, occupation, gender.
-- In movie recommendation with input movie title, we sort the movie data set with relevancy first, then score second. Relevancy of user movie X and a random movie Y is defined as the percentage of matches in X's genres and Y's genres. 
+- In movie recommendation with input movie title, we sort the movie data set with relevancy first, then score second. Relevancy of user movie X and a random movie Y is defined as the percentage of matches in X's genres and Y's genres.
 ## Milestone 3 case handling:
 - Accept movie title with errors in spacing, although letters in title should be precise and the year should be precisely included (i.e: "(1996)" = ok, but "(1996" = not ok)
 - If movie is not found, then recommend movies based solely on score, and a warning will be prompted in a non-JSON format.
@@ -95,18 +96,18 @@ _All were trying really hard._
 ### Criteria (1) (movie A vs B):
 - If the number of reviews for movie A && number of reviews for movie B are both greater then threshold or both smaller than threshold then we see which one has higher Average Relevance Score.
 
-## Get top 10 movie recommendations: 
+## Get top 10 movie recommendations:
 - We then sort the selected list via Criteria (2). And we have top 10.
 ### Criteria (2) (movie A vs B):
 - If the number of reviews for movie A && number of reviews for movie B are both greater then threshold or both smaller than threshold then we see which one has higher score/maxScore + relevanceScore/maxRelevanceScore.
 
 # How to run our program by Java command line:
-  - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
-  - Navigate to your cloned folder: `cd */CSE364_dn`
-  - Given user data, on Terminal, type: 
-    `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation. The arguments may be empty.
-  - Given categories, on Terminal, type:
-    `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3 arg4`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation, arg4 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""). The arguments may be empty, except for arg4.
+- Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
+- Navigate to your cloned folder: `cd */CSE364_dn`
+- Given user data, on Terminal, type:
+  `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation. The arguments may be empty.
+- Given categories, on Terminal, type:
+  `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2 arg3 arg4`. Here, we substitute arg1 by gender, arg2 by age, arg3 by occupation, arg4 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""). The arguments may be empty, except for arg4.
 
 # Milestone 1 highlights:
 
@@ -153,16 +154,16 @@ CMD ["/bin/bash"]
 ```
 
 - How to run docker:
-  - Create a file name: "Dockerfile" on your folder, copy the contents. 
-  - Create another file name: "run.sh" on the same folder, leave it be. 
-  - Run "docker build -t mile1:1.0 ." on your terminal, the 'mile1:1.0' is your image's name, which can be changed depending your liking. 
-  - Run the image in container by executing: docker run -it mile1:1.0
+    - Create a file name: "Dockerfile" on your folder, copy the contents.
+    - Create another file name: "run.sh" on the same folder, leave it be.
+    - Run "docker build -t mile1:1.0 ." on your terminal, the 'mile1:1.0' is your image's name, which can be changed depending your liking.
+    - Run the image in container by executing: docker run -it mile1:1.0
 
 - How to run our program by Java command line:
-  - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
-  - Navigate to your cloned folder: `cd */CSE364_dn`
-  - On Terminal, type: 
-    `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2`. Here, we substitute arg1 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""), and arg2 by occupation. 
+    - Clone the project: git clone https://github.com/realInt2k/CSE364_dn.git
+    - Navigate to your cloned folder: `cd */CSE364_dn`
+    - On Terminal, type:
+      `mvn install && java -cp target/cse364-project-1.0-SNAPSHOT-jar-with-dependencies.jar com.unist.App arg1 arg2`. Here, we substitute arg1 by genre(s) of the film (if more than one we use | as delimiter and wrap them with ""), and arg2 by occupation.
 
 # 31 Mar 2021: We need your test cases
 - Suggestion: implement your own score calculation & compare, test the validity of milestone1.initialize().

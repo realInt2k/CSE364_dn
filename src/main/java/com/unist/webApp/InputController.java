@@ -102,7 +102,7 @@ public class InputController extends HttpServlet {
         //JSONObject res = new JSONObject().put("id", 2).put("content", "RESTapi");
         //sendRedirect("/index.html");
         //return res.toString();
-        response.sendRedirect("/index.html");
+        response.sendRedirect("index.html");
         return "redirect:/index.html";
     }
 
