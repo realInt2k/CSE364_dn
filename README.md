@@ -1,7 +1,7 @@
 <p align="center">
   <img width="476" height="184" src="https://user-images.githubusercontent.com/62552346/122651525-a11e0a00-d163-11eb-99cb-985e78c40fd7.png">
 </p>  
-**A Web Application that r**ecomme**nd your favorite movies using Collaborative Filtering**
+A Web Application that recommend your favorite movies using Collaborative Filtering
 
 
 # CSE364_dn
