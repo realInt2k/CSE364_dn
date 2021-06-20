@@ -10,6 +10,8 @@
 
 Milestone 4 due: 2:00 AM, Juné 21th, 2021
 
+!! warning: "backup" is the default branch not "main", don't checkout other branches.
+
 # Milestone 4 highlights:
 
 ## Before installing (and running):
