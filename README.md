@@ -20,7 +20,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 (We are currently supporting Linux-based system only, Window OS can try the Docker method)
 
 ### Manually run, with Tomcat catalina 
-(dependency: jdk 11 and maven in PATH):
+(dependency: jdk 11 and maven in your PATH):
 - Clone this repo.
 - Swap pom.xml and pom_war.xml file. (i.e: "pom.xml" -> "pom_jar.xml" and "pom_war.xml" -> "pom.xml")
 - Go to local the cloned Github directory, type ```mvn package``` => will produce CSE364_dn-1.0.war at ${pwd}/target folder.
@@ -30,7 +30,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 
 ### Manually run, with terminal 
-(dependency: jdk 11, maven in PATH):
+(dependency: jdk 11, maven in your PATH):
 - Clone this repo. Go to the cloned local Github directory.
 - Type ```mvn package``` => It will produce CSE364_dn-1.0.jar at ${pwd}/target folder.
 - Type ```java -jar /target/CSE364_dn-1.0.jar```.
@@ -38,7 +38,7 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to http://localhost:8080/movies to see all movies in JSON format.
 
 ### Run with docker (!)
-(dependency: docker in PATH):
+(dependency: docker in your PATH):
 - To the folder that has 3 files: "Dockerfile", "run.sh", "CSE364_dn-1.0.war".
 - Type ```docker build <path-to-dockerfile> -t imageName .``` where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
 - Type ```docker run -d -p 8080:8080 imageName```. This will match your 8080 port with this container 8080, so the app can work on YOUR local host.
@@ -46,10 +46,10 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
 #### What if you want to run it on docker
 - If you want to interact with docker container via bash and prevent it from running catalina when fired up, use this command: ```docker run -it -p 8080:8080 imageName bash``` 
-- Then you can follow the steps in (Run with run.sh)
+- Then you can follow the steps in (Run with run.sh) (ignore dependencies in that part)
 
 ### Run with run.sh
-(dependency: jdk 11, maven, git in PATH, Linux based OS)
+(dependency: jdk 11, maven, git in your PATH, Linux based OS)
 - Type: ```./run.sh```.
 - Go to http://localhost:8080/ or http://localhost:8080/index.html to start browsing.
 
