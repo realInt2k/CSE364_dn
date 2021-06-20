@@ -8,7 +8,7 @@
 
 # CSE364_dn Software Engineering course
 
-Milestone 4 due: 11:59PM, Juné 20th, 2021
+Milestone 4 due: 2:00 AM, Juné 21th, 2021
 
 # Milestone 4 highlights:
 
