@@ -13,13 +13,16 @@ RUN apt-get install -y software-properties-common
 RUN apt-get install -y openssh-server
 ## RUN apt-get install -y git gcc g++ python3 vim python3-pip
 ## RUN pip3 install essential_generators
+RUN apt-get install -y git
+RUN apt-get install -y vim
 RUN apt-get install -y openjdk-11-jdk
-RUN apt install -y  maven
+RUN apt install -y maven
+RUN apt install -y curl
 RUN wget http://mirror.23media.de/apache/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz
 RUN tar -xvf apache-tomcat-9.0.8.tar.gz
 COPY CSE364_dn-1.0.war /root/project/apache-tomcat-9.0.8/webapps
 RUN chmod +x /root/project/apache-tomcat-9.0.8/webapps/CSE364_dn-1.0.war
 
 #exe after building
+CMD /bin/bash
 CMD /root/project/apache-tomcat-9.0.8/bin/catalina.sh run
-##CMD /root/project/run2.sh
