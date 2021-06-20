@@ -12,6 +12,10 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 
 # Milestone 4 highlights:
 
+## Before installing (and running):
+- To make the application works properly and run in your localhost, turn off your existing tomcat, mongodb, etc... that is occupying port 8080 in your local host.
+- The application doesn't need to run mongodb beforehand.
+
 ## Installation (4 ways):
 (We are currently supporting Linux-based system only, Window OS can try the Docker method)
 
@@ -33,13 +37,14 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Go to http://localhost:8080/ on your web browser and start searching for you movies.
 - Go to http://localhost:8080/movies to see all movies in JSON format.
 
-### Run with docker 
+### Run with docker (!)
 (dependency: docker in PATH):
 - To the folder that has 3 files: "Dockerfile", "run.sh", "CSE364_dn-1.0.war".
 - Type ```docker build <path-to-dockerfile> -t imageName .``` where 'imageName' is whatever you name it. Wait until it finishes, it will takes a long time.
 - Type ```docker run -d -p 8080:8080 imageName```. This will match your 8080 port with this container 8080, so the app can work on YOUR local host.
 - Voila, now you can go to http://localhost:8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
+- If you want to interact with docker container via bash and prevent it from running catalina when fired up, use this command: ```docker run -it -p --name 8080:8080 imageName bash``` 
 
 ### Run with run.sh
 (dependency: jdk 11, maven, git in PATH, Linux based OS)
