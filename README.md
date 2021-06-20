@@ -44,11 +44,14 @@ Milestone 4 due: 11:59PM, Juné 20th, 2021
 - Type ```docker run -d -p 8080:8080 imageName```. This will match your 8080 port with this container 8080, so the app can work on YOUR local host.
 - Voila, now you can go to http://localhost:8080/CSE364_dn-1.0/index.html on your favorite browser to test the app.
 - Go to http://localhost:8080/CSE364_dn-1.0/movies to see all movies in JSON format.
+#### What if you want to run it on docker
 - If you want to interact with docker container via bash and prevent it from running catalina when fired up, use this command: ```docker run -it -p 8080:8080 imageName bash``` 
+- Then you can follow the steps in (Run with run.sh)
 
 ### Run with run.sh
 (dependency: jdk 11, maven, git in PATH, Linux based OS)
 - Type: ```./run.sh```.
+- Go to http://localhost:8080/ or http://localhost:8080/index.html to start browsing.
 
 ## Features
 
